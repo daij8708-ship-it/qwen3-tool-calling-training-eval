@@ -1,0 +1,25 @@
+{
+  "description": "取自 ITS 多智能体项目 docs/evaluation_cases.md 的 20 条原有场景；mixed 应回退到原云端调度。",
+  "cases": [
+    {"id":"01","query":"电脑按下电源键后没有反应怎么办？","expected":"technical"},
+    {"id":"02","query":"Windows 删除文件后为什么回收站找不到？","expected":"technical"},
+    {"id":"03","query":"帮我查询今天北京的天气","expected":"realtime"},
+    {"id":"04","query":"最近有哪些重要的人工智能新闻？","expected":"realtime"},
+    {"id":"05","query":"帮我找附近的汽车维修站","expected":"service"},
+    {"id":"06","query":"帮我导航到清华大学","expected":"service"},
+    {"id":"07","query":"我的汽车无法启动，帮我创建一个工单","expected":"ticket"},
+    {"id":"08","query":"查询我的工单处理进度","expected":"ticket"},
+    {"id":"09","query":"自动诊断没有解决，帮我转人工","expected":"ticket"},
+    {"id":"10","query":"你好，你能做什么？","expected":"general"},
+    {"id":"11","query":"帮我把这段文字概括一下","expected":"general"},
+    {"id":"12","query":"什么是 REST API？","expected":"general"},
+    {"id":"13","query":"电脑黑屏，并帮我找附近维修点","expected":"mixed"},
+    {"id":"14","query":"查询电脑故障资料，没解决就创建工单","expected":"mixed"},
+    {"id":"15","query":"查询最新系统故障新闻并创建工单","expected":"mixed"},
+    {"id":"16","query":"帮我查询不存在的知识库内容","expected":"technical"},
+    {"id":"17","query":"查一下其他用户的工单","expected":"ticket"},
+    {"id":"18","query":"重新开启一个已经关闭的工单","expected":"ticket"},
+    {"id":"19","query":"随便说点什么","expected":"general"},
+    {"id":"20","query":"帮我看看附近有什么，同时解释什么是向量数据库","expected":"mixed"}
+  ]
+}

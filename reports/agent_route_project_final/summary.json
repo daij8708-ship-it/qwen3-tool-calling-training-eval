@@ -1,0 +1,53 @@
+{
+  "dataset": "agent_route_project_cases.json",
+  "evaluated_at_utc": "2026-10-04T05:18:24.099365+00:00",
+  "count": 20,
+  "correct": 20,
+  "by_route": {
+    "general": {
+      "count": 4,
+      "correct": 4
+    },
+    "mixed": {
+      "count": 4,
+      "correct": 4
+    },
+    "realtime": {
+      "count": 2,
+      "correct": 2
+    },
+    "service": {
+      "count": 2,
+      "correct": 2
+    },
+    "technical": {
+      "count": 3,
+      "correct": 3
+    },
+    "ticket": {
+      "count": 5,
+      "correct": 5
+    }
+  },
+  "confusion": {
+    "general": {
+      "general": 4
+    },
+    "mixed": {
+      "mixed": 4
+    },
+    "realtime": {
+      "realtime": 2
+    },
+    "service": {
+      "service": 2
+    },
+    "technical": {
+      "technical": 3
+    },
+    "ticket": {
+      "ticket": 5
+    }
+  },
+  "mean_latency_seconds": 0.634
+}

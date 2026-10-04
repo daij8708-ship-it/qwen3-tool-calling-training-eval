@@ -1,4 +1,4 @@
-"""Run locally: python -m uvicorn api.app:app --host 127.0.0.1 --port 8000"""
+"""Run locally: python -m uvicorn api.app:app --host 127.0.0.1 --port 8011"""
 
 from __future__ import annotations
 
@@ -25,6 +25,11 @@ class ConfirmRequest(BaseModel):
     confirmation_token: str = Field(pattern=r"^[0-9a-f]{32}$")
 
 
+class RouteRequest(BaseModel):
+    model_config = ConfigDict(extra="forbid")
+    user_request: str = Field(min_length=2, max_length=500)
+
+
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     app.state.service = ModelService()
@@ -46,12 +51,18 @@ def home():
 def health(request: Request):
     service = request.app.state.service
     return {"status": "ok", "model": service.model_name, "model_revision": service.model_revision,
-            "adapter_sha256": service.adapter_hash, "profiles": PROFILES}
+            "adapter_sha256": service.adapter_hash,
+            "route_adapter_sha256": service.route_adapter_hash, "profiles": PROFILES}
 
 
 @app.post("/decide")
 def decide(body: DecideRequest, request: Request):
     return request.app.state.service.decide(body.user_request, body.profile)
+
+
+@app.post("/route")
+def route(body: RouteRequest, request: Request):
+    return request.app.state.service.route(body.user_request)
 
 
 @app.post("/confirm")

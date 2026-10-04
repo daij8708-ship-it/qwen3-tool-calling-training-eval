@@ -68,11 +68,27 @@ python train/train_lora.py --config configs/lora_1p7b_v0.json
 # 正式训练；输出目录已存在时脚本会拒绝覆盖
 python train/train_lora.py --config configs/lora_1p7b_v0.json --train
 
-# 启动本地服务，浏览器访问 http://127.0.0.1:8001/
-python -m uvicorn api.app:app --host 127.0.0.1 --port 8001 --workers 1
+# 启动本地服务，浏览器访问 http://127.0.0.1:8011/
+python -m uvicorn api.app:app --host 127.0.0.1 --port 8011 --workers 1
 ```
 
 公开仓库不包含 LoRA 权重，因此首次启动服务前需要先完成训练，或自行提供与配置、清单一致的适配器。低显存设备可先运行不加载大模型的契约、数据和策略测试。
+
+## 多智能体第一层路由
+
+在原六工具实验之外，本项目增加了面向 [ITS-Multi-Agent-System](https://github.com/daij8708-ship-it/ITS-Multi-Agent-System) 的五路分诊：技术咨询、实时信息、服务站、工单、普通对话。它只选择接手请求的 Agent；知识库、搜索、地图、工单及回答仍由多智能体项目中的云端模型处理。多任务请求或本地服务不可用时，多智能体项目使用原有云端主调度。
+
+路由适配器从现有 `lora_1p7b_v0/best` 继续训练，单独保存在 `train/outputs/agent_router_v0/best`，不会覆盖六工具适配器。先完成上面的基座与原 LoRA 训练，再运行：
+
+```powershell
+& '.\.venv-train\Scripts\python.exe' '.\train\train_agent_router.py'
+& '.\.venv-train\Scripts\python.exe' -m uvicorn api.app:app --host 127.0.0.1 --port 8011 --workers 1
+& '.\.venv-train\Scripts\python.exe' '.\eval\agent_route_eval.py' --cases '.\data\agent_route_final_v2.json' --out '.\reports\agent_route_recheck'
+```
+
+`POST http://127.0.0.1:8011/route` 接收 `{ "user_request": "电脑黑屏怎么排查" }`，返回 `route`（`technical` / `realtime` / `service` / `ticket` / `general`）或 `null`。`/decide` 继续使用原六工具适配器。8011 专门给模型服务，多智能体知识库继续使用 8001。
+
+训练设置与逐项结果见 [`reports/agent_route_result.md`](reports/agent_route_result.md)。路由 LoRA 权重也被 Git 忽略，克隆公开仓库后需本地训练；只下载源码并启动 `/route` 会返回 `adapter_unavailable`。多智能体项目的本地开发配置已接入 8011；Docker 默认关闭该路由，需要从容器可达的地址启动模型服务后再启用。
 
 ## 复核与测试
 

@@ -19,6 +19,7 @@ import executor  # noqa: E402
 import generate_dataset as generator  # noqa: E402
 import simulator  # noqa: E402
 from api.decision_policy import apply_policy  # noqa: E402
+from api.agent_router import MULTI_TASK, build_route_prompt, validate_route_decision  # noqa: E402
 
 PROFILES = {
     "all": ["search_documents", "get_record", "calculate", "aggregate_data", "check_availability", "create_event"],
@@ -80,6 +81,11 @@ class ModelService:
             str(model_dir), local_files_only=True, torch_dtype=torch.float16
         ).to("cuda")
         self.model = PeftModel.from_pretrained(base, str(adapter_dir), is_trainable=False)
+        route_adapter_dir = ROOT / "train" / "outputs" / "agent_router_v0" / "best"
+        self.route_adapter_hash = None
+        if (route_adapter_dir / "adapter_model.safetensors").is_file():
+            self.model.load_adapter(str(route_adapter_dir), adapter_name="agent_router", is_trainable=False)
+            self.route_adapter_hash = file_hash(route_adapter_dir / "adapter_model.safetensors")
         self.model.eval()
         self.model.generation_config = GenerationConfig.from_model_config(self.model.config)
 
@@ -136,6 +142,49 @@ class ModelService:
                 "decision": decision,
                 "gate": report,
                 "confirmation_token": token,
+                "latency_seconds": round(latency, 3),
+            }
+
+    def route(self, user_request):
+        """只判断第一层 Agent；不进入模拟工具执行闸门。"""
+        with self.lock:
+            if MULTI_TASK.search(user_request):
+                return {"route": None, "reason": "multi_task", "decision": None,
+                        "raw_model_output": None, "latency_seconds": 0.0}
+            if self.route_adapter_hash is None:
+                return {"route": None, "reason": "adapter_unavailable", "decision": None,
+                        "raw_model_output": None, "latency_seconds": 0.0}
+            now = self.now_provider()
+            prompt = build_route_prompt(user_request, now)
+            encoded = self.tokenizer.apply_chat_template(
+                [{"role": "user", "content": prompt}], tokenize=True,
+                add_generation_prompt=True, enable_thinking=False, return_tensors="pt",
+            ).to("cuda")
+            self.torch.cuda.synchronize()
+            start = time.perf_counter()
+            self.model.set_adapter("agent_router")
+            try:
+                with self.torch.inference_mode():
+                    generated = self.model.generate(
+                        encoded, attention_mask=self.torch.ones_like(encoded),
+                        max_new_tokens=self.max_new_tokens, do_sample=False,
+                        pad_token_id=self.tokenizer.eos_token_id,
+                    )
+            finally:
+                self.model.set_adapter("default")
+            self.torch.cuda.synchronize()
+            latency = time.perf_counter() - start
+            raw = self.tokenizer.decode(generated[0][encoded.shape[-1]:], skip_special_tokens=True).strip()
+            try:
+                decision = json.loads(raw)
+            except json.JSONDecodeError:
+                decision = None
+            route, reason = validate_route_decision(user_request, decision)
+            return {
+                "route": route,
+                "reason": reason,
+                "decision": decision,
+                "raw_model_output": raw,
                 "latency_seconds": round(latency, 3),
             }
 

@@ -1,0 +1,53 @@
+{
+  "dataset": "agent_route_final_v2.json",
+  "evaluated_at_utc": "2026-10-04T05:09:25.194498+00:00",
+  "count": 30,
+  "correct": 30,
+  "by_route": {
+    "general": {
+      "count": 5,
+      "correct": 5
+    },
+    "mixed": {
+      "count": 5,
+      "correct": 5
+    },
+    "realtime": {
+      "count": 5,
+      "correct": 5
+    },
+    "service": {
+      "count": 5,
+      "correct": 5
+    },
+    "technical": {
+      "count": 5,
+      "correct": 5
+    },
+    "ticket": {
+      "count": 5,
+      "correct": 5
+    }
+  },
+  "confusion": {
+    "general": {
+      "general": 5
+    },
+    "mixed": {
+      "mixed": 5
+    },
+    "realtime": {
+      "realtime": 5
+    },
+    "service": {
+      "service": 5
+    },
+    "technical": {
+      "technical": 5
+    },
+    "ticket": {
+      "ticket": 5
+    }
+  },
+  "mean_latency_seconds": 0.712
+}
