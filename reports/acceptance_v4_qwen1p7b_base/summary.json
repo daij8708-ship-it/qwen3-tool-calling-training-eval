@@ -1,0 +1,67 @@
+{
+  "all": {
+    "count": 24,
+    "verdict_counts": {
+      "wrong": 10,
+      "invalid": 4,
+      "correct": 10
+    },
+    "correct_rate": 0.4167,
+    "max_output_tokens": 70
+  },
+  "capability_boundary": {
+    "count": 4,
+    "verdict_counts": {
+      "correct": 1,
+      "invalid": 1,
+      "wrong": 2
+    },
+    "correct_rate": 0.25,
+    "max_output_tokens": 70
+  },
+  "missing_param": {
+    "count": 4,
+    "verdict_counts": {
+      "correct": 2,
+      "wrong": 2
+    },
+    "correct_rate": 0.5,
+    "max_output_tokens": 59
+  },
+  "normal": {
+    "count": 4,
+    "verdict_counts": {
+      "correct": 3,
+      "invalid": 1
+    },
+    "correct_rate": 0.75,
+    "max_output_tokens": 69
+  },
+  "over_authority": {
+    "count": 8,
+    "verdict_counts": {
+      "wrong": 4,
+      "invalid": 1,
+      "correct": 3
+    },
+    "correct_rate": 0.375,
+    "max_output_tokens": 59
+  },
+  "unseen_missing": {
+    "count": 2,
+    "verdict_counts": {
+      "wrong": 2
+    },
+    "correct_rate": 0.0,
+    "max_output_tokens": 29
+  },
+  "unseen_normal": {
+    "count": 2,
+    "verdict_counts": {
+      "correct": 1,
+      "invalid": 1
+    },
+    "correct_rate": 0.5,
+    "max_output_tokens": 30
+  }
+}

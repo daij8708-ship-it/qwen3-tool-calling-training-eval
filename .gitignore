@@ -1,0 +1,26 @@
+.venv-train/
+train/outputs/
+**/__pycache__/
+*.py[cod]
+
+# 本地环境与模型文件
+.venv/
+venv/
+.env
+.env.*
+!.env.example
+models/
+*.safetensors
+*.pt
+*.pth
+*.onnx
+*.gguf
+
+# 与本仓库无关的个人资料、构建缓存
+docs/
+小模型工具调用优化项目规划书.md
+reports/baselines/smoke_*/
+reports/**/*predictions*.jsonl
+reports/**/run_config.json
+*.log
+.pytest_cache/

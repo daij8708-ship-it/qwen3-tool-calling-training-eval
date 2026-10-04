@@ -1,0 +1,25 @@
+{
+  "name": "calculate",
+  "description": "计算只含数字与 + - * / ( ) % 的算式,服务端确定性求值,保留两位小数。无状态、不读库。",
+  "execution": {
+    "side_effect": "read_only",
+    "requires_server_confirmation": false
+  },
+  "input_schema": {
+    "type": "object",
+    "description": "calculate 的入参。",
+    "properties": {
+      "expression": {
+        "type": "string",
+        "minLength": 3,
+        "maxLength": 80,
+        "pattern": "^[0-9+\\-*/()\\. %]+$",
+        "description": "半角算式,不支持函数、幂运算、变量和中文数字;数值须来自请求或上下文。"
+      }
+    },
+    "required": [
+      "expression"
+    ],
+    "additionalProperties": false
+  }
+}

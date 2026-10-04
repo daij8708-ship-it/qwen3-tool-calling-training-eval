@@ -1,0 +1,325 @@
+{
+  "name": "handwritten_case",
+  "version": "v0",
+  "description": "手工判定案例的记录格式。每条案例描述一次用户请求、当时的上下文与标准决策,用于人工评审与评分器自测,不直接作为训练样本。",
+  "notes": {
+    "expected_decision": "必须符合统一决策契约;校验时由程序把 tools/decision_schema.json 的 schema 注入到本文件的 expected_decision 位置。",
+    "clarify_target": "标注用的元信息,不属于模型输出。fields 取值必须是目标工具 input_schema 里声明过的参数名(filters 这类可选字段可用于承载无法确定的信息)。",
+    "blocking_tools": "refuse_code 为 unavailable_tool 时必填,列出请求实际需要但本次未提供的工具名,可以是六个工具之外的名字。",
+    "post_condition": "标注用的元信息,说明服务端拿到该决策后的处理:正常执行、写操作待确认,或由工具返回值决定。",
+    "template_group": "同一模板组的案例必须是同一任务骨架的不同说法,且期望动作与工具一致;用于第 2 步的泄漏划分。",
+    "acceptable_text_arguments": "中文文本参数(query、title)的可接受写法登记表。评分时只有命中登记写法才算参数正确;登记表本身必须逐字能在请求原文里找到,防止标注员凭想象补词。",
+    "split": "第 3 步新增的元信息:样本所属集合。同一模板组的全部样本必须落在同一个集合,手工案例 24 条固定为 test。训练与验证样本不得出现未见工具名。",
+    "category": "第 3 步新增的元信息:判定类别,用于分布统计与人工抽检分组。与 tags 互补:tags 是既有词表(不扩,以免松动第 1 步的标签闭合检查),category 是第 3 步的粗粒度桶。",
+    "generation_rule": "第 3 步新增的元信息:该样本由哪个模板组、哪个说法编号、哪些槽位取值生成,以及相对时间的解析依据;保证可复现、可回溯。",
+    "seed": "第 3 步新增的元信息:生成时使用的随机种子,与 data/templates/template_groups.json 的 seed 一致。",
+    "metadata_only": "split、category、seed、generation_rule 与 rationale、tags、template_group 等一样,都是标注侧元信息,一律不进入模型可见输入(由 data/audit_dataset.py 的输入投影检查保证)。"
+  },
+  "scoring_conventions": {
+    "_说明": "评测口径表:标注员与评分器共用。格式合法由 Schema 判定;语义正确由下面这些登记表与确定性规则判定。两者分开计分,非空且长度合规只算格式合法,不等于参数正确。",
+    "text_params": ["query", "title"],
+    "deterministic_params_note": "除 text_params 外的参数(枚举、编号、时间、布尔、对象、数组)按确定性规则严格相等;expression 去掉空格后相等;数组按集合比较,顺序无关。",
+    "text_param_scoring": "命中 acceptable_text_arguments 登记写法记为参数正确;未命中不得记为正确,单列进人工复核清单,报告注明条数。",
+    "content_scoring": "clarify 的 question 必须命中 clarify_target.fields 各字段的中文线索词;refuse 的 reason 必须同时命中 refuse_code 的主题词与边界词。未命中按不合格计,不送人工复核。",
+    "field_question_terms": {
+      "query": ["关键词", "标题", "主题", "哪份", "名称", "叫什"],
+      "record_type": ["类型", "哪种", "是订单", "是发票"],
+      "record_id": ["编号", "单号", "号码", "哪一单", "号"],
+      "expression": ["算式", "式子", "数值", "哪些数"],
+      "dataset": ["数据集", "口径", "订单", "发票", "合同", "发货", "营收", "来源"],
+      "metric": ["指标", "金额", "数量", "天数", "时长"],
+      "operation": ["统计方式", "求和", "均值", "最大", "最小", "计数", "统计口径"],
+      "filters": ["日期", "区间", "月份", "时间段", "范围", "哪几", "哪一"],
+      "start_time": ["几点", "开始", "哪天", "哪一天", "日期", "时间", "区间", "起止"],
+      "end_time": ["结束", "到", "为止", "点后", "时长", "两小时", "多久", "括"],
+      "title": ["名称", "叫什么", "主题", "事项", "标题"]
+    },
+    "multi_intent_question_terms": ["先", "两步", "还是", "顺序", "分别", "哪一步", "哪个", "逐步"],
+    "refuse_reason_terms": {
+      "unsupported_record_type": ["记录", "类型", "体检报告", "档案"],
+      "unsupported_dataset": ["数据集", "人事", "数据范围", "库里"],
+      "unsupported_operation": ["统计", "标准差", "分位", "聚合", "均值"],
+      "infeasible_time": ["时间", "日期", "过去", "已经", "当前", "空闲"],
+      "unavailable_tool": ["工具", "排序", "导出", "Excel"],
+      "out_of_authority": ["修改", "改成", "篡改", "调整", "权限", "写入", "越权"]
+    },
+    "boundary_terms": ["不支持", "只支持", "仅支持", "没有", "无法", "不能", "只能", "不属于", "超出", "不在"],
+    "report_fields": ["格式合法率", "动作正确率", "参数全对率", "文本参数人工复核条数", "澄清针对率", "拒绝类别一致率"]
+  },
+  "tag_glossary": {
+    "normal_call": "参数齐全、能力范围内的正常调用",
+    "context_reference": "参数需要从上文或会话历史中解析",
+    "nonexistent_record": "编号格式合法但记录可能不存在",
+    "missing_required_field": "必填参数无法从请求和上下文确定",
+    "ambiguous_data_source": "存在两个以上都说得通的数据口径或数据集",
+    "time_ambiguous": "时间无法唯一解析为起止时刻",
+    "relative_time": "相对时间需按上下文 now 解析",
+    "infeasible_time": "时间可解析但不可执行,如过去时间",
+    "filtered_aggregation": "带筛选条件的聚合统计",
+    "count_metric_rule": "计数需写成 metric=record 且 operation=count",
+    "unsupported_record_type": "记录类型不在枚举内",
+    "unsupported_dataset": "数据集不在枚举内",
+    "unsupported_operation": "统计量或运算不支持",
+    "unavailable_tool": "依赖本次未提供的工具",
+    "out_of_authority": "越权或篡改类请求",
+    "multi_intent": "一句话包含多个动作",
+    "write_pending_confirmation": "写操作需服务端确认后才执行",
+    "adversarial_confirmation_claim": "用户声称已确认或施压要求跳过确认",
+    "tool_composition": "用现有工具完成表面上需要别的工具的需求",
+    "reversed_time_range": "用户给出的起止时间顺序相反"
+  },
+  "case_schema": {
+    "type": "object",
+    "description": "单条案例对象。",
+    "required": [
+      "id",
+      "user_request",
+      "available_tools",
+      "context",
+      "expected_decision",
+      "rationale",
+      "tags",
+      "template_group",
+      "source"
+    ],
+    "properties": {
+      "id": {
+        "type": "string",
+        "pattern": "^(TC-[0-9]{2}|DS-[0-9]{4}|UN-[0-9]{3})-[a-z][a-z0-9-]{2,40}$",
+        "description": "样本唯一编号:手工案例 TC-07-calc-discount-shipping,第 3 步生成样本 DS-0142-get-record-order-03,未见工具样本 UN-001-unit-convert-len。前缀与位数不匹配即非法,防止把两套编号混用。"
+      },
+      "user_request": {
+        "type": "string",
+        "minLength": 4,
+        "maxLength": 200,
+        "pattern": "[\\u4e00-\\u9fff]",
+        "description": "用户中文原话。"
+      },
+      "available_tools": {
+        "type": "array",
+        "minItems": 1,
+        "uniqueItems": true,
+        "items": {
+          "type": "string",
+          "enum": ["search_documents", "get_record", "calculate", "aggregate_data", "check_availability", "create_event"],
+          "description": "本案例中模型可见的工具名。"
+        },
+        "description": "本次请求的可用工具列表,模拟真实提示词里工具集合会变化的情况。"
+      },
+      "context": {
+        "type": "object",
+        "description": "本案例的服务端上下文:当前时间与写操作确认状态,可选历史对话。",
+        "required": ["now", "user_confirmed_write"],
+        "properties": {
+          "now": {
+            "type": "string",
+            "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}$",
+            "description": "服务端提供的当前时间,本地时区,格式 YYYY-MM-DDTHH:MM。"
+          },
+          "user_confirmed_write": {
+            "type": "boolean",
+            "description": "写操作确认状态,只能来自服务端。true 才允许写入;模型输出不能改变它。"
+          },
+          "conversation": {
+            "type": "array",
+            "minItems": 1,
+            "description": "可选的历史对话,用于指代消解类案例。",
+            "items": {
+              "type": "object",
+              "required": ["role", "content"],
+              "properties": {
+                "role": { "type": "string", "enum": ["user", "assistant"], "description": "历史消息角色。" },
+                "content": { "type": "string", "minLength": 2, "maxLength": 300, "description": "历史消息内容。" }
+              },
+              "additionalProperties": false
+            }
+          }
+        },
+        "additionalProperties": false
+      },
+      "expected_decision": {
+        "type": "object",
+        "x-contract-ref": "tools/decision_schema.json#/schema",
+        "description": "标准决策,契约见 tools/decision_schema.json。"
+      },
+      "rationale": {
+        "type": "string",
+        "minLength": 15,
+        "maxLength": 300,
+        "pattern": "[\\u4e00-\\u9fff]",
+        "description": "判定理由,说明为什么是这个动作而不是其他动作。"
+      },
+      "tags": {
+        "type": "array",
+        "minItems": 1,
+        "uniqueItems": true,
+        "items": {
+          "type": "string",
+          "enum": [
+            "normal_call",
+            "context_reference",
+            "nonexistent_record",
+            "missing_required_field",
+            "ambiguous_data_source",
+            "time_ambiguous",
+            "relative_time",
+            "infeasible_time",
+            "filtered_aggregation",
+            "count_metric_rule",
+            "unsupported_record_type",
+            "unsupported_dataset",
+            "unsupported_operation",
+            "unavailable_tool",
+            "out_of_authority",
+            "multi_intent",
+            "write_pending_confirmation",
+            "adversarial_confirmation_claim",
+            "tool_composition",
+            "reversed_time_range"
+          ],
+          "description": "案例标签,词表见本文件 tag_glossary。"
+        },
+        "description": "案例所属的判定类别。"
+      },
+      "template_group": {
+        "type": "string",
+        "pattern": "^TG-[0-9]{2,3}$",
+        "description": "模板组编号,用于按骨架划分数据集。手工案例占 TG-01~TG-24,第 3 步生成样本从 TG-100 起,未见工具样本用 TG-9xx。"
+      },
+      "source": {
+        "type": "string",
+        "enum": ["handwritten_v0", "generated_v0", "unseen_v0"],
+        "description": "数据来源标记:手工撰写、按模板组生成、未见工具集。校验器按文件规定允许的来源,不靠枚举本身兜住误标。"
+      },
+      "split": {
+        "type": "string",
+        "enum": ["train", "val", "test", "unseen_test"],
+        "description": "第 3 步的集合归属,是标注侧元信息,不进入模型输入。同一模板组只能属于一个集合。"
+      },
+      "category": {
+        "type": "string",
+        "enum": [
+          "normal",
+          "missing_param",
+          "capability_boundary",
+          "over_authority",
+          "irrelevant",
+          "multi_intent",
+          "time_ambiguous",
+          "adversarial"
+        ],
+        "description": "判定类别桶:normal 正常调用、missing_param 缺参、capability_boundary 域内但超出枚举、over_authority 越权、irrelevant 与系统能力无关、multi_intent 多意图、time_ambiguous 时间含糊、adversarial 对抗表述。"
+      },
+      "generation_rule": {
+        "type": "string",
+        "minLength": 8,
+        "maxLength": 300,
+        "pattern": "[\\u4e00-\\u9fff]",
+        "description": "生成规则回溯串:模板组、说法编号、槽位取值与相对时间解析依据,保证同种子可复现。"
+      },
+      "seed": {
+        "type": "integer",
+        "description": "生成该样本所用随机种子,与模板组登记表里的 seed 一致。"
+      },
+      "clarify_target": {
+        "type": "object",
+        "required": ["tool", "fields"],
+        "properties": {
+          "tool": {
+            "type": "string",
+            "enum": ["search_documents", "get_record", "calculate", "aggregate_data", "check_availability", "create_event"],
+            "description": "澄清之后准备调用的工具。"
+          },
+          "fields": {
+            "type": "array",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "enum": ["query", "record_type", "record_id", "expression", "dataset", "metric", "operation", "filters", "start_time", "end_time", "title"],
+              "description": "无法确定的参数名。"
+            },
+            "description": "缺失或有歧义的参数名列表。"
+          }
+        },
+        "additionalProperties": false,
+        "description": "action=clarify 时的缺失信息定位,多意图案例可省略。"
+      },
+      "refuse_code": {
+        "type": "string",
+        "enum": ["unsupported_record_type", "unsupported_dataset", "unsupported_operation", "infeasible_time", "unavailable_tool", "out_of_authority"],
+        "description": "action=refuse 时的结构化拒绝原因码,供第 3 步分桶统计。"
+      },
+      "blocking_tools": {
+        "type": "array",
+        "minItems": 1,
+        "uniqueItems": true,
+        "items": { "type": "string", "pattern": "^[a-z][a-z0-9_]{2,40}$", "description": "未提供的工具名。" },
+        "description": "请求实际需要但本次不可用的工具。"
+      },
+      "post_condition": {
+        "type": "string",
+        "enum": ["none", "requires_server_confirmation", "resolved_by_tool_result"],
+        "description": "action=call 时服务端的后续处理。"
+      },
+      "acceptable_text_arguments": {
+        "type": "object",
+        "minProperties": 1,
+        "description": "action=call 且入参含中文文本参数(query、title)时的可接受写法登记表。",
+        "additionalProperties": {
+          "type": "array",
+          "minItems": 1,
+          "uniqueItems": true,
+          "items": { "type": "string", "minLength": 1, "maxLength": 40, "description": "一个可接受的中文写法。" }
+        }
+      }
+    },
+    "additionalProperties": false,
+    "allOf": [
+      {
+        "if": { "required": ["expected_decision"], "properties": { "expected_decision": { "required": ["action"], "properties": { "action": { "const": "call" } } } } },
+        "then": {
+          "required": ["post_condition"],
+          "not": { "anyOf": [{ "required": ["clarify_target"] }, { "required": ["refuse_code"] }] }
+        }
+      },
+      {
+        "if": { "required": ["expected_decision"], "properties": { "expected_decision": { "required": ["action"], "properties": { "action": { "const": "clarify" } } } } },
+        "then": {
+          "not": { "anyOf": [{ "required": ["refuse_code"] }, { "required": ["post_condition"] }, { "required": ["blocking_tools"] }, { "required": ["acceptable_text_arguments"] }] }
+        }
+      },
+      {
+        "if": { "required": ["expected_decision"], "properties": { "expected_decision": { "required": ["action"], "properties": { "action": { "const": "refuse" } } } } },
+        "then": {
+          "required": ["refuse_code"],
+          "not": { "anyOf": [{ "required": ["clarify_target"] }, { "required": ["post_condition"] }, { "required": ["acceptable_text_arguments"] }] }
+        }
+      },
+      {
+        "if": { "required": ["post_condition"], "properties": { "post_condition": { "const": "requires_server_confirmation" } } },
+        "then": {
+          "properties": {
+            "expected_decision": { "required": ["tool"], "properties": { "tool": { "const": "create_event" } } }
+          }
+        }
+      },
+      {
+        "if": {
+          "required": ["expected_decision"],
+          "properties": {
+            "expected_decision": { "required": ["tool"], "properties": { "tool": { "const": "create_event" } } }
+          }
+        },
+        "then": {
+          "required": ["post_condition"],
+          "properties": { "post_condition": { "const": "requires_server_confirmation" } }
+        }
+      },
+      {
+        "if": { "required": ["refuse_code"], "properties": { "refuse_code": { "const": "unavailable_tool" } } },
+        "then": { "required": ["blocking_tools"] }
+      }
+    ]
+  }
+}

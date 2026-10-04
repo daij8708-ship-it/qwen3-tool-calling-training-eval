@@ -1,0 +1,20 @@
+{
+  "model_dir": "models/Qwen3-1.7B",
+  "base_revision": "master",
+  "baseline_config": "reports/baselines/qwen3_0p6b_pre_lora_v0/run_config.json",
+  "prompt_source_only": true,
+  "data_version": "v3",
+  "seed": 20260924,
+  "max_seq_length": 1280,
+  "per_device_batch_size": 1,
+  "gradient_accumulation_steps": 8,
+  "epochs": 2,
+  "learning_rate": 0.00008,
+  "weight_decay": 0.0,
+  "lora_rank": 8,
+  "lora_alpha": 16,
+  "lora_dropout": 0.05,
+  "target_modules": ["q_proj", "v_proj"],
+  "output_dir": "train/outputs/lora_1p7b_v3",
+  "preflight_report": "reports/lora_preflight_1p7b_v3.json"
+}

@@ -1,0 +1,6 @@
+# 请先按本机 CUDA/驱动版本安装 PyTorch。
+transformers==4.52.3
+peft==0.15.2
+accelerate==1.7.0
+huggingface-hub==0.32.2
+safetensors==0.5.3

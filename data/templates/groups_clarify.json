@@ -1,0 +1,887 @@
+{
+  "version": "templates_clarify_v0",
+  "description": "第 3 步模板组的 clarify 部分。每组的问题写法列表与说法列表按下标配对轮转;追问必须命中 clarify_target.fields 各字段的中文线索词,且不得出现用户没说过的时刻。",
+  "groups": [
+    {
+      "id": "TG-161",
+      "slug": "clarify-search-no-query",
+      "label": "检索却未给检索词",
+      "toolset": "train6",
+      "action": "clarify",
+      "tool": null,
+      "category": "missing_param",
+      "tags": [
+        "missing_required_field"
+      ],
+      "clarify_target": {
+        "tool": "search_documents",
+        "fields": [
+          "query"
+        ]
+      },
+      "available_tools_pool": [
+        [
+          "search_documents"
+        ],
+        [
+          "search_documents",
+          "get_record"
+        ],
+        [
+          "aggregate_data",
+          "search_documents"
+        ]
+      ],
+      "phrasings": [
+        "帮我在文档库里找个文件",
+        "给我调一份制度出来",
+        "公司制度你帮我开一份",
+        "我想看份材料,你搜一下",
+        "资料库里那篇东西帮我打开",
+        "找个文件给我看看",
+        "有份规范我需要看,帮我调",
+        "把相关制度翻出来",
+        "业务档案里帮我找一份文件"
+      ],
+      "questions": [
+        "你要找哪份文档?给个标题或关键词。",
+        "请提供检索关键词或文档标题。",
+        "没有主题我无法检索,文档名称是什么?",
+        "这份材料的关键词或标题是哪个?",
+        "请说明想查的制度主题词,便于按标题检索。"
+      ],
+      "rationale": "query 必填但请求里没有任何可照抄的检索词,补一句就能查,属澄清而不是拒绝。",
+      "split": "train"
+    },
+    {
+      "id": "TG-162",
+      "slug": "clarify-record-no-id",
+      "label": "读记录却未给编号",
+      "toolset": "train6",
+      "action": "clarify",
+      "tool": null,
+      "category": "missing_param",
+      "tags": [
+        "missing_required_field"
+      ],
+      "clarify_target": {
+        "tool": "get_record",
+        "fields": [
+          "record_id"
+        ]
+      },
+      "available_tools_pool": [
+        [
+          "get_record"
+        ],
+        [
+          "get_record",
+          "aggregate_data"
+        ],
+        [
+          "search_documents",
+          "get_record"
+        ]
+      ],
+      "phrasings": [
+        "帮我看下那张订单的记录",
+        "把那张发票的记录调出来",
+        "有一份合同要看详情",
+        "查一下这笔发货单的记录",
+        "这张单子金额多少?读记录",
+        "帮我读一下那条订单记录",
+        "有张发票要核对,把记录打开",
+        "看下那份合同的详情",
+        "这笔发货单记录帮我调出来"
+      ],
+      "questions": [
+        "请提供这条记录的编号。",
+        "要看哪一单?给一下订单号或发票号。",
+        "缺少记录编号,我无法读取具体记录。",
+        "请补充这条记录的编号或单号。"
+      ],
+      "rationale": "记录类型能定但编号缺失,上下文也没有唯一指代,补编号即可执行,所以 clarify。",
+      "split": "train"
+    },
+    {
+      "id": "TG-163",
+      "slug": "clarify-record-type-unknown",
+      "label": "编号缺类型前缀导致类型不定",
+      "toolset": "train6",
+      "action": "clarify",
+      "tool": null,
+      "category": "missing_param",
+      "tags": [
+        "missing_required_field",
+        "ambiguous_data_source"
+      ],
+      "clarify_target": {
+        "tool": "get_record",
+        "fields": [
+          "record_id",
+          "record_type"
+        ]
+      },
+      "available_tools_pool": [
+        [
+          "get_record"
+        ],
+        [
+          "get_record",
+          "search_documents"
+        ]
+      ],
+      "slots": {
+        "bare": [
+          "45771",
+          "204555",
+          "103886",
+          "220916"
+        ]
+      },
+      "phrasings": [
+        "查一下编号 {bare} 的记录",
+        "帮我看 {bare} 这条记录",
+        "{bare},把这条记录读出来",
+        "核对编号 {bare} 的内容",
+        "我的单子上只写了 {bare},帮我查",
+        "系统里 {bare} 这条是什么?",
+        "{bare} 这个号帮我调记录",
+        "只记得 {bare} 这串数,查一下",
+        "麻烦读取 {bare} 对应记录"
+      ],
+      "questions": [
+        "{bare} 少了类型前缀,这是订单、发票还是合同的编号?",
+        "编号 {bare} 无法判断记录类型,请补全是哪种单据的单号。",
+        "请确认 {bare} 属于哪种记录类型,并给出带前缀的完整编号。",
+        "{bare} 对应哪种类型?订单、发票、合同还是发货单?顺便给完整单号。"
+      ],
+      "rationale": "编号不带类型前缀时两个必填项都无法唯一确定,澄清比猜测安全,所以 clarify。",
+      "split": "train"
+    },
+    {
+      "id": "TG-164",
+      "slug": "clarify-agg-no-operation",
+      "label": "要统计但未说统计方式",
+      "toolset": "train6",
+      "action": "clarify",
+      "tool": null,
+      "category": "missing_param",
+      "tags": [
+        "missing_required_field",
+        "ambiguous_data_source"
+      ],
+      "clarify_target": {
+        "tool": "aggregate_data",
+        "fields": [
+          "operation"
+        ]
+      },
+      "available_tools_pool": [
+        [
+          "aggregate_data"
+        ],
+        [
+          "aggregate_data",
+          "get_record"
+        ],
+        [
+          "aggregate_data",
+          "calculate"
+        ]
+      ],
+      "phrasings": [
+        "把订单金额统计一下",
+        "发票金额你帮我聚合看看",
+        "合同金额做个统计",
+        "帮我看下发货数量的统计结果",
+        "订单金额这块统计一下给我",
+        "把合同的金额情况统计出来",
+        "统计一下发票金额这边",
+        "金额数据帮我做个统计,数据集是订单",
+        "给我一份订单金额的统计口径结果"
+      ],
+      "questions": [
+        "要按哪种统计方式看金额:求和、均值还是最大最小?",
+        "统计口径没说清,是求和还是计数?",
+        "请确认统计方式,求和与均值结果不同。",
+        "这份数据你要哪种统计方式?只能选一项。"
+      ],
+      "rationale": "operation 必填且不能默认按求和处理,用户补一句就能算,所以 clarify。",
+      "split": "train"
+    },
+    {
+      "id": "TG-165",
+      "slug": "clarify-agg-no-metric-operation",
+      "label": "只说数据集,指标与方式都缺",
+      "toolset": "train6",
+      "action": "clarify",
+      "tool": null,
+      "category": "missing_param",
+      "tags": [
+        "missing_required_field"
+      ],
+      "clarify_target": {
+        "tool": "aggregate_data",
+        "fields": [
+          "metric",
+          "operation"
+        ]
+      },
+      "available_tools_pool": [
+        [
+          "aggregate_data"
+        ],
+        [
+          "aggregate_data",
+          "search_documents"
+        ]
+      ],
+      "phrasings": [
+        "统计一下合同这块",
+        "帮我把发货单的数据聚合一下",
+        "订单那边给我出个统计",
+        "看一下发票数据的统计结果",
+        "把合同汇总一下",
+        "我要个统计数,数据集是订单",
+        "聚合一下发货单那边",
+        "合同的统计给我出一份,字段你帮我确认",
+        "帮我出个发货单的统计数"
+      ],
+      "questions": [
+        "要看哪个指标、用哪种统计方式?金额还是数量,求和还是均值?",
+        "请补全指标与统计方式,合同这边可看金额或天数。",
+        "指标和统计方式都没给,先确认看金额还是条数,再确认求和还是均值。",
+        "缺指标与统计口径两项:看哪个字段、怎么统计?"
+      ],
+      "rationale": "metric 与 operation 两个必填项都无法确定,追问能解决,所以 clarify。",
+      "split": "test"
+    },
+    {
+      "id": "TG-166",
+      "slug": "clarify-agg-dataset-ambiguous",
+      "label": "口径含糊,数据集二选一",
+      "toolset": "train6",
+      "action": "clarify",
+      "tool": null,
+      "category": "missing_param",
+      "tags": [
+        "missing_required_field",
+        "ambiguous_data_source"
+      ],
+      "clarify_target": {
+        "tool": "aggregate_data",
+        "fields": [
+          "dataset"
+        ]
+      },
+      "available_tools_pool": [
+        [
+          "aggregate_data"
+        ],
+        [
+          "aggregate_data",
+          "get_record"
+        ],
+        [
+          "aggregate_data",
+          "calculate"
+        ]
+      ],
+      "phrasings": [
+        "统计上个月的总额",
+        "帮我出一下上月总额数据",
+        "上月总共多少钱?按聚合统计",
+        "看下上个月的总额合计",
+        "把上月的总额统计出来给我",
+        "上月金额总共有多少?",
+        "上个月的收支总额算一下,按系统里的口径",
+        "给我上月的总额统计",
+        "上月这块总数额是多少?按业务记录统计"
+      ],
+      "questions": [
+        "总额指哪个数据集:订单、发票还是合同?",
+        "口径不确定,统计来源是订单还是发票?两者金额不同。",
+        "请说明按哪个数据集统计总额。",
+        "这份总额来自哪个数据集?合同与订单不是一个口径。"
+      ],
+      "rationale": "dataset 必填且多种说法都说得通,不能凭印象选一个,所以 clarify。",
+      "split": "val"
+    },
+    {
+      "id": "TG-167",
+      "slug": "clarify-agg-window-ambiguous",
+      "label": "筛选时间窗含糊",
+      "toolset": "train6",
+      "action": "clarify",
+      "tool": null,
+      "category": "time_ambiguous",
+      "tags": [
+        "time_ambiguous",
+        "filtered_aggregation"
+      ],
+      "clarify_target": {
+        "tool": "aggregate_data",
+        "fields": [
+          "filters"
+        ]
+      },
+      "available_tools_pool": [
+        [
+          "aggregate_data"
+        ],
+        [
+          "aggregate_data",
+          "get_record"
+        ]
+      ],
+      "phrasings": [
+        "统计前几个月的订单金额合计",
+        "把最近一阵子的发票金额加一下",
+        "看下这段时间合同的金额总和",
+        "前几个月这块的订单金额总和是多少",
+        "帮我统计近期订单金额合计",
+        "这一段时间的发货单数量合计给我",
+        "近几个月发票金额合计",
+        "这段时间的订单金额统共多少",
+        "把前几个月订单金额汇总下"
+      ],
+      "questions": [
+        "筛选区间从哪一天到哪一天?月份范围无法唯一确定。",
+        "请给出时间区间的起止日期,我按区间筛。",
+        "这段时间具体是哪几个月?需要日期区间才能过滤。",
+        "时间范围不明确,起始和截止日期分别是什么?"
+      ],
+      "rationale": "filters 的时间窗无法唯一解析到区间,默认区间会改变统计结果,所以 clarify。",
+      "split": "train"
+    },
+    {
+      "id": "TG-168",
+      "slug": "clarify-check-no-end",
+      "label": "查空闲只给开始时刻",
+      "toolset": "train6",
+      "action": "clarify",
+      "tool": null,
+      "category": "missing_param",
+      "tags": [
+        "missing_required_field"
+      ],
+      "clarify_target": {
+        "tool": "check_availability",
+        "fields": [
+          "end_time"
+        ]
+      },
+      "available_tools_pool": [
+        [
+          "check_availability"
+        ],
+        [
+          "check_availability",
+          "create_event"
+        ]
+      ],
+      "phrasings": [
+        "明天 14:00 开始我有没有空?",
+        "后天 09:30 起有没有档期?",
+        "明天 16:00 开始的时间段帮我查下空闲",
+        "下周三 10:00 开始那天方便吗",
+        "后天 15:00 起那段时间空不空",
+        "明天 11:00 开始有没有安排?",
+        "下周一 09:00 开始那个时段我空的吗",
+        "明天 13:30 开始查下档期",
+        "后天 10:00 开始能不能约上人"
+      ],
+      "questions": [
+        "从开始时间算起,到几点结束?",
+        "这场要占多久?请给出结束时间。",
+        "只给了开始时刻,结束时间是几点?",
+        "请补充结束时间,我按起止区间查。"
+      ],
+      "rationale": "start_time 可解析但 end_time 缺失,时长不能自行假定,所以 clarify。",
+      "split": "train"
+    },
+    {
+      "id": "TG-169",
+      "slug": "clarify-check-vague-evening",
+      "label": "明晚这类含糊时段",
+      "toolset": "train6",
+      "action": "clarify",
+      "tool": null,
+      "category": "time_ambiguous",
+      "tags": [
+        "time_ambiguous"
+      ],
+      "clarify_target": {
+        "tool": "check_availability",
+        "fields": [
+          "start_time",
+          "end_time"
+        ]
+      },
+      "available_tools_pool": [
+        [
+          "check_availability"
+        ],
+        [
+          "check_availability",
+          "create_event"
+        ],
+        [
+          "check_availability",
+          "get_record"
+        ]
+      ],
+      "phrasings": [
+        "明晚我空闲吗?",
+        "后天晚上有空档吗",
+        "明晚那段时间能约吗",
+        "帮我看下明晚的档期",
+        "后天夜里有没有空?",
+        "明晚有没有安排?",
+        "看下周三晚上的空闲",
+        "看看明晚的空闲情况",
+        "明晚这块时间空不空"
+      ],
+      "questions": [
+        "明晚具体从几点开始、到几点结束?",
+        "请给出开始时间和结束时间,晚上无法唯一定位。",
+        "晚上的起止时刻是几点到几点?",
+        "需要起止时间才能查,那晚从哪天几点到几点?"
+      ],
+      "rationale": "晚上不能唯一解析到分钟,禁止套用默认时段,所以 clarify。",
+      "split": "val"
+    },
+    {
+      "id": "TG-170",
+      "slug": "clarify-create-no-title",
+      "label": "建日程未给标题",
+      "toolset": "train6",
+      "action": "clarify",
+      "tool": null,
+      "category": "missing_param",
+      "tags": [
+        "missing_required_field"
+      ],
+      "clarify_target": {
+        "tool": "create_event",
+        "fields": [
+          "title"
+        ]
+      },
+      "available_tools_pool": [
+        [
+          "create_event"
+        ],
+        [
+          "check_availability",
+          "create_event"
+        ]
+      ],
+      "phrasings": [
+        "明天 14:00 到 15:00 帮我在日历上记一笔",
+        "后天 10:00 至 11:00 建个日程",
+        "下周三 09:00 到 10:00 占一下时间",
+        "明天 16:00 到 17:00 加条日程",
+        "后天 13:00 至 14:00 帮我留个位置",
+        "下周一 15:00 到 16:00 记到日历",
+        "明天上午 09:30 到 10:30 建个安排",
+        "后天 11:00 至 12:00 加到日历里",
+        "下周五 14:00 到 15:30 给我占上"
+      ],
+      "questions": [
+        "这条日程的名称叫什么?",
+        "请给日程标题,不然日历里看不出事项。",
+        "这个安排的名称或主题是什么?",
+        "事项名称没给,日程标题叫什么?"
+      ],
+      "rationale": "title 必填且请求里没有可照抄的事项名,不能自行起名,所以 clarify。",
+      "split": "train"
+    },
+    {
+      "id": "TG-171",
+      "slug": "clarify-create-no-end",
+      "label": "建日程只给开始时刻",
+      "toolset": "train6",
+      "action": "clarify",
+      "tool": null,
+      "category": "missing_param",
+      "tags": [
+        "missing_required_field"
+      ],
+      "clarify_target": {
+        "tool": "create_event",
+        "fields": [
+          "end_time"
+        ]
+      },
+      "available_tools_pool": [
+        [
+          "create_event"
+        ],
+        [
+          "create_event",
+          "check_availability"
+        ]
+      ],
+      "phrasings": [
+        "明天 14:00 开产品走查,建到日历",
+        "后天 09:30 开始约技术分享,记一下",
+        "下周三 10:00 起开客户回访,加日程",
+        "明天 15:30 开始排招聘初筛",
+        "后天 13:00 开始做库存盘点沟通",
+        "下周四 09:00 起开月度结算沟通",
+        "明天 11:00 开始约供应商对账",
+        "后天 16:00 开始安排审计进场",
+        "下周一 14:30 起开质量复盘"
+      ],
+      "questions": [
+        "这场会开多久?请给结束时间。",
+        "只说了开始时间,到几点结束?",
+        "结束时间是几点?我需要起止才能建日程。",
+        "请补充结束时刻,时长不能替你假定。"
+      ],
+      "rationale": "end_time 缺失,填默认一小时或填上限都是编造,所以 clarify。",
+      "split": "test"
+    },
+    {
+      "id": "TG-172",
+      "slug": "clarify-create-month-only",
+      "label": "只给月份要开会",
+      "toolset": "train6",
+      "action": "clarify",
+      "tool": null,
+      "category": "time_ambiguous",
+      "tags": [
+        "time_ambiguous",
+        "missing_required_field"
+      ],
+      "clarify_target": {
+        "tool": "create_event",
+        "fields": [
+          "start_time",
+          "end_time"
+        ]
+      },
+      "available_tools_pool": [
+        [
+          "create_event"
+        ],
+        [
+          "check_availability",
+          "create_event"
+        ]
+      ],
+      "phrasings": [
+        "11 月找天开个质量复盘会",
+        "12 月安排一次供应商年会",
+        "明年 1 月里挑一天做年度盘点",
+        "10 月里面约个客户座谈",
+        "11 月择期开结算沟通会",
+        "12 月下旬安排技术分享",
+        "10 月找时间开库存核对会",
+        "11 月里定个日子做项目复盘",
+        "明年 2 月开个年度启动会"
+      ],
+      "questions": [
+        "具体哪一天开始、几点到几点结束?",
+        "请给出开始日期与结束时间,月份内无法唯一确定。",
+        "哪一天开始、到哪一天结束?起止都要给。",
+        "需要起止日期时间才能建,你定哪天几点开始、几点结束?"
+      ],
+      "rationale": "月份内哪天几点都无法唯一解析,挑一个就是编造,所以 clarify。",
+      "split": "train"
+    },
+    {
+      "id": "TG-173",
+      "slug": "clarify-create-reversed-range",
+      "label": "起止时刻顺序相反",
+      "toolset": "train6",
+      "action": "clarify",
+      "tool": null,
+      "category": "time_ambiguous",
+      "tags": [
+        "reversed_time_range",
+        "time_ambiguous"
+      ],
+      "clarify_target": {
+        "tool": "create_event",
+        "fields": [
+          "start_time",
+          "end_time"
+        ]
+      },
+      "available_tools_pool": [
+        [
+          "create_event"
+        ],
+        [
+          "check_availability",
+          "create_event"
+        ]
+      ],
+      "slots": {
+        "rev": [
+          "明天 18:00 到 16:00",
+          "后天 15:00 至 13:30",
+          "下周三 20:00 到 18:30"
+        ]
+      },
+      "phrasings": [
+        "质量复盘会定在{rev},建到日历",
+        "约一个供应商沟通,{rev}",
+        "帮我建日程,{rev},事项是技术分享",
+        "客户回访安排在{rev}",
+        "排一场年度盘点,时间{rev}",
+        "日历里加个结算沟通会,区间写{rev}",
+        "占用{rev}开库存核对会",
+        "定个会议叫项目复盘,{rev}",
+        "添加日程,起止{rev},主题质量复盘"
+      ],
+      "questions": [
+        "{rev} 的起止顺序是反的,请确认开始时间和结束时间。",
+        "这段区间结束早于开始,请重新给出开始时间与结束时间。",
+        "{rev} 前后顺序矛盾,开始时间和结束时间各是哪个?",
+        "你给的起止写反了,请明确从几点开始、到几点结束。"
+      ],
+      "rationale": "用户给的起止顺序矛盾,自行交换会改变约定的会议时段,必须回问,所以 clarify 且不替用户补新时刻。",
+      "split": "test"
+    },
+    {
+      "id": "TG-174",
+      "slug": "clarify-calc-no-numbers",
+      "label": "要算却没给数值",
+      "toolset": "train6",
+      "action": "clarify",
+      "tool": null,
+      "category": "missing_param",
+      "tags": [
+        "missing_required_field"
+      ],
+      "clarify_target": {
+        "tool": "calculate",
+        "fields": [
+          "expression"
+        ]
+      },
+      "available_tools_pool": [
+        [
+          "calculate"
+        ],
+        [
+          "calculate",
+          "aggregate_data"
+        ],
+        [
+          "get_record",
+          "calculate"
+        ]
+      ],
+      "phrasings": [
+        "帮我把两个数乘一下",
+        "算一下这笔账",
+        "把我说的数除一下",
+        "这两个金额加一下看看",
+        "麻烦算个结果出来",
+        "把刚才那些数平均一下",
+        "算算差额",
+        "这几个数加总是多少",
+        "帮我算下折后的价"
+      ],
+      "questions": [
+        "请给出具体数值和运算,我按算式来算。",
+        "没有数值就无法列算式,请把要算的数写出来。",
+        "要算哪几个数、做什么运算?请补全数值。",
+        "请提供参与计算的数值与式子。"
+      ],
+      "rationale": "expression 完全缺失,自己去数据集取数属于另一件事,所以 clarify。",
+      "split": "train"
+    },
+    {
+      "id": "TG-175",
+      "slug": "clarify-multi-intent-read-then-write",
+      "label": "查完顺手建日程",
+      "toolset": "train6",
+      "action": "clarify",
+      "tool": null,
+      "category": "multi_intent",
+      "tags": [
+        "multi_intent"
+      ],
+      "available_tools_pool": [
+        [
+          "check_availability",
+          "create_event"
+        ],
+        [
+          "create_event",
+          "check_availability"
+        ],
+        [
+          "check_availability",
+          "create_event",
+          "get_record"
+        ]
+      ],
+      "phrasings": [
+        "先看明天 14:00 到 15:30 我空不空,空着就把质量复盘会建上",
+        "后天 10:00 至 11:00 有没有安排?没安排就顺手加个日程",
+        "查下明天 16:00 到 17:00 的档期,然后直接帮我订上",
+        "你先看下周三 09:00 到 10:00,可以的话建一个技术分享",
+        "后天 13:00 起 14:30 止,查空闲顺带建日程,一起做",
+        "帮我查明天 10:00 到 11:30 是否有空,再订一个客户回访",
+        "下周一 15:00 到 16:00 空的话直接排年度盘点,不空再告诉我",
+        "两步一起办:查后天 09:30 到 10:30 并建日程",
+        "先查明天 13:00 到 14:00,再决定要不要建库存核对会"
+      ],
+      "questions": [
+        "这是两步:先查空闲还是先建日程?请确认顺序。",
+        "查空闲和建日程要分两步,先做哪个?",
+        "本轮只能出一个决策,先查档期还是直接建日程?",
+        "两个动作有先后,你希望哪一步先做?"
+      ],
+      "rationale": "一句话里含查询与写入两个动作,第一版不做隐式串联,必须先确认做哪一步,所以 clarify。",
+      "split": "train"
+    },
+    {
+      "id": "TG-176",
+      "slug": "clarify-multi-intent-aggregate-calc",
+      "label": "统计完再换算",
+      "toolset": "train6",
+      "action": "clarify",
+      "tool": null,
+      "category": "multi_intent",
+      "tags": [
+        "multi_intent"
+      ],
+      "available_tools_pool": [
+        [
+          "aggregate_data",
+          "calculate"
+        ],
+        [
+          "calculate",
+          "aggregate_data"
+        ]
+      ],
+      "phrasings": [
+        "把华东订单金额合计算出来,再乘 0.8 折一下",
+        "统计发票金额总和,然后除以 12 看下月均",
+        "合同金额求和后换算成万元,两步都做",
+        "把发货单数量统计出来,再乘 2.5 算体积",
+        "订单金额先求和,再扣掉 8 个点的费用",
+        "统计合同金额均值,顺手乘 4 折成季度数",
+        "发票总额算出来再乘 0.06 算税额,一起给我",
+        "先聚合订单金额,再除以 1000 换算,两步并一下",
+        "把总额统计完,再按百分比乘一遍给我"
+      ],
+      "questions": [
+        "这是两步操作,先聚合统计还是先算式换算?请确认顺序。",
+        "统计与换算要分两步,先做哪个?",
+        "本轮只能出一个决策,聚合和计算先走哪一步?",
+        "两个动作要分开,哪一步先做?"
+      ],
+      "rationale": "聚合与算式两件事叠在一句里,不做串联也不拆成两个决策,所以 clarify。",
+      "split": "test"
+    },
+    {
+      "id": "TG-177",
+      "slug": "clarify-multi-record-aggregate",
+      "label": "读单条又要汇总",
+      "toolset": "train6",
+      "action": "clarify",
+      "tool": null,
+      "category": "multi_intent",
+      "tags": [
+        "multi_intent"
+      ],
+      "available_tools_pool": [
+        [
+          "get_record",
+          "aggregate_data"
+        ],
+        [
+          "aggregate_data",
+          "get_record"
+        ]
+      ],
+      "slots": {
+        "rid": [
+          "DD204551",
+          "DD204554",
+          "DD204552"
+        ]
+      },
+      "phrasings": [
+        "读一下订单 {rid},顺便把全部订单金额汇总",
+        "{rid} 这笔订单详情给我,再看华东订单合计",
+        "先查 {rid},然后把订单金额统计一下",
+        "把 {rid} 打开,同时统计订单总金额",
+        "查 {rid} 之后把订单金额求和",
+        "{rid} 的详情和订单总额一起给我",
+        "既要 {rid} 的明细也要订单总额,你连着做",
+        "帮我读 {rid},完了再统计订单金额",
+        "{rid} 记录看完就聚合一下订单金额"
+      ],
+      "questions": [
+        "读单条记录和聚合统计是两步,先做哪一个?",
+        "本轮只能出一个决策,先读 {rid} 还是先做金额统计?",
+        "两个动作要分先后,你想哪一步先做?",
+        "查详情与求和是两件事,先走哪个?"
+      ],
+      "rationale": "get_record 与 aggregate_data 两个动作同时出现,不做隐式串联,所以 clarify。",
+      "split": "val"
+    },
+    {
+      "id": "TG-178",
+      "slug": "clarify-search-topic-vague",
+      "label": "检索主题含糊到多个方向",
+      "toolset": "train6",
+      "action": "clarify",
+      "tool": null,
+      "category": "missing_param",
+      "tags": [
+        "missing_required_field",
+        "ambiguous_data_source"
+      ],
+      "clarify_target": {
+        "tool": "search_documents",
+        "fields": [
+          "query"
+        ]
+      },
+      "available_tools_pool": [
+        [
+          "search_documents"
+        ],
+        [
+          "search_documents",
+          "get_record"
+        ],
+        [
+          "search_documents",
+          "aggregate_data"
+        ]
+      ],
+      "phrasings": [
+        "帮我查一下报销的事是怎么规定的",
+        "看下发票那块的规定",
+        "合同相关的材料帮我找一下",
+        "查下考勤的规定文件",
+        "发货那方面的制度看看",
+        "会议这块有什么书面要求?",
+        "数据安全的材料看一下",
+        "采购这块的规矩帮我查",
+        "休假的规定帮我找文件"
+      ],
+      "questions": [
+        "范围太宽,要查哪份文档?给个标题或关键词。",
+        "请给出具体关键词,这类主题对应多份材料,名称不唯一。",
+        "想查的是哪个主题?给一个标题词。",
+        "这个说法对应多份文件,检索哪个关键词?"
+      ],
+      "rationale": "话题词能对应多份文档,query 无法唯一确定,补一个关键词就能查,所以 clarify。",
+      "split": "train"
+    }
+  ]
+}

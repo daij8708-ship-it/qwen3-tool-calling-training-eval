@@ -1,0 +1,91 @@
+{
+  "name": "aggregate_data",
+  "description": "对本地模拟业务数据集做单步聚合统计,可按时间、状态、区域筛选。一次只统计一个指标;不支持标准差、分位数、同比环比。",
+  "execution": { "side_effect": "read_only", "requires_server_confirmation": false },
+  "input_schema": {
+    "type": "object",
+    "description": "aggregate_data 的入参。",
+    "properties": {
+      "dataset": {
+        "type": "string",
+        "enum": ["orders", "invoices", "contracts", "shipments"],
+        "description": "含义:orders 订单、invoices 发票、contracts 合同、shipments 发货单;人事等数据集不支持。"
+      },
+      "metric": {
+        "type": "string",
+        "enum": ["amount", "quantity", "duration_days", "record"],
+        "description": "amount 金额、quantity 数量、duration_days 天数、record 记录本身;record 仅用于计数。"
+      },
+      "operation": {
+        "type": "string",
+        "enum": ["sum", "mean", "max", "min", "count"],
+        "description": "sum 求和、mean 均值、max 最大、min 最小、count 计数;count 须配 metric=record。"
+      },
+      "filters": {
+        "type": "object",
+        "description": "无筛选时省略整个字段,不要传空对象。",
+        "minProperties": 1,
+        "properties": {
+          "time_range": {
+            "type": "object",
+            "description": "按业务时间闭区间筛选,起止必填。",
+            "required": ["start", "end"],
+            "properties": {
+              "start": {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}$",
+                "description": "格式 YYYY-MM-DDTHH:MM,24 小时制、分钟精度、本地时间无时区后缀。"
+              },
+              "end": {
+                "type": "string",
+                "pattern": "^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}$",
+                "description": "格式同 start,必须晚于 start。"
+              }
+            },
+            "additionalProperties": false
+          },
+          "status": {
+            "type": "array",
+            "description": "按状态多选筛选。",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "enum": ["pending", "paid", "shipped", "completed", "cancelled", "refunded"],
+              "description": "含义:pending 待处理、paid 已付款、shipped 已发货、completed 已完成、cancelled 已取消、refunded 已退款。"
+            }
+          },
+          "region": {
+            "type": "array",
+            "description": "按区域多选筛选。",
+            "minItems": 1,
+            "uniqueItems": true,
+            "items": {
+              "type": "string",
+              "minLength": 2,
+              "maxLength": 20,
+              "description": "单个区域名,用请求原文说法,如华东。"
+            }
+          }
+        },
+        "additionalProperties": false
+      }
+    },
+    "required": ["dataset", "metric", "operation"],
+    "additionalProperties": false,
+    "allOf": [
+      { "if": { "required": ["dataset"], "properties": { "dataset": { "const": "orders" } } },
+        "then": { "properties": { "metric": { "enum": ["amount", "quantity", "record"] } } } },
+      { "if": { "required": ["dataset"], "properties": { "dataset": { "const": "invoices" } } },
+        "then": { "properties": { "metric": { "enum": ["amount", "record"] } } } },
+      { "if": { "required": ["dataset"], "properties": { "dataset": { "const": "contracts" } } },
+        "then": { "properties": { "metric": { "enum": ["amount", "duration_days", "record"] } } } },
+      { "if": { "required": ["dataset"], "properties": { "dataset": { "const": "shipments" } } },
+        "then": { "properties": { "metric": { "enum": ["quantity", "duration_days", "record"] } } } },
+      { "if": { "required": ["operation"], "properties": { "operation": { "const": "count" } } },
+        "then": { "required": ["metric"], "properties": { "metric": { "const": "record" } } } },
+      { "if": { "required": ["metric"], "properties": { "metric": { "const": "record" } } },
+        "then": { "required": ["operation"], "properties": { "operation": { "const": "count" } } } }
+    ]
+  }
+}

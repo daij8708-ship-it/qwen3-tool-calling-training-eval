@@ -1,0 +1,11 @@
+{
+  "version": "dataset_v1",
+  "design_sha256": "2c75c91123f1591f18b3b3bdb48eb0c6a4187cf1195dbdecfe2ebfa5ae722279",
+  "train_v0_sha256": "32598b5d13c40f9b32a14a942a561492afd6671dcce8fff792ebb6f62f1516a6",
+  "val_v0_sha256": "69f95ff3afc89806639ca17f4ca6cf7da1062f72a7c050610f3813d0f39238b7",
+  "frozen_v0_sha256": "32ab02c6442f6b12d0d6795e6b0e31e31dd0872a0ad9719d635087118b45bf24",
+  "counts": {
+    "train": 456,
+    "val": 112
+  }
+}

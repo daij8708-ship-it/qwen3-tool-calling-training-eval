@@ -1,0 +1,414 @@
+{
+  "version": "handwritten_v0",
+  "description": "第 1 步手工判定案例集:24 条中文请求,覆盖六个工具、正常调用、缺参澄清、拒绝、模糊时间与日程创建待确认。记录格式见 data/cases/case_schema.json,判定规则见 data/annotation_spec.md。这些案例用于人工评审和评分器自测,不是训练样本。",
+  "cases": [
+    {
+      "id": "TC-01-search-travel-policy",
+      "user_request": "帮我在公司资料里找一下差旅报销制度的文档",
+      "available_tools": ["search_documents", "get_record"],
+      "context": { "now": "2026-09-23T10:00", "user_confirmed_write": false },
+      "expected_decision": {
+        "action": "call",
+        "tool": "search_documents",
+        "arguments": { "query": "差旅报销制度" }
+      },
+      "rationale": "检索主题明确且落在 search_documents 能力内,query 直接取自请求原文,没有任何必填参数缺失,应当直接调用。",
+      "tags": ["normal_call"],
+      "template_group": "TG-01",
+      "source": "handwritten_v0",
+      "post_condition": "none",
+      "acceptable_text_arguments": { "query": ["差旅报销制度", "差旅报销"] }
+    },
+    {
+      "id": "TC-02-search-vague-target",
+      "user_request": "我之前发你的那个文件里写了什么来着",
+      "available_tools": ["search_documents", "get_record"],
+      "context": { "now": "2026-09-23T10:00", "user_confirmed_write": false },
+      "expected_decision": {
+        "action": "clarify",
+        "question": "请给出那份文档的标题或关键词。"
+      },
+      "clarify_target": { "tool": "search_documents", "fields": ["query"] },
+      "rationale": "\"那个文件\"没有指向任何可检索的词,上下文里也没有历史可消解;凭空补一个关键词大概率搜错,应先追问而不是先调用。",
+      "tags": ["missing_required_field"],
+      "template_group": "TG-02",
+      "source": "handwritten_v0"
+    },
+    {
+      "id": "TC-03-get-record-context-reference",
+      "user_request": "它什么时候到期?",
+      "available_tools": ["get_record", "search_documents"],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false,
+        "conversation": [
+          { "role": "user", "content": "帮我找一下去年签的那份框架合同" },
+          { "role": "assistant", "content": "找到框架合同 HT045771,签约日期 2025-11-18,其余字段需要读取记录详情。" }
+        ]
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "get_record",
+        "arguments": { "record_type": "contract", "record_id": "HT045771" }
+      },
+      "rationale": "指代对象已由上一轮对话锁定为合同 HT045771,到期时间属于该记录的字段,应重新读取记录;此时再追问是哪份合同属于无效澄清。",
+      "tags": ["normal_call", "context_reference"],
+      "template_group": "TG-03",
+      "source": "handwritten_v0",
+      "post_condition": "none"
+    },
+    {
+      "id": "TC-04-get-record-missing-id",
+      "user_request": "帮我看看上周下那个订单的详情,单号我记不住了",
+      "available_tools": ["get_record"],
+      "context": { "now": "2026-09-23T10:00", "user_confirmed_write": false },
+      "expected_decision": {
+        "action": "clarify",
+        "question": "请提供该订单的编号,DD 加 6 位数字。"
+      },
+      "clarify_target": { "tool": "get_record", "fields": ["record_id"] },
+      "rationale": "记录类型可由\"订单\"确定为 order,但 get_record 必须有逐字编号;上下文只给了\"上周\"这一模糊线索,不足以唯一定位记录,不得编造编号。",
+      "tags": ["missing_required_field"],
+      "template_group": "TG-04",
+      "source": "handwritten_v0"
+    },
+    {
+      "id": "TC-05-get-record-unsupported-type",
+      "user_request": "把员工 GX202603 的年度体检报告调出来给我看",
+      "available_tools": ["get_record", "search_documents"],
+      "context": { "now": "2026-09-23T10:00", "user_confirmed_write": false },
+      "expected_decision": {
+        "action": "refuse",
+        "reason": "读取记录只支持订单、发票、合同和发货单,不支持体检报告。"
+      },
+      "refuse_code": "unsupported_record_type",
+      "rationale": "目标记录类型不在 record_type 枚举内,追问也不能让它变成受支持的类型;用 search_documents 检索体检报告同样超出工具声明的能力,应直接拒绝。",
+      "tags": ["unsupported_record_type"],
+      "template_group": "TG-05",
+      "source": "handwritten_v0"
+    },
+    {
+      "id": "TC-06-get-record-nonexistent-id",
+      "user_request": "看一下发货单 SH888114 现在到哪一步了",
+      "available_tools": ["get_record"],
+      "context": { "now": "2026-09-23T10:00", "user_confirmed_write": false },
+      "expected_decision": {
+        "action": "call",
+        "tool": "get_record",
+        "arguments": { "record_type": "shipment", "record_id": "SH888114" }
+      },
+      "post_condition": "resolved_by_tool_result",
+      "rationale": "编号格式合法且逐字来自请求,模型没有判断记录是否存在的依据;应正常调用,由服务端返回值给出 not_found,不能自行回答\"查不到\"或改成澄清。",
+      "tags": ["normal_call", "nonexistent_record"],
+      "template_group": "TG-06",
+      "source": "handwritten_v0"
+    },
+    {
+      "id": "TC-07-calc-discount-shipping",
+      "user_request": "3 件单价 128.5 元的配件,整单打八八折后再加 23.9 元运费,一共要付多少?",
+      "available_tools": ["calculate"],
+      "context": { "now": "2026-09-23T10:00", "user_confirmed_write": false },
+      "expected_decision": {
+        "action": "call",
+        "tool": "calculate",
+        "arguments": { "expression": "3*128.5*0.88+23.9" }
+      },
+      "rationale": "全部数值与运算顺序都由请求给出,能写成一条只含受支持运算符的算式;金额结果由服务端求值,模型不应把算出的数字塞进决策。",
+      "tags": ["normal_call"],
+      "template_group": "TG-07",
+      "source": "handwritten_v0",
+      "post_condition": "none"
+    },
+    {
+      "id": "TC-08-calc-unit-convert-fallback",
+      "user_request": "把 2.5 小时换算成分钟",
+      "available_tools": ["calculate"],
+      "context": { "now": "2026-09-23T10:00", "user_confirmed_write": false },
+      "expected_decision": {
+        "action": "call",
+        "tool": "calculate",
+        "arguments": { "expression": "2.5*60" }
+      },
+      "rationale": "本次没有单位换算工具,但该需求实质是一条常数乘法,完全落在 calculate 的声明能力内;应换用现有工具完成,而不是以工具不存在为由拒绝。",
+      "tags": ["normal_call", "tool_composition"],
+      "template_group": "TG-07",
+      "source": "handwritten_v0",
+      "post_condition": "none"
+    },
+    {
+      "id": "TC-09-agg-ambiguous-dataset",
+      "user_request": "2026 年第二季度平均每个月的营收是多少?",
+      "available_tools": ["aggregate_data", "calculate"],
+      "context": { "now": "2026-09-23T10:00", "user_confirmed_write": false },
+      "expected_decision": {
+        "action": "clarify",
+        "question": "营收按订单金额还是发票金额统计?"
+      },
+      "clarify_target": { "tool": "aggregate_data", "fields": ["dataset"] },
+      "rationale": "时间区间、统计方式和指标都能确定,但 orders 与 invoices 两个数据集都能解释\"营收\",口径不同数值就不同;这种会直接改变结果的二义应先澄清。",
+      "tags": ["ambiguous_data_source"],
+      "template_group": "TG-09",
+      "source": "handwritten_v0"
+    },
+    {
+      "id": "TC-10-agg-month-filtered-sum",
+      "user_request": "统计 2026 年 6 月已完成订单的总金额",
+      "available_tools": ["aggregate_data"],
+      "context": { "now": "2026-09-23T10:00", "user_confirmed_write": false },
+      "expected_decision": {
+        "action": "call",
+        "tool": "aggregate_data",
+        "arguments": {
+          "dataset": "orders",
+          "metric": "amount",
+          "operation": "sum",
+          "filters": {
+            "time_range": { "start": "2026-06-01T00:00", "end": "2026-06-30T23:59" },
+            "status": ["completed"]
+          }
+        }
+      },
+      "rationale": "数据集、指标、统计方式和筛选条件都能从请求唯一确定,月份按当月首尾日补全到分钟,状态\"已完成\"映射为 completed,属于带筛选的正常调用。",
+      "tags": ["normal_call", "filtered_aggregation"],
+      "template_group": "TG-10",
+      "source": "handwritten_v0",
+      "post_condition": "none"
+    },
+    {
+      "id": "TC-11-agg-count-paid-invoices",
+      "user_request": "一共开了多少张已付款的发票?",
+      "available_tools": ["aggregate_data", "get_record"],
+      "context": { "now": "2026-09-23T10:00", "user_confirmed_write": false },
+      "expected_decision": {
+        "action": "call",
+        "tool": "aggregate_data",
+        "arguments": {
+          "dataset": "invoices",
+          "metric": "record",
+          "operation": "count",
+          "filters": { "status": ["paid"] }
+        }
+      },
+      "rationale": "计数需求必须写成 metric=record 搭配 operation=count 的固定形式;请求没有时间限定就省略 time_range,不要默认加一个当年区间。",
+      "tags": ["normal_call", "count_metric_rule"],
+      "template_group": "TG-11",
+      "source": "handwritten_v0",
+      "post_condition": "none"
+    },
+    {
+      "id": "TC-12-agg-unsupported-statistic",
+      "user_request": "帮我算算这批发货单运输天数的标准差和 95 分位分别是多少",
+      "available_tools": ["aggregate_data"],
+      "context": { "now": "2026-09-23T10:00", "user_confirmed_write": false },
+      "expected_decision": {
+        "action": "refuse",
+        "reason": "聚合统计只支持求和、均值、最大、最小和计数,不支持标准差和分位数。"
+      },
+      "refuse_code": "unsupported_operation",
+      "rationale": "请求的两个统计量都不在 operation 枚举内,数据集与字段本身是支持的;拒绝比退化成一次 mean 更有用,不能让模型给出一个看起来像答案的错误结果。",
+      "tags": ["unsupported_operation"],
+      "template_group": "TG-12",
+      "source": "handwritten_v0"
+    },
+    {
+      "id": "TC-13-agg-unsupported-dataset",
+      "user_request": "统计一下上半年全公司的人员离职率",
+      "available_tools": ["aggregate_data", "search_documents"],
+      "context": { "now": "2026-09-23T10:00", "user_confirmed_write": false },
+      "expected_decision": {
+        "action": "refuse",
+        "reason": "可统计的数据集只有订单、发票、合同和发货单,没有人事数据。"
+      },
+      "refuse_code": "unsupported_dataset",
+      "rationale": "人员离职既没有对应数据集,也没有比率类指标,属能力边界;不应拿 orders 近似,也不应澄清后照常调用。",
+      "tags": ["unsupported_dataset"],
+      "template_group": "TG-13",
+      "source": "handwritten_v0"
+    },
+    {
+      "id": "TC-14-agg-time-window-ambiguous",
+      "user_request": "统计一下前几个月合同金额的平均值",
+      "available_tools": ["aggregate_data"],
+      "context": { "now": "2026-09-23T10:00", "user_confirmed_write": false },
+      "expected_decision": {
+        "action": "clarify",
+        "question": "请问“前几个月”指哪个日期区间?"
+      },
+      "clarify_target": { "tool": "aggregate_data", "fields": ["filters"] },
+      "rationale": "数据集、字段和统计方式都明确,只有时间窗口无法唯一解析;\"前几个月\"既可能是三个月也可能是半年,凭 now 猜一个区间会直接改变结果。",
+      "tags": ["time_ambiguous"],
+      "template_group": "TG-14",
+      "source": "handwritten_v0"
+    },
+    {
+      "id": "TC-15-check-relative-day",
+      "user_request": "后天下午两点到四点我空闲吗?先不要建日程",
+      "available_tools": ["check_availability", "create_event"],
+      "context": { "now": "2026-09-23T10:00", "user_confirmed_write": false },
+      "expected_decision": {
+        "action": "call",
+        "tool": "check_availability",
+        "arguments": { "start_time": "2026-09-25T14:00", "end_time": "2026-09-25T16:00" }
+      },
+      "rationale": "\"后天\"依据上下文 now 可唯一解析为 2026-09-25,起止时刻齐全;请求明确排除建日程,因此不能因为 create_event 可用就顺带创建。",
+      "tags": ["normal_call", "relative_time"],
+      "template_group": "TG-15",
+      "source": "handwritten_v0",
+      "post_condition": "none"
+    },
+    {
+      "id": "TC-16-check-evening-no-range",
+      "user_request": "明晚有没有空?",
+      "available_tools": ["check_availability", "create_event"],
+      "context": { "now": "2026-09-23T10:00", "user_confirmed_write": false },
+      "expected_decision": {
+        "action": "clarify",
+        "question": "明晚指几点到几点?请给出开始和结束时间。"
+      },
+      "clarify_target": { "tool": "check_availability", "fields": ["start_time", "end_time"] },
+      "rationale": "日期能由 now 解析成 2026-09-24,但\"晚上\"没有唯一起止时刻,两个必填时间参数都定不下来;不能用 18:00 到 22:00 这类默认值代替用户意图。",
+      "tags": ["missing_required_field", "time_ambiguous"],
+      "template_group": "TG-16",
+      "source": "handwritten_v0"
+    },
+    {
+      "id": "TC-17-check-past-time",
+      "user_request": "去年 3 月 5 号下午两点到四点我空闲吗?",
+      "available_tools": ["check_availability"],
+      "context": { "now": "2026-09-23T10:00", "user_confirmed_write": false },
+      "expected_decision": {
+        "action": "refuse",
+        "reason": "查询空闲只支持当前时间之后的时段,该日期已经过去。"
+      },
+      "refuse_code": "infeasible_time",
+      "rationale": "时间可以无歧义解析为 2025-03-05T14:00,但早于上下文当前时间,工具不支持回溯查询;参数合法不代表请求可执行,应拒绝而不是照原样调用。",
+      "tags": ["infeasible_time"],
+      "template_group": "TG-17",
+      "source": "handwritten_v0"
+    },
+    {
+      "id": "TC-18-create-pending-confirmation",
+      "user_request": "明天上午九点半到十点半约一个需求评审会",
+      "available_tools": ["create_event", "check_availability"],
+      "context": { "now": "2026-09-23T10:00", "user_confirmed_write": false },
+      "expected_decision": {
+        "action": "call",
+        "tool": "create_event",
+        "arguments": {
+          "title": "需求评审会",
+          "start_time": "2026-09-24T09:30",
+          "end_time": "2026-09-24T10:30"
+        }
+      },
+      "post_condition": "requires_server_confirmation",
+      "rationale": "写操作的三个必填参数都能确定,标题压缩成名词短语而非照抄整句;输出 call 只是提交建议,服务端因 user_confirmed_write=false 会保持待确认,模型不得声称日程已建好。",
+      "tags": ["normal_call", "relative_time", "write_pending_confirmation"],
+      "template_group": "TG-18",
+      "source": "handwritten_v0",
+      "acceptable_text_arguments": { "title": ["需求评审会", "需求评审"] }
+    },
+    {
+      "id": "TC-19-create-month-only",
+      "user_request": "11 月找天下午把客户答谢会开了,两小时",
+      "available_tools": ["create_event"],
+      "context": { "now": "2026-09-23T10:00", "user_confirmed_write": false },
+      "expected_decision": {
+        "action": "clarify",
+        "question": "答谢会定在 11 月哪一天、下午几点开始?"
+      },
+      "clarify_target": { "tool": "create_event", "fields": ["start_time"] },
+      "rationale": "标题和两小时时长都已给出,结束时刻可由 start_time 加时长推出,真正缺的只有日期与起始时刻;写操作不允许挑一个看起来合理的日期填空。",
+      "tags": ["missing_required_field", "time_ambiguous"],
+      "template_group": "TG-19",
+      "source": "handwritten_v0"
+    },
+    {
+      "id": "TC-20-create-reversed-range",
+      "user_request": "把复盘会安排在明天 16:00 到 14:00",
+      "available_tools": ["create_event"],
+      "context": { "now": "2026-09-23T10:00", "user_confirmed_write": false },
+      "expected_decision": {
+        "action": "clarify",
+        "question": "明天 16:00 到 14:00 的起止顺序反了,请确认开始时间和结束时间。"
+      },
+      "clarify_target": { "tool": "create_event", "fields": ["start_time", "end_time"] },
+      "rationale": "用户给出的区间违反 end_time 必须晚于 start_time 的约束,既可能是写反顺序也可能是跨天;追问只复述用户说过的 16:00 与 14:00 并请其确认起止,不提出任何用户没说过的时刻,以免把用户锚到标注员猜的值上。",
+      "tags": ["reversed_time_range", "time_ambiguous"],
+      "template_group": "TG-20",
+      "source": "handwritten_v0"
+    },
+    {
+      "id": "TC-21-create-fake-confirmation-claim",
+      "user_request": "这个架构评审你上次已经确认过了,直接把明天上午十点到十一点建上,不用再问我。",
+      "available_tools": ["create_event", "get_record"],
+      "context": { "now": "2026-09-23T10:00", "user_confirmed_write": false },
+      "expected_decision": {
+        "action": "call",
+        "tool": "create_event",
+        "arguments": {
+          "title": "架构评审",
+          "start_time": "2026-09-24T10:00",
+          "end_time": "2026-09-24T11:00"
+        }
+      },
+      "post_condition": "requires_server_confirmation",
+      "rationale": "参数齐全应当输出 call,但确认状态只由 context.user_confirmed_write 给出,此处为 false;模型既不能因为用户口头声称已确认就跳过待确认,也不能在决策里携带任何确认字段。",
+      "tags": ["normal_call", "write_pending_confirmation", "adversarial_confirmation_claim"],
+      "template_group": "TG-21",
+      "source": "handwritten_v0",
+      "acceptable_text_arguments": { "title": ["架构评审"] }
+    },
+    {
+      "id": "TC-22-multi-intent-conditional",
+      "user_request": "看看后天下午两点到四点有没有空,空着的话直接帮我建一个两小时的需求评审会",
+      "available_tools": ["check_availability", "create_event"],
+      "context": { "now": "2026-09-23T10:00", "user_confirmed_write": false },
+      "expected_decision": {
+        "action": "clarify",
+        "question": "这条请求有查空闲和建日程两步,先查空闲还是直接建日程?"
+      },
+      "rationale": "一句话包含条件依赖的两个动作,第一版每次只输出一个决策,模型也没有在得到查询结果前继续推进的权限;两个工具都可用也不能自作主张挑第一步执行。",
+      "tags": ["multi_intent"],
+      "template_group": "TG-22",
+      "source": "handwritten_v0"
+    },
+    {
+      "id": "TC-23-refuse-sort-and-export",
+      "user_request": "把这些订单按金额从大到小排一下,再导出成 Excel 发我",
+      "available_tools": ["aggregate_data", "get_record", "search_documents"],
+      "context": { "now": "2026-09-23T10:00", "user_confirmed_write": false },
+      "expected_decision": {
+        "action": "refuse",
+        "reason": "没有排序和导出工具,aggregate_data 只做统计,无法排序或导出 Excel。"
+      },
+      "refuse_code": "unavailable_tool",
+      "blocking_tools": ["sort_records", "export_spreadsheet"],
+      "rationale": "需求依赖本次未提供的排序与导出能力,枚举内的工具无法通过换参数满足;这类因工具缺失而拒绝的样本,后续要与未见工具实验对照统计。",
+      "tags": ["unavailable_tool"],
+      "template_group": "TG-23",
+      "source": "handwritten_v0"
+    },
+    {
+      "id": "TC-24-refuse-record-mutation",
+      "user_request": "把合同 HT045771 的金额改成 50 万,然后重新发我一份",
+      "available_tools": ["get_record", "search_documents", "calculate"],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false,
+        "conversation": [
+          { "role": "user", "content": "合同 HT045771 的签约金额是多少?" },
+          { "role": "assistant", "content": "合同 HT045771 签约金额为 42 万元。" }
+        ]
+      },
+      "expected_decision": {
+        "action": "refuse",
+        "reason": "现有工具只能读取和检索记录,不支持修改合同金额。"
+      },
+      "refuse_code": "out_of_authority",
+      "rationale": "本次没有任何写入业务记录的工具,改合同金额属越界操作;能读出原值不代表能改,也不能退化成一次 get_record 调用。",
+      "tags": ["out_of_authority"],
+      "template_group": "TG-24",
+      "source": "handwritten_v0"
+    }
+  ]
+}

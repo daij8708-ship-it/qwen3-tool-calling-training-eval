@@ -1,0 +1,11 @@
+{
+  "version": "fixture_v0",
+  "description": "本地模拟日历。时间为合成安排,与手工案例的上下文当前时间 2026-09-23T10:00 同时区,不读取真实系统时钟。",
+  "events": [
+    { "event_id": "EV-0001", "title": "项目例会", "start_time": "2026-09-23T15:00", "end_time": "2026-09-23T16:00", "confirmed": true },
+    { "event_id": "EV-0002", "title": "供应商沟通", "start_time": "2026-09-24T15:00", "end_time": "2026-09-24T16:30", "confirmed": true },
+    { "event_id": "EV-0003", "title": "候选人面试", "start_time": "2026-09-25T14:30", "end_time": "2026-09-25T15:00", "confirmed": true },
+    { "event_id": "EV-0004", "title": "季度复盘", "start_time": "2026-11-12T14:00", "end_time": "2026-11-12T16:00", "confirmed": true }
+  ],
+  "overlap_rule": "两个区间在有向重叠(后一个的起点严格晚于前一个的起点之前结束)时算冲突;首尾相接不算冲突,例如 14:00-15:00 与 15:00-16:00 不冲突。"
+}

@@ -1,0 +1,86 @@
+{
+  "val": {
+    "all": {
+      "count": 112,
+      "verdict_counts": {
+        "correct": 35,
+        "invalid": 9,
+        "manual_review": 1,
+        "wrong": 67
+      },
+      "format_valid_rate": 0.9196,
+      "action_correct_rate_among_valid": 0.5922,
+      "tool_correct_rate_among_gold_calls": 0.7206,
+      "fully_correct_rate": 0.3125,
+      "manual_review_count": 1,
+      "mean_latency_seconds": 1.028
+    },
+    "missing_param": {
+      "count": 17,
+      "verdict_counts": {
+        "correct": 1,
+        "invalid": 8,
+        "wrong": 8
+      },
+      "format_valid_rate": 0.5294,
+      "action_correct_rate_among_valid": 0.2222,
+      "tool_correct_rate_among_gold_calls": null,
+      "fully_correct_rate": 0.0588,
+      "manual_review_count": 0,
+      "mean_latency_seconds": 1.35
+    },
+    "multi_intent": {
+      "count": 9,
+      "verdict_counts": {
+        "invalid": 1,
+        "wrong": 8
+      },
+      "format_valid_rate": 0.8889,
+      "action_correct_rate_among_valid": 0.125,
+      "tool_correct_rate_among_gold_calls": null,
+      "fully_correct_rate": 0.0,
+      "manual_review_count": 0,
+      "mean_latency_seconds": 0.951
+    },
+    "normal": {
+      "count": 68,
+      "verdict_counts": {
+        "correct": 28,
+        "manual_review": 1,
+        "wrong": 39
+      },
+      "format_valid_rate": 1.0,
+      "action_correct_rate_among_valid": 0.7206,
+      "tool_correct_rate_among_gold_calls": 0.7206,
+      "fully_correct_rate": 0.4118,
+      "manual_review_count": 1,
+      "mean_latency_seconds": 1.011
+    },
+    "over_authority": {
+      "count": 9,
+      "verdict_counts": {
+        "correct": 1,
+        "wrong": 8
+      },
+      "format_valid_rate": 1.0,
+      "action_correct_rate_among_valid": 0.1111,
+      "tool_correct_rate_among_gold_calls": null,
+      "fully_correct_rate": 0.1111,
+      "manual_review_count": 0,
+      "mean_latency_seconds": 0.915
+    },
+    "time_ambiguous": {
+      "count": 9,
+      "verdict_counts": {
+        "correct": 5,
+        "wrong": 4
+      },
+      "format_valid_rate": 1.0,
+      "action_correct_rate_among_valid": 0.8889,
+      "tool_correct_rate_among_gold_calls": null,
+      "fully_correct_rate": 0.5556,
+      "manual_review_count": 0,
+      "mean_latency_seconds": 0.738
+    }
+  }
+}

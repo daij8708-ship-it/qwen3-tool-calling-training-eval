@@ -1,0 +1,64 @@
+{
+  "version": "frozen_dataset_v0",
+  "frozen_at": "2026-09-24T14:08",
+  "rule": "以下文件哈希一经登记即冻结;任何实验跑分前先执行 python data/audit_dataset.py --check-frozen。改测试集必须升版本号并同步重跑全部对照组。",
+  "provenance_rule": "provenance 列出决定测试集内容的上游文件;它们变了测试集必须重新生成并重审。",
+  "counts": {
+    "train": 408,
+    "val": 96,
+    "test": 144,
+    "unseen_test": 45
+  },
+  "actions": {
+    "train": {
+      "call": 210,
+      "clarify": 99,
+      "refuse": 99
+    },
+    "val": {
+      "call": 60,
+      "clarify": 27,
+      "refuse": 9
+    },
+    "test": {
+      "call": 58,
+      "clarify": 44,
+      "refuse": 42
+    },
+    "unseen_test": {
+      "call": 27,
+      "clarify": 18
+    }
+  },
+  "refuse_ratio_test": 0.292,
+  "frozen": {
+    "data/datasets/test_v0.json": "a1116da62947fa5a2448fd0a649d203a99d54c8dfaed87823fe94160b7afe466",
+    "data/datasets/test_v0.input.jsonl": "e2072fadbeebf4c28000fc280bbead814ef8d5bc1ccebca6451a5c6e5867c5d2",
+    "data/datasets/test_unseen_v0.json": "26c11431c5cfd73a176d4d9823ca8a2f3e0596e1eaf2ee1b971956263b60a15b",
+    "data/datasets/test_unseen_v0.input.jsonl": "f902fe5a6601a7b48a31a7fbd0e9ab31107f6a7bf3c131395701ab9e76e0c4c8",
+    "data/cases/handwritten_v0.json": "fdecf80fd6742a1029c81e853129c54042a97e643b7714f67ef0d528f9975527"
+  },
+  "provenance": {
+    "data/generate_dataset.py": "9af5c6d19ef9d1bd2b93e71f7cc1fd6b067b41c70f81374bf5fef9d75e084924",
+    "data/audit_dataset.py": "4722fdf724b3aacb2d6bd6b1d5328d46e139d5dc1dc641546af14618e591f061",
+    "data/cases/case_schema.json": "10a72db5c0f334864872c76929550fd4dfcd82a44ad1e02698d40807c8cc280b",
+    "data/templates/template_groups.json": "94f007dc6518d2cd1968ee60353c8b2ffe9accaeaa0c108bafa6d97754a91ee1",
+    "data/templates/groups_clarify.json": "7617d8846a41823eca7ef8217b4a3490ddde6cccf8707e33d60cb522294c3d84",
+    "data/templates/groups_refuse.json": "a10408bd36e85806b7b8c9f46dc064a7d560c2f44fac58e46b6f207c1685ff21",
+    "data/templates/groups_unseen.json": "ff7d14e00a2b5e786f9167ddc482de3e0a9e3e130f0edb7eb5c2d0953666c93d",
+    "data/unseen_tools/unit_convert.json": "da44b22a931e3c96893473e87ce5b5233baa8f24b3381b98c79248d661a359e7",
+    "data/unseen_tools/sort_records.json": "18dfef4a9f131d37f20204cc0ae86fba3976d19c71831d45dcb9e3b5dbae1cfc",
+    "data/unseen_tools/isolation_manifest.json": "131b6c843ddd4ed5bb824b2df06952ef6d9a6e326601dc5e8d3aa1b66fc66e71",
+    "tools/decision_schema.json": "b0dd0e9995c9aec907885d3b942289e75e413c57d42bbd87c191462d0300b693",
+    "tools/result_contract.json": "c805756dcc0ab28b0bc8a72481a5f690056cc40e91b9fc2226a05e49c1b1eb4f",
+    "tools/schemas/search_documents.json": "cd047f5de21ff0496b7aff73f369b7c05e83d5024e2dd4cb14afef82d2168dc1",
+    "tools/schemas/get_record.json": "1a0218772c7f490f951d89cb4b624ce19e6aeba49211c37c8cb789558d879618",
+    "tools/schemas/calculate.json": "b2396d778abe84fcde2408d98dd7b4a85096945d9ccc3d65f53c2a123390a75d",
+    "tools/schemas/aggregate_data.json": "1faed83242798f9b5b69d071b9c5339f79ecfa586766c32366c7905ff0606d09",
+    "tools/schemas/check_availability.json": "b32027e4f06ebed1da5d3431e2b3ec05d3653e827acdb8c769dee0faa8115561",
+    "tools/schemas/create_event.json": "3dc298de1573363d5279bf2fd96e55437af56e20751c98832575815125d98248",
+    "tools/fixtures/documents.json": "24ba878cc5c3ee9a4f00797ae00f63ab9318d7fd478c3d647ba22ec7f44daf38",
+    "tools/fixtures/records.json": "47aac59a606f8f947a62cdbb6f4e03a5a5408a33c74a4b0a0f2b0050a88e45c6",
+    "tools/fixtures/calendar.json": "9780c58605f485bbab9938af29942be135cd6f649a15812f286d5f469fd964ac"
+  }
+}

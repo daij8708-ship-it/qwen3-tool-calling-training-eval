@@ -1,0 +1,54 @@
+{
+  "test": {
+    "all": {
+      "count": 2,
+      "verdict_counts": {
+        "correct": 2
+      },
+      "format_valid_rate": 1.0,
+      "action_correct_rate_among_valid": 1.0,
+      "tool_correct_rate_among_gold_calls": 1.0,
+      "fully_correct_rate": 1.0,
+      "manual_review_count": 0,
+      "mean_latency_seconds": 1.038
+    },
+    "normal": {
+      "count": 2,
+      "verdict_counts": {
+        "correct": 2
+      },
+      "format_valid_rate": 1.0,
+      "action_correct_rate_among_valid": 1.0,
+      "tool_correct_rate_among_gold_calls": 1.0,
+      "fully_correct_rate": 1.0,
+      "manual_review_count": 0,
+      "mean_latency_seconds": 1.038
+    }
+  },
+  "unseen_test": {
+    "all": {
+      "count": 2,
+      "verdict_counts": {
+        "correct": 2
+      },
+      "format_valid_rate": 1.0,
+      "action_correct_rate_among_valid": 1.0,
+      "tool_correct_rate_among_gold_calls": 1.0,
+      "fully_correct_rate": 1.0,
+      "manual_review_count": 0,
+      "mean_latency_seconds": 0.917
+    },
+    "normal": {
+      "count": 2,
+      "verdict_counts": {
+        "correct": 2
+      },
+      "format_valid_rate": 1.0,
+      "action_correct_rate_among_valid": 1.0,
+      "tool_correct_rate_among_gold_calls": 1.0,
+      "fully_correct_rate": 1.0,
+      "manual_review_count": 0,
+      "mean_latency_seconds": 0.917
+    }
+  }
+}

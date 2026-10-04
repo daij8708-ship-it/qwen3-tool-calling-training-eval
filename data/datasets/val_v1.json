@@ -1,0 +1,3613 @@
+{
+  "version": "dataset_v1",
+  "split": "val",
+  "description": "v0 原始样本 + 独立的参数齐全/缺参对照样本;冻结测试集仍为 v0。",
+  "samples": [
+    {
+      "id": "DS-2001-search-doc-single-keyword",
+      "user_request": "文档库里搜「报销」",
+      "available_tools": [
+        "search_documents"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "search_documents",
+        "arguments": {
+          "query": "报销"
+        }
+      },
+      "rationale": "单个业务词足以构成 query,长度合规且来自原文,不存在歧义,所以 call。",
+      "tags": [
+        "normal_call"
+      ],
+      "template_group": "TG-103",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "normal",
+      "generation_rule": "模板组 TG-103(按单个业务词检索文档)第 1 号说法;now=2026-09-23T10:00;topic「报销」",
+      "seed": 20260924,
+      "post_condition": "none",
+      "acceptable_text_arguments": {
+        "query": [
+          "报销"
+        ]
+      }
+    },
+    {
+      "id": "DS-2002-search-doc-single-keyword",
+      "user_request": "查一下用印这块是怎么规定的",
+      "available_tools": [
+        "search_documents",
+        "check_availability"
+      ],
+      "context": {
+        "now": "2026-10-12T08:30",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "search_documents",
+        "arguments": {
+          "query": "用印"
+        }
+      },
+      "rationale": "单个业务词足以构成 query,长度合规且来自原文,不存在歧义,所以 call。",
+      "tags": [
+        "normal_call"
+      ],
+      "template_group": "TG-103",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "normal",
+      "generation_rule": "模板组 TG-103(按单个业务词检索文档)第 2 号说法;now=2026-10-12T08:30;topic「用印」",
+      "seed": 20260924,
+      "post_condition": "none",
+      "acceptable_text_arguments": {
+        "query": [
+          "用印"
+        ]
+      }
+    },
+    {
+      "id": "DS-2003-search-doc-single-keyword",
+      "user_request": "关于归档有没有写过材料?帮我检索",
+      "available_tools": [
+        "get_record",
+        "search_documents",
+        "calculate"
+      ],
+      "context": {
+        "now": "2026-11-03T15:20",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "search_documents",
+        "arguments": {
+          "query": "归档"
+        }
+      },
+      "rationale": "单个业务词足以构成 query,长度合规且来自原文,不存在歧义,所以 call。",
+      "tags": [
+        "normal_call"
+      ],
+      "template_group": "TG-103",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "normal",
+      "generation_rule": "模板组 TG-103(按单个业务词检索文档)第 3 号说法;now=2026-11-03T15:20;topic「归档」",
+      "seed": 20260924,
+      "post_condition": "none",
+      "acceptable_text_arguments": {
+        "query": [
+          "归档"
+        ]
+      }
+    },
+    {
+      "id": "DS-2004-search-doc-single-keyword",
+      "user_request": "红冲两个字搜一下",
+      "available_tools": [
+        "search_documents"
+      ],
+      "context": {
+        "now": "2026-12-07T09:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "search_documents",
+        "arguments": {
+          "query": "红冲"
+        }
+      },
+      "rationale": "单个业务词足以构成 query,长度合规且来自原文,不存在歧义,所以 call。",
+      "tags": [
+        "normal_call"
+      ],
+      "template_group": "TG-103",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "normal",
+      "generation_rule": "模板组 TG-103(按单个业务词检索文档)第 4 号说法;now=2026-12-07T09:00;topic「红冲」",
+      "seed": 20260924,
+      "post_condition": "none",
+      "acceptable_text_arguments": {
+        "query": [
+          "红冲"
+        ]
+      }
+    },
+    {
+      "id": "DS-2005-search-doc-single-keyword",
+      "user_request": "以承运为关键词查文档",
+      "available_tools": [
+        "search_documents",
+        "check_availability"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "search_documents",
+        "arguments": {
+          "query": "承运"
+        }
+      },
+      "rationale": "单个业务词足以构成 query,长度合规且来自原文,不存在歧义,所以 call。",
+      "tags": [
+        "normal_call"
+      ],
+      "template_group": "TG-103",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "normal",
+      "generation_rule": "模板组 TG-103(按单个业务词检索文档)第 5 号说法;now=2026-09-23T10:00;topic「承运」",
+      "seed": 20260924,
+      "post_condition": "none",
+      "acceptable_text_arguments": {
+        "query": [
+          "承运"
+        ]
+      }
+    },
+    {
+      "id": "DS-2006-search-doc-single-keyword",
+      "user_request": "帮我把含脱敏的文件列出来",
+      "available_tools": [
+        "get_record",
+        "search_documents",
+        "calculate"
+      ],
+      "context": {
+        "now": "2026-10-12T08:30",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "search_documents",
+        "arguments": {
+          "query": "脱敏"
+        }
+      },
+      "rationale": "单个业务词足以构成 query,长度合规且来自原文,不存在歧义,所以 call。",
+      "tags": [
+        "normal_call"
+      ],
+      "template_group": "TG-103",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "normal",
+      "generation_rule": "模板组 TG-103(按单个业务词检索文档)第 6 号说法;now=2026-10-12T08:30;topic「脱敏」",
+      "seed": 20260924,
+      "post_condition": "none",
+      "acceptable_text_arguments": {
+        "query": [
+          "脱敏"
+        ]
+      }
+    },
+    {
+      "id": "DS-2007-search-doc-single-keyword",
+      "user_request": "我想看考勤有关的制度原文",
+      "available_tools": [
+        "search_documents"
+      ],
+      "context": {
+        "now": "2026-11-03T15:20",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "search_documents",
+        "arguments": {
+          "query": "考勤"
+        }
+      },
+      "rationale": "单个业务词足以构成 query,长度合规且来自原文,不存在歧义,所以 call。",
+      "tags": [
+        "normal_call"
+      ],
+      "template_group": "TG-103",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "normal",
+      "generation_rule": "模板组 TG-103(按单个业务词检索文档)第 7 号说法;now=2026-11-03T15:20;topic「考勤」",
+      "seed": 20260924,
+      "post_condition": "none",
+      "acceptable_text_arguments": {
+        "query": [
+          "考勤"
+        ]
+      }
+    },
+    {
+      "id": "DS-2008-search-doc-single-keyword",
+      "user_request": "排期这块公司怎么要求的,查资料",
+      "available_tools": [
+        "search_documents",
+        "check_availability"
+      ],
+      "context": {
+        "now": "2026-12-07T09:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "search_documents",
+        "arguments": {
+          "query": "排期"
+        }
+      },
+      "rationale": "单个业务词足以构成 query,长度合规且来自原文,不存在歧义,所以 call。",
+      "tags": [
+        "normal_call"
+      ],
+      "template_group": "TG-103",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "normal",
+      "generation_rule": "模板组 TG-103(按单个业务词检索文档)第 8 号说法;now=2026-12-07T09:00;topic「排期」",
+      "seed": 20260924,
+      "post_condition": "none",
+      "acceptable_text_arguments": {
+        "query": [
+          "排期"
+        ]
+      }
+    },
+    {
+      "id": "DS-2009-search-doc-single-keyword",
+      "user_request": "搜关键词签收,只要制度类",
+      "available_tools": [
+        "get_record",
+        "search_documents",
+        "calculate"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "search_documents",
+        "arguments": {
+          "query": "签收"
+        }
+      },
+      "rationale": "单个业务词足以构成 query,长度合规且来自原文,不存在歧义,所以 call。",
+      "tags": [
+        "normal_call"
+      ],
+      "template_group": "TG-103",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "normal",
+      "generation_rule": "模板组 TG-103(按单个业务词检索文档)第 9 号说法;now=2026-09-23T10:00;topic「签收」",
+      "seed": 20260924,
+      "post_condition": "none",
+      "acceptable_text_arguments": {
+        "query": [
+          "签收"
+        ]
+      }
+    },
+    {
+      "id": "DS-2010-search-doc-single-keyword",
+      "user_request": "翻一下审批的书面依据",
+      "available_tools": [
+        "search_documents"
+      ],
+      "context": {
+        "now": "2026-10-12T08:30",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "search_documents",
+        "arguments": {
+          "query": "审批"
+        }
+      },
+      "rationale": "单个业务词足以构成 query,长度合规且来自原文,不存在歧义,所以 call。",
+      "tags": [
+        "normal_call"
+      ],
+      "template_group": "TG-103",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "normal",
+      "generation_rule": "模板组 TG-103(按单个业务词检索文档)第 10 号说法;now=2026-10-12T08:30;topic「审批」",
+      "seed": 20260924,
+      "post_condition": "none",
+      "acceptable_text_arguments": {
+        "query": [
+          "审批"
+        ]
+      }
+    },
+    {
+      "id": "DS-2011-get-record-contract",
+      "user_request": "查合同 HT045771",
+      "available_tools": [
+        "get_record"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "get_record",
+        "arguments": {
+          "record_type": "contract",
+          "record_id": "HT045771"
+        }
+      },
+      "rationale": "记录类型与编号都明确且互相一致(HT 前缀对 contract),只读查询能力内,所以 call。",
+      "tags": [
+        "normal_call"
+      ],
+      "template_group": "TG-113",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "normal",
+      "generation_rule": "模板组 TG-113(按编号读取合同记录)第 1 号说法;now=2026-09-23T10:00;rid「HT045771」",
+      "seed": 20260924,
+      "post_condition": "none"
+    },
+    {
+      "id": "DS-2012-get-record-contract",
+      "user_request": "帮我看下合同 HT045772 的条款记录",
+      "available_tools": [
+        "get_record",
+        "search_documents"
+      ],
+      "context": {
+        "now": "2026-10-12T08:30",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "get_record",
+        "arguments": {
+          "record_type": "contract",
+          "record_id": "HT045772"
+        }
+      },
+      "rationale": "记录类型与编号都明确且互相一致(HT 前缀对 contract),只读查询能力内,所以 call。",
+      "tags": [
+        "normal_call"
+      ],
+      "template_group": "TG-113",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "normal",
+      "generation_rule": "模板组 TG-113(按编号读取合同记录)第 2 号说法;now=2026-10-12T08:30;rid「HT045772」",
+      "seed": 20260924,
+      "post_condition": "none"
+    },
+    {
+      "id": "DS-2013-get-record-contract",
+      "user_request": "合同 HT045773 签了多久?读记录",
+      "available_tools": [
+        "check_availability",
+        "get_record"
+      ],
+      "context": {
+        "now": "2026-11-03T15:20",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "get_record",
+        "arguments": {
+          "record_type": "contract",
+          "record_id": "HT045773"
+        }
+      },
+      "rationale": "记录类型与编号都明确且互相一致(HT 前缀对 contract),只读查询能力内,所以 call。",
+      "tags": [
+        "normal_call"
+      ],
+      "template_group": "TG-113",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "normal",
+      "generation_rule": "模板组 TG-113(按编号读取合同记录)第 3 号说法;now=2026-11-03T15:20;rid「HT045773」",
+      "seed": 20260924,
+      "post_condition": "none"
+    },
+    {
+      "id": "DS-2014-get-record-contract",
+      "user_request": "把 HT045774 这份合同的详情调出来",
+      "available_tools": [
+        "get_record"
+      ],
+      "context": {
+        "now": "2026-12-07T09:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "get_record",
+        "arguments": {
+          "record_type": "contract",
+          "record_id": "HT045774"
+        }
+      },
+      "rationale": "记录类型与编号都明确且互相一致(HT 前缀对 contract),只读查询能力内,所以 call。",
+      "tags": [
+        "normal_call"
+      ],
+      "template_group": "TG-113",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "normal",
+      "generation_rule": "模板组 TG-113(按编号读取合同记录)第 4 号说法;now=2026-12-07T09:00;rid「HT045774」",
+      "seed": 20260924,
+      "post_condition": "none"
+    },
+    {
+      "id": "DS-2015-get-record-contract",
+      "user_request": "读一下编号 HT045771 的合同",
+      "available_tools": [
+        "get_record",
+        "search_documents"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "get_record",
+        "arguments": {
+          "record_type": "contract",
+          "record_id": "HT045771"
+        }
+      },
+      "rationale": "记录类型与编号都明确且互相一致(HT 前缀对 contract),只读查询能力内,所以 call。",
+      "tags": [
+        "normal_call"
+      ],
+      "template_group": "TG-113",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "normal",
+      "generation_rule": "模板组 TG-113(按编号读取合同记录)第 5 号说法;now=2026-09-23T10:00;rid「HT045771」",
+      "seed": 20260924,
+      "post_condition": "none"
+    },
+    {
+      "id": "DS-2016-get-record-contract",
+      "user_request": "HT045772 这份合同金额是多少?查记录",
+      "available_tools": [
+        "check_availability",
+        "get_record"
+      ],
+      "context": {
+        "now": "2026-10-12T08:30",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "get_record",
+        "arguments": {
+          "record_type": "contract",
+          "record_id": "HT045772"
+        }
+      },
+      "rationale": "记录类型与编号都明确且互相一致(HT 前缀对 contract),只读查询能力内,所以 call。",
+      "tags": [
+        "normal_call"
+      ],
+      "template_group": "TG-113",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "normal",
+      "generation_rule": "模板组 TG-113(按编号读取合同记录)第 6 号说法;now=2026-10-12T08:30;rid「HT045772」",
+      "seed": 20260924,
+      "post_condition": "none"
+    },
+    {
+      "id": "DS-2017-get-record-contract",
+      "user_request": "我要 HT045773 合同的原文记录",
+      "available_tools": [
+        "get_record"
+      ],
+      "context": {
+        "now": "2026-11-03T15:20",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "get_record",
+        "arguments": {
+          "record_type": "contract",
+          "record_id": "HT045773"
+        }
+      },
+      "rationale": "记录类型与编号都明确且互相一致(HT 前缀对 contract),只读查询能力内,所以 call。",
+      "tags": [
+        "normal_call"
+      ],
+      "template_group": "TG-113",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "normal",
+      "generation_rule": "模板组 TG-113(按编号读取合同记录)第 7 号说法;now=2026-11-03T15:20;rid「HT045773」",
+      "seed": 20260924,
+      "post_condition": "none"
+    },
+    {
+      "id": "DS-2018-get-record-contract",
+      "user_request": "HT045774,合同类型,查详情",
+      "available_tools": [
+        "get_record",
+        "search_documents"
+      ],
+      "context": {
+        "now": "2026-12-07T09:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "get_record",
+        "arguments": {
+          "record_type": "contract",
+          "record_id": "HT045774"
+        }
+      },
+      "rationale": "记录类型与编号都明确且互相一致(HT 前缀对 contract),只读查询能力内,所以 call。",
+      "tags": [
+        "normal_call"
+      ],
+      "template_group": "TG-113",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "normal",
+      "generation_rule": "模板组 TG-113(按编号读取合同记录)第 8 号说法;now=2026-12-07T09:00;rid「HT045774」",
+      "seed": 20260924,
+      "post_condition": "none"
+    },
+    {
+      "id": "DS-2019-get-record-contract",
+      "user_request": "麻烦调出合同 HT045771",
+      "available_tools": [
+        "check_availability",
+        "get_record"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "get_record",
+        "arguments": {
+          "record_type": "contract",
+          "record_id": "HT045771"
+        }
+      },
+      "rationale": "记录类型与编号都明确且互相一致(HT 前缀对 contract),只读查询能力内,所以 call。",
+      "tags": [
+        "normal_call"
+      ],
+      "template_group": "TG-113",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "normal",
+      "generation_rule": "模板组 TG-113(按编号读取合同记录)第 9 号说法;now=2026-09-23T10:00;rid「HT045771」",
+      "seed": 20260924,
+      "post_condition": "none"
+    },
+    {
+      "id": "DS-2020-get-record-contract",
+      "user_request": "合同 HT045772 的对手方是谁?看记录",
+      "available_tools": [
+        "get_record"
+      ],
+      "context": {
+        "now": "2026-10-12T08:30",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "get_record",
+        "arguments": {
+          "record_type": "contract",
+          "record_id": "HT045772"
+        }
+      },
+      "rationale": "记录类型与编号都明确且互相一致(HT 前缀对 contract),只读查询能力内,所以 call。",
+      "tags": [
+        "normal_call"
+      ],
+      "template_group": "TG-113",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "normal",
+      "generation_rule": "模板组 TG-113(按编号读取合同记录)第 10 号说法;now=2026-10-12T08:30;rid「HT045772」",
+      "seed": 20260924,
+      "post_condition": "none"
+    },
+    {
+      "id": "DS-2021-calc-difference",
+      "user_request": "预算 25000 元,实际花了 18742.6 元,差多少钱",
+      "available_tools": [
+        "calculate"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "calculate",
+        "arguments": {
+          "expression": "25000-18742.6"
+        }
+      },
+      "rationale": "两个数都写明了,减法算式即可,不涉及数据集聚合,所以 call。",
+      "tags": [
+        "normal_call"
+      ],
+      "template_group": "TG-126",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "normal",
+      "generation_rule": "模板组 TG-126(两个金额求差额)第 1 号说法;now=2026-09-23T10:00;diff「预算 25000 元,实际花了 18742.6 元」→25000-18742.6",
+      "seed": 20260924,
+      "post_condition": "none"
+    },
+    {
+      "id": "DS-2022-calc-difference",
+      "user_request": "报价 9600 元,谈下来 8450 元,帮我算差额",
+      "available_tools": [
+        "get_record",
+        "calculate"
+      ],
+      "context": {
+        "now": "2026-10-12T08:30",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "calculate",
+        "arguments": {
+          "expression": "9600-8450"
+        }
+      },
+      "rationale": "两个数都写明了,减法算式即可,不涉及数据集聚合,所以 call。",
+      "tags": [
+        "normal_call"
+      ],
+      "template_group": "TG-126",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "normal",
+      "generation_rule": "模板组 TG-126(两个金额求差额)第 2 号说法;now=2026-10-12T08:30;diff「报价 9600 元,谈下来 8450 元」→9600-8450",
+      "seed": 20260924,
+      "post_condition": "none"
+    },
+    {
+      "id": "DS-2023-calc-difference",
+      "user_request": "预算 25000 元,实际花了 18742.6 元还剩多少没花",
+      "available_tools": [
+        "calculate"
+      ],
+      "context": {
+        "now": "2026-11-03T15:20",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "calculate",
+        "arguments": {
+          "expression": "25000-18742.6"
+        }
+      },
+      "rationale": "两个数都写明了,减法算式即可,不涉及数据集聚合,所以 call。",
+      "tags": [
+        "normal_call"
+      ],
+      "template_group": "TG-126",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "normal",
+      "generation_rule": "模板组 TG-126(两个金额求差额)第 3 号说法;now=2026-11-03T15:20;diff「预算 25000 元,实际花了 18742.6 元」→25000-18742.6",
+      "seed": 20260924,
+      "post_condition": "none"
+    },
+    {
+      "id": "DS-2024-calc-difference",
+      "user_request": "报价 9600 元,谈下来 8450 元,两者相差多少",
+      "available_tools": [
+        "get_record",
+        "calculate"
+      ],
+      "context": {
+        "now": "2026-12-07T09:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "calculate",
+        "arguments": {
+          "expression": "9600-8450"
+        }
+      },
+      "rationale": "两个数都写明了,减法算式即可,不涉及数据集聚合,所以 call。",
+      "tags": [
+        "normal_call"
+      ],
+      "template_group": "TG-126",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "normal",
+      "generation_rule": "模板组 TG-126(两个金额求差额)第 4 号说法;now=2026-12-07T09:00;diff「报价 9600 元,谈下来 8450 元」→9600-8450",
+      "seed": 20260924,
+      "post_condition": "none"
+    },
+    {
+      "id": "DS-2025-calc-difference",
+      "user_request": "算一下预算 25000 元,实际花了 18742.6 元的差",
+      "available_tools": [
+        "calculate"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "calculate",
+        "arguments": {
+          "expression": "25000-18742.6"
+        }
+      },
+      "rationale": "两个数都写明了,减法算式即可,不涉及数据集聚合,所以 call。",
+      "tags": [
+        "normal_call"
+      ],
+      "template_group": "TG-126",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "normal",
+      "generation_rule": "模板组 TG-126(两个金额求差额)第 5 号说法;now=2026-09-23T10:00;diff「预算 25000 元,实际花了 18742.6 元」→25000-18742.6",
+      "seed": 20260924,
+      "post_condition": "none"
+    },
+    {
+      "id": "DS-2026-calc-difference",
+      "user_request": "报价 9600 元,谈下来 8450 元省了多少",
+      "available_tools": [
+        "get_record",
+        "calculate"
+      ],
+      "context": {
+        "now": "2026-10-12T08:30",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "calculate",
+        "arguments": {
+          "expression": "9600-8450"
+        }
+      },
+      "rationale": "两个数都写明了,减法算式即可,不涉及数据集聚合,所以 call。",
+      "tags": [
+        "normal_call"
+      ],
+      "template_group": "TG-126",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "normal",
+      "generation_rule": "模板组 TG-126(两个金额求差额)第 6 号说法;now=2026-10-12T08:30;diff「报价 9600 元,谈下来 8450 元」→9600-8450",
+      "seed": 20260924,
+      "post_condition": "none"
+    },
+    {
+      "id": "DS-2027-calc-difference",
+      "user_request": "预算 25000 元,实际花了 18742.6 元,差值算给我",
+      "available_tools": [
+        "calculate"
+      ],
+      "context": {
+        "now": "2026-11-03T15:20",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "calculate",
+        "arguments": {
+          "expression": "25000-18742.6"
+        }
+      },
+      "rationale": "两个数都写明了,减法算式即可,不涉及数据集聚合,所以 call。",
+      "tags": [
+        "normal_call"
+      ],
+      "template_group": "TG-126",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "normal",
+      "generation_rule": "模板组 TG-126(两个金额求差额)第 7 号说法;now=2026-11-03T15:20;diff「预算 25000 元,实际花了 18742.6 元」→25000-18742.6",
+      "seed": 20260924,
+      "post_condition": "none"
+    },
+    {
+      "id": "DS-2028-calc-difference",
+      "user_request": "麻烦报价 9600 元,谈下来 8450 元差多少",
+      "available_tools": [
+        "get_record",
+        "calculate"
+      ],
+      "context": {
+        "now": "2026-12-07T09:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "calculate",
+        "arguments": {
+          "expression": "9600-8450"
+        }
+      },
+      "rationale": "两个数都写明了,减法算式即可,不涉及数据集聚合,所以 call。",
+      "tags": [
+        "normal_call"
+      ],
+      "template_group": "TG-126",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "normal",
+      "generation_rule": "模板组 TG-126(两个金额求差额)第 8 号说法;now=2026-12-07T09:00;diff「报价 9600 元,谈下来 8450 元」→9600-8450",
+      "seed": 20260924,
+      "post_condition": "none"
+    },
+    {
+      "id": "DS-2029-calc-difference",
+      "user_request": "预算 25000 元,实际花了 18742.6 元,相减等于多少",
+      "available_tools": [
+        "calculate"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "calculate",
+        "arguments": {
+          "expression": "25000-18742.6"
+        }
+      },
+      "rationale": "两个数都写明了,减法算式即可,不涉及数据集聚合,所以 call。",
+      "tags": [
+        "normal_call"
+      ],
+      "template_group": "TG-126",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "normal",
+      "generation_rule": "模板组 TG-126(两个金额求差额)第 9 号说法;now=2026-09-23T10:00;diff「预算 25000 元,实际花了 18742.6 元」→25000-18742.6",
+      "seed": 20260924,
+      "post_condition": "none"
+    },
+    {
+      "id": "DS-2030-calc-difference",
+      "user_request": "报价 9600 元,谈下来 8450 元的距离是多少",
+      "available_tools": [
+        "get_record",
+        "calculate"
+      ],
+      "context": {
+        "now": "2026-10-12T08:30",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "calculate",
+        "arguments": {
+          "expression": "9600-8450"
+        }
+      },
+      "rationale": "两个数都写明了,减法算式即可,不涉及数据集聚合,所以 call。",
+      "tags": [
+        "normal_call"
+      ],
+      "template_group": "TG-126",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "normal",
+      "generation_rule": "模板组 TG-126(两个金额求差额)第 10 号说法;now=2026-10-12T08:30;diff「报价 9600 元,谈下来 8450 元」→9600-8450",
+      "seed": 20260924,
+      "post_condition": "none"
+    },
+    {
+      "id": "DS-2031-agg-filter-status",
+      "user_request": "已发货的发货单有多少张?",
+      "available_tools": [
+        "aggregate_data"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "aggregate_data",
+        "arguments": {
+          "dataset": "shipments",
+          "metric": "record",
+          "operation": "count",
+          "filters": {
+            "status": [
+              "shipped"
+            ]
+          }
+        }
+      },
+      "rationale": "中文状态按固定映射转成枚举,计数走 metric=record + operation=count,所以 call。",
+      "tags": [
+        "normal_call",
+        "filtered_aggregation",
+        "count_metric_rule"
+      ],
+      "template_group": "TG-136",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "normal",
+      "generation_rule": "模板组 TG-136(按状态筛选后计数)第 1 号说法;now=2026-09-23T10:00;st「已发货」→shipped",
+      "seed": 20260924,
+      "post_condition": "none"
+    },
+    {
+      "id": "DS-2032-agg-filter-status",
+      "user_request": "状态是待处理的发货单数一下条数",
+      "available_tools": [
+        "aggregate_data",
+        "search_documents"
+      ],
+      "context": {
+        "now": "2026-10-12T08:30",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "aggregate_data",
+        "arguments": {
+          "dataset": "shipments",
+          "metric": "record",
+          "operation": "count",
+          "filters": {
+            "status": [
+              "pending"
+            ]
+          }
+        }
+      },
+      "rationale": "中文状态按固定映射转成枚举,计数走 metric=record + operation=count,所以 call。",
+      "tags": [
+        "normal_call",
+        "filtered_aggregation",
+        "count_metric_rule"
+      ],
+      "template_group": "TG-136",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "normal",
+      "generation_rule": "模板组 TG-136(按状态筛选后计数)第 2 号说法;now=2026-10-12T08:30;st「待处理」→pending",
+      "seed": 20260924,
+      "post_condition": "none"
+    },
+    {
+      "id": "DS-2033-agg-filter-status",
+      "user_request": "统计已取消状态的发货单数量",
+      "available_tools": [
+        "aggregate_data"
+      ],
+      "context": {
+        "now": "2026-11-03T15:20",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "aggregate_data",
+        "arguments": {
+          "dataset": "shipments",
+          "metric": "record",
+          "operation": "count",
+          "filters": {
+            "status": [
+              "cancelled"
+            ]
+          }
+        }
+      },
+      "rationale": "中文状态按固定映射转成枚举,计数走 metric=record + operation=count,所以 call。",
+      "tags": [
+        "normal_call",
+        "filtered_aggregation",
+        "count_metric_rule"
+      ],
+      "template_group": "TG-136",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "normal",
+      "generation_rule": "模板组 TG-136(按状态筛选后计数)第 3 号说法;now=2026-11-03T15:20;st「已取消」→cancelled",
+      "seed": 20260924,
+      "post_condition": "none"
+    },
+    {
+      "id": "DS-2034-agg-filter-status",
+      "user_request": "只看已完成的发货单有几笔",
+      "available_tools": [
+        "aggregate_data",
+        "search_documents"
+      ],
+      "context": {
+        "now": "2026-12-07T09:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "aggregate_data",
+        "arguments": {
+          "dataset": "shipments",
+          "metric": "record",
+          "operation": "count",
+          "filters": {
+            "status": [
+              "completed"
+            ]
+          }
+        }
+      },
+      "rationale": "中文状态按固定映射转成枚举,计数走 metric=record + operation=count,所以 call。",
+      "tags": [
+        "normal_call",
+        "filtered_aggregation",
+        "count_metric_rule"
+      ],
+      "template_group": "TG-136",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "normal",
+      "generation_rule": "模板组 TG-136(按状态筛选后计数)第 4 号说法;now=2026-12-07T09:00;st「已完成」→completed",
+      "seed": 20260924,
+      "post_condition": "none"
+    },
+    {
+      "id": "DS-2035-agg-filter-status",
+      "user_request": "已发货的发货单共有多少?",
+      "available_tools": [
+        "aggregate_data"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "aggregate_data",
+        "arguments": {
+          "dataset": "shipments",
+          "metric": "record",
+          "operation": "count",
+          "filters": {
+            "status": [
+              "shipped"
+            ]
+          }
+        }
+      },
+      "rationale": "中文状态按固定映射转成枚举,计数走 metric=record + operation=count,所以 call。",
+      "tags": [
+        "normal_call",
+        "filtered_aggregation",
+        "count_metric_rule"
+      ],
+      "template_group": "TG-136",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "normal",
+      "generation_rule": "模板组 TG-136(按状态筛选后计数)第 5 号说法;now=2026-09-23T10:00;st「已发货」→shipped",
+      "seed": 20260924,
+      "post_condition": "none"
+    },
+    {
+      "id": "DS-2036-agg-filter-status",
+      "user_request": "帮我数待处理发货单",
+      "available_tools": [
+        "aggregate_data",
+        "search_documents"
+      ],
+      "context": {
+        "now": "2026-10-12T08:30",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "aggregate_data",
+        "arguments": {
+          "dataset": "shipments",
+          "metric": "record",
+          "operation": "count",
+          "filters": {
+            "status": [
+              "pending"
+            ]
+          }
+        }
+      },
+      "rationale": "中文状态按固定映射转成枚举,计数走 metric=record + operation=count,所以 call。",
+      "tags": [
+        "normal_call",
+        "filtered_aggregation",
+        "count_metric_rule"
+      ],
+      "template_group": "TG-136",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "normal",
+      "generation_rule": "模板组 TG-136(按状态筛选后计数)第 6 号说法;now=2026-10-12T08:30;st「待处理」→pending",
+      "seed": 20260924,
+      "post_condition": "none"
+    },
+    {
+      "id": "DS-2037-agg-filter-status",
+      "user_request": "按状态已取消筛发货单再计数",
+      "available_tools": [
+        "aggregate_data"
+      ],
+      "context": {
+        "now": "2026-11-03T15:20",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "aggregate_data",
+        "arguments": {
+          "dataset": "shipments",
+          "metric": "record",
+          "operation": "count",
+          "filters": {
+            "status": [
+              "cancelled"
+            ]
+          }
+        }
+      },
+      "rationale": "中文状态按固定映射转成枚举,计数走 metric=record + operation=count,所以 call。",
+      "tags": [
+        "normal_call",
+        "filtered_aggregation",
+        "count_metric_rule"
+      ],
+      "template_group": "TG-136",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "normal",
+      "generation_rule": "模板组 TG-136(按状态筛选后计数)第 7 号说法;now=2026-11-03T15:20;st「已取消」→cancelled",
+      "seed": 20260924,
+      "post_condition": "none"
+    },
+    {
+      "id": "DS-2038-agg-filter-status",
+      "user_request": "已完成这块的发货单条数是多少",
+      "available_tools": [
+        "aggregate_data",
+        "search_documents"
+      ],
+      "context": {
+        "now": "2026-12-07T09:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "aggregate_data",
+        "arguments": {
+          "dataset": "shipments",
+          "metric": "record",
+          "operation": "count",
+          "filters": {
+            "status": [
+              "completed"
+            ]
+          }
+        }
+      },
+      "rationale": "中文状态按固定映射转成枚举,计数走 metric=record + operation=count,所以 call。",
+      "tags": [
+        "normal_call",
+        "filtered_aggregation",
+        "count_metric_rule"
+      ],
+      "template_group": "TG-136",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "normal",
+      "generation_rule": "模板组 TG-136(按状态筛选后计数)第 8 号说法;now=2026-12-07T09:00;st「已完成」→completed",
+      "seed": 20260924,
+      "post_condition": "none"
+    },
+    {
+      "id": "DS-2039-agg-filter-status",
+      "user_request": "发货单里已发货的有多少条",
+      "available_tools": [
+        "aggregate_data"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "aggregate_data",
+        "arguments": {
+          "dataset": "shipments",
+          "metric": "record",
+          "operation": "count",
+          "filters": {
+            "status": [
+              "shipped"
+            ]
+          }
+        }
+      },
+      "rationale": "中文状态按固定映射转成枚举,计数走 metric=record + operation=count,所以 call。",
+      "tags": [
+        "normal_call",
+        "filtered_aggregation",
+        "count_metric_rule"
+      ],
+      "template_group": "TG-136",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "normal",
+      "generation_rule": "模板组 TG-136(按状态筛选后计数)第 9 号说法;now=2026-09-23T10:00;st「已发货」→shipped",
+      "seed": 20260924,
+      "post_condition": "none"
+    },
+    {
+      "id": "DS-2040-agg-filter-status",
+      "user_request": "待处理的发货单计数一下",
+      "available_tools": [
+        "aggregate_data",
+        "search_documents"
+      ],
+      "context": {
+        "now": "2026-10-12T08:30",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "aggregate_data",
+        "arguments": {
+          "dataset": "shipments",
+          "metric": "record",
+          "operation": "count",
+          "filters": {
+            "status": [
+              "pending"
+            ]
+          }
+        }
+      },
+      "rationale": "中文状态按固定映射转成枚举,计数走 metric=record + operation=count,所以 call。",
+      "tags": [
+        "normal_call",
+        "filtered_aggregation",
+        "count_metric_rule"
+      ],
+      "template_group": "TG-136",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "normal",
+      "generation_rule": "模板组 TG-136(按状态筛选后计数)第 10 号说法;now=2026-10-12T08:30;st「待处理」→pending",
+      "seed": 20260924,
+      "post_condition": "none"
+    },
+    {
+      "id": "DS-2041-check-next-weekday",
+      "user_request": "下周三 14:00 到 15:30 我方便吗?",
+      "available_tools": [
+        "check_availability"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "check_availability",
+        "arguments": {
+          "start_time": "2026-09-30T14:00",
+          "end_time": "2026-09-30T15:30"
+        }
+      },
+      "rationale": "下周三按 ISO 周次唯一解析到具体日期,配上下文时刻即可换算,所以 call。",
+      "tags": [
+        "normal_call",
+        "relative_time"
+      ],
+      "template_group": "TG-143",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "normal",
+      "generation_rule": "模板组 TG-143(按下周几解析查询空闲)第 1 号说法;now=2026-09-23T10:00;tstart「下周三 14:00」→2026-09-30T14:00;tend「15:30」→2026-09-30T15:30",
+      "seed": 20260924,
+      "post_condition": "none"
+    },
+    {
+      "id": "DS-2042-check-next-weekday",
+      "user_request": "帮查下周一 09:30 至 11:00 有没有会",
+      "available_tools": [
+        "create_event",
+        "check_availability"
+      ],
+      "context": {
+        "now": "2026-10-12T08:30",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "check_availability",
+        "arguments": {
+          "start_time": "2026-10-19T09:30",
+          "end_time": "2026-10-19T11:00"
+        }
+      },
+      "rationale": "下周三按 ISO 周次唯一解析到具体日期,配上下文时刻即可换算,所以 call。",
+      "tags": [
+        "normal_call",
+        "relative_time"
+      ],
+      "template_group": "TG-143",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "normal",
+      "generation_rule": "模板组 TG-143(按下周几解析查询空闲)第 2 号说法;now=2026-10-12T08:30;tstart「下周一 09:30」→2026-10-19T09:30;tend「11:00」→2026-10-19T11:00",
+      "seed": 20260924,
+      "post_condition": "none"
+    },
+    {
+      "id": "DS-2043-check-next-weekday",
+      "user_request": "下周五 15:00 开始到 16:00,那天排了什么",
+      "available_tools": [
+        "check_availability",
+        "search_documents"
+      ],
+      "context": {
+        "now": "2026-11-03T15:20",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "check_availability",
+        "arguments": {
+          "start_time": "2026-11-13T15:00",
+          "end_time": "2026-11-13T16:00"
+        }
+      },
+      "rationale": "下周三按 ISO 周次唯一解析到具体日期,配上下文时刻即可换算,所以 call。",
+      "tags": [
+        "normal_call",
+        "relative_time"
+      ],
+      "template_group": "TG-143",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "normal",
+      "generation_rule": "模板组 TG-143(按下周几解析查询空闲)第 3 号说法;now=2026-11-03T15:20;tstart「下周五 15:00」→2026-11-13T15:00;tend「16:00」→2026-11-13T16:00",
+      "seed": 20260924,
+      "post_condition": "none"
+    },
+    {
+      "id": "DS-2044-check-next-weekday",
+      "user_request": "下周三 14:00 和 15:30 之间的档期看下",
+      "available_tools": [
+        "check_availability"
+      ],
+      "context": {
+        "now": "2026-12-07T09:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "check_availability",
+        "arguments": {
+          "start_time": "2026-12-16T14:00",
+          "end_time": "2026-12-16T15:30"
+        }
+      },
+      "rationale": "下周三按 ISO 周次唯一解析到具体日期,配上下文时刻即可换算,所以 call。",
+      "tags": [
+        "normal_call",
+        "relative_time"
+      ],
+      "template_group": "TG-143",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "normal",
+      "generation_rule": "模板组 TG-143(按下周几解析查询空闲)第 4 号说法;now=2026-12-07T09:00;tstart「下周三 14:00」→2026-12-16T14:00;tend「15:30」→2026-12-16T15:30",
+      "seed": 20260924,
+      "post_condition": "none"
+    },
+    {
+      "id": "DS-2045-check-next-weekday",
+      "user_request": "看下下周一 09:30 到 11:00 是不是空的",
+      "available_tools": [
+        "create_event",
+        "check_availability"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "check_availability",
+        "arguments": {
+          "start_time": "2026-09-28T09:30",
+          "end_time": "2026-09-28T11:00"
+        }
+      },
+      "rationale": "下周三按 ISO 周次唯一解析到具体日期,配上下文时刻即可换算,所以 call。",
+      "tags": [
+        "normal_call",
+        "relative_time"
+      ],
+      "template_group": "TG-143",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "normal",
+      "generation_rule": "模板组 TG-143(按下周几解析查询空闲)第 5 号说法;now=2026-09-23T10:00;tstart「下周一 09:30」→2026-09-28T09:30;tend「11:00」→2026-09-28T11:00",
+      "seed": 20260924,
+      "post_condition": "none"
+    },
+    {
+      "id": "DS-2046-check-next-weekday",
+      "user_request": "下周五 15:00 那会儿到 16:00,能约吗",
+      "available_tools": [
+        "check_availability",
+        "search_documents"
+      ],
+      "context": {
+        "now": "2026-10-12T08:30",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "check_availability",
+        "arguments": {
+          "start_time": "2026-10-23T15:00",
+          "end_time": "2026-10-23T16:00"
+        }
+      },
+      "rationale": "下周三按 ISO 周次唯一解析到具体日期,配上下文时刻即可换算,所以 call。",
+      "tags": [
+        "normal_call",
+        "relative_time"
+      ],
+      "template_group": "TG-143",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "normal",
+      "generation_rule": "模板组 TG-143(按下周几解析查询空闲)第 6 号说法;now=2026-10-12T08:30;tstart「下周五 15:00」→2026-10-23T15:00;tend「16:00」→2026-10-23T16:00",
+      "seed": 20260924,
+      "post_condition": "none"
+    },
+    {
+      "id": "DS-2047-check-next-weekday",
+      "user_request": "下周三 14:00 至 15:30 的空闲帮我确认",
+      "available_tools": [
+        "check_availability"
+      ],
+      "context": {
+        "now": "2026-11-03T15:20",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "check_availability",
+        "arguments": {
+          "start_time": "2026-11-11T14:00",
+          "end_time": "2026-11-11T15:30"
+        }
+      },
+      "rationale": "下周三按 ISO 周次唯一解析到具体日期,配上下文时刻即可换算,所以 call。",
+      "tags": [
+        "normal_call",
+        "relative_time"
+      ],
+      "template_group": "TG-143",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "normal",
+      "generation_rule": "模板组 TG-143(按下周几解析查询空闲)第 7 号说法;now=2026-11-03T15:20;tstart「下周三 14:00」→2026-11-11T14:00;tend「15:30」→2026-11-11T15:30",
+      "seed": 20260924,
+      "post_condition": "none"
+    },
+    {
+      "id": "DS-2048-check-next-weekday",
+      "user_request": "下周的日程里,下周一 09:30 到 11:00 排开了没",
+      "available_tools": [
+        "create_event",
+        "check_availability"
+      ],
+      "context": {
+        "now": "2026-12-07T09:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "check_availability",
+        "arguments": {
+          "start_time": "2026-12-14T09:30",
+          "end_time": "2026-12-14T11:00"
+        }
+      },
+      "rationale": "下周三按 ISO 周次唯一解析到具体日期,配上下文时刻即可换算,所以 call。",
+      "tags": [
+        "normal_call",
+        "relative_time"
+      ],
+      "template_group": "TG-143",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "normal",
+      "generation_rule": "模板组 TG-143(按下周几解析查询空闲)第 8 号说法;now=2026-12-07T09:00;tstart「下周一 09:30」→2026-12-14T09:30;tend「11:00」→2026-12-14T11:00",
+      "seed": 20260924,
+      "post_condition": "none"
+    },
+    {
+      "id": "DS-2049-check-next-weekday",
+      "user_request": "下周五 15:00 起、16:00 止,有没有冲突",
+      "available_tools": [
+        "check_availability",
+        "search_documents"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "check_availability",
+        "arguments": {
+          "start_time": "2026-10-02T15:00",
+          "end_time": "2026-10-02T16:00"
+        }
+      },
+      "rationale": "下周三按 ISO 周次唯一解析到具体日期,配上下文时刻即可换算,所以 call。",
+      "tags": [
+        "normal_call",
+        "relative_time"
+      ],
+      "template_group": "TG-143",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "normal",
+      "generation_rule": "模板组 TG-143(按下周几解析查询空闲)第 9 号说法;now=2026-09-23T10:00;tstart「下周五 15:00」→2026-10-02T15:00;tend「16:00」→2026-10-02T16:00",
+      "seed": 20260924,
+      "post_condition": "none"
+    },
+    {
+      "id": "DS-2050-check-next-weekday",
+      "user_request": "查下周三 14:00 往后到 15:30 的档期",
+      "available_tools": [
+        "check_availability"
+      ],
+      "context": {
+        "now": "2026-10-12T08:30",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "check_availability",
+        "arguments": {
+          "start_time": "2026-10-21T14:00",
+          "end_time": "2026-10-21T15:30"
+        }
+      },
+      "rationale": "下周三按 ISO 周次唯一解析到具体日期,配上下文时刻即可换算,所以 call。",
+      "tags": [
+        "normal_call",
+        "relative_time"
+      ],
+      "template_group": "TG-143",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "normal",
+      "generation_rule": "模板组 TG-143(按下周几解析查询空闲)第 10 号说法;now=2026-10-12T08:30;tstart「下周三 14:00」→2026-10-21T14:00;tend「15:30」→2026-10-21T15:30",
+      "seed": 20260924,
+      "post_condition": "none"
+    },
+    {
+      "id": "DS-2051-create-full-day",
+      "user_request": "下周四 09:00 到 17:00 一整天开年度审计进场,建到日历里",
+      "available_tools": [
+        "create_event"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "create_event",
+        "arguments": {
+          "title": "年度审计进场",
+          "start_time": "2026-10-01T09:00",
+          "end_time": "2026-10-01T17:00"
+        }
+      },
+      "rationale": "全天 8 小时正好在上限内,标题与起止齐全,写操作照常 call 并标待确认。",
+      "tags": [
+        "normal_call",
+        "relative_time",
+        "write_pending_confirmation"
+      ],
+      "template_group": "TG-154",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "normal",
+      "generation_rule": "模板组 TG-154(全天时长(恰在时长上限内)创建日程)第 1 号说法;now=2026-09-23T10:00;title「年度审计进场」;tstart「下周四 09:00」→2026-10-01T09:00;tend「17:00」→2026-10-01T17:00",
+      "seed": 20260924,
+      "post_condition": "requires_server_confirmation",
+      "acceptable_text_arguments": {
+        "title": [
+          "年度审计进场"
+        ]
+      }
+    },
+    {
+      "id": "DS-2052-create-full-day",
+      "user_request": "供应商集中对账安排下周三 09:00 至 17:00,按全天建",
+      "available_tools": [
+        "create_event",
+        "check_availability"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "create_event",
+        "arguments": {
+          "title": "供应商集中对账",
+          "start_time": "2026-09-30T09:00",
+          "end_time": "2026-09-30T17:00"
+        }
+      },
+      "rationale": "全天 8 小时正好在上限内,标题与起止齐全,写操作照常 call 并标待确认。",
+      "tags": [
+        "normal_call",
+        "relative_time",
+        "write_pending_confirmation"
+      ],
+      "template_group": "TG-154",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "normal",
+      "generation_rule": "模板组 TG-154(全天时长(恰在时长上限内)创建日程)第 2 号说法;now=2026-09-23T10:00;title「供应商集中对账」;tstart「下周三 09:00」→2026-09-30T09:00;tend「17:00」→2026-09-30T17:00",
+      "seed": 20260924,
+      "post_condition": "requires_server_confirmation",
+      "acceptable_text_arguments": {
+        "title": [
+          "供应商集中对账"
+        ]
+      }
+    },
+    {
+      "id": "DS-2053-create-full-day",
+      "user_request": "帮我把下周四 09:00 到 17:00 这段给年度审计进场占住",
+      "available_tools": [
+        "create_event"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "create_event",
+        "arguments": {
+          "title": "年度审计进场",
+          "start_time": "2026-10-01T09:00",
+          "end_time": "2026-10-01T17:00"
+        }
+      },
+      "rationale": "全天 8 小时正好在上限内,标题与起止齐全,写操作照常 call 并标待确认。",
+      "tags": [
+        "normal_call",
+        "relative_time",
+        "write_pending_confirmation"
+      ],
+      "template_group": "TG-154",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "normal",
+      "generation_rule": "模板组 TG-154(全天时长(恰在时长上限内)创建日程)第 3 号说法;now=2026-09-23T10:00;title「年度审计进场」;tstart「下周四 09:00」→2026-10-01T09:00;tend「17:00」→2026-10-01T17:00",
+      "seed": 20260924,
+      "post_condition": "requires_server_confirmation",
+      "acceptable_text_arguments": {
+        "title": [
+          "年度审计进场"
+        ]
+      }
+    },
+    {
+      "id": "DS-2054-create-full-day",
+      "user_request": "供应商集中对账要从下周三 09:00 开到 17:00",
+      "available_tools": [
+        "create_event",
+        "check_availability"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "create_event",
+        "arguments": {
+          "title": "供应商集中对账",
+          "start_time": "2026-09-30T09:00",
+          "end_time": "2026-09-30T17:00"
+        }
+      },
+      "rationale": "全天 8 小时正好在上限内,标题与起止齐全,写操作照常 call 并标待确认。",
+      "tags": [
+        "normal_call",
+        "relative_time",
+        "write_pending_confirmation"
+      ],
+      "template_group": "TG-154",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "normal",
+      "generation_rule": "模板组 TG-154(全天时长(恰在时长上限内)创建日程)第 4 号说法;now=2026-09-23T10:00;title「供应商集中对账」;tstart「下周三 09:00」→2026-09-30T09:00;tend「17:00」→2026-09-30T17:00",
+      "seed": 20260924,
+      "post_condition": "requires_server_confirmation",
+      "acceptable_text_arguments": {
+        "title": [
+          "供应商集中对账"
+        ]
+      }
+    },
+    {
+      "id": "DS-2055-create-full-day",
+      "user_request": "下周四 09:00 起整天到 17:00,事项是年度审计进场",
+      "available_tools": [
+        "create_event"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "create_event",
+        "arguments": {
+          "title": "年度审计进场",
+          "start_time": "2026-10-01T09:00",
+          "end_time": "2026-10-01T17:00"
+        }
+      },
+      "rationale": "全天 8 小时正好在上限内,标题与起止齐全,写操作照常 call 并标待确认。",
+      "tags": [
+        "normal_call",
+        "relative_time",
+        "write_pending_confirmation"
+      ],
+      "template_group": "TG-154",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "normal",
+      "generation_rule": "模板组 TG-154(全天时长(恰在时长上限内)创建日程)第 5 号说法;now=2026-09-23T10:00;title「年度审计进场」;tstart「下周四 09:00」→2026-10-01T09:00;tend「17:00」→2026-10-01T17:00",
+      "seed": 20260924,
+      "post_condition": "requires_server_confirmation",
+      "acceptable_text_arguments": {
+        "title": [
+          "年度审计进场"
+        ]
+      }
+    },
+    {
+      "id": "DS-2056-create-full-day",
+      "user_request": "建个全天日程:供应商集中对账,下周三 09:00-17:00",
+      "available_tools": [
+        "create_event",
+        "check_availability"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "create_event",
+        "arguments": {
+          "title": "供应商集中对账",
+          "start_time": "2026-09-30T09:00",
+          "end_time": "2026-09-30T17:00"
+        }
+      },
+      "rationale": "全天 8 小时正好在上限内,标题与起止齐全,写操作照常 call 并标待确认。",
+      "tags": [
+        "normal_call",
+        "relative_time",
+        "write_pending_confirmation"
+      ],
+      "template_group": "TG-154",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "normal",
+      "generation_rule": "模板组 TG-154(全天时长(恰在时长上限内)创建日程)第 6 号说法;now=2026-09-23T10:00;title「供应商集中对账」;tstart「下周三 09:00」→2026-09-30T09:00;tend「17:00」→2026-09-30T17:00",
+      "seed": 20260924,
+      "post_condition": "requires_server_confirmation",
+      "acceptable_text_arguments": {
+        "title": [
+          "供应商集中对账"
+        ]
+      }
+    },
+    {
+      "id": "DS-2057-create-full-day",
+      "user_request": "下周四 09:00 上班开始到 17:00,年度审计进场整天占用",
+      "available_tools": [
+        "create_event"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "create_event",
+        "arguments": {
+          "title": "年度审计进场",
+          "start_time": "2026-10-01T09:00",
+          "end_time": "2026-10-01T17:00"
+        }
+      },
+      "rationale": "全天 8 小时正好在上限内,标题与起止齐全,写操作照常 call 并标待确认。",
+      "tags": [
+        "normal_call",
+        "relative_time",
+        "write_pending_confirmation"
+      ],
+      "template_group": "TG-154",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "normal",
+      "generation_rule": "模板组 TG-154(全天时长(恰在时长上限内)创建日程)第 7 号说法;now=2026-09-23T10:00;title「年度审计进场」;tstart「下周四 09:00」→2026-10-01T09:00;tend「17:00」→2026-10-01T17:00",
+      "seed": 20260924,
+      "post_condition": "requires_server_confirmation",
+      "acceptable_text_arguments": {
+        "title": [
+          "年度审计进场"
+        ]
+      }
+    },
+    {
+      "id": "DS-2058-create-full-day",
+      "user_request": "供应商集中对账约下周三 09:00 到 17:00,中间不空出来",
+      "available_tools": [
+        "create_event",
+        "check_availability"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "create_event",
+        "arguments": {
+          "title": "供应商集中对账",
+          "start_time": "2026-09-30T09:00",
+          "end_time": "2026-09-30T17:00"
+        }
+      },
+      "rationale": "全天 8 小时正好在上限内,标题与起止齐全,写操作照常 call 并标待确认。",
+      "tags": [
+        "normal_call",
+        "relative_time",
+        "write_pending_confirmation"
+      ],
+      "template_group": "TG-154",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "normal",
+      "generation_rule": "模板组 TG-154(全天时长(恰在时长上限内)创建日程)第 8 号说法;now=2026-09-23T10:00;title「供应商集中对账」;tstart「下周三 09:00」→2026-09-30T09:00;tend「17:00」→2026-09-30T17:00",
+      "seed": 20260924,
+      "post_condition": "requires_server_confirmation",
+      "acceptable_text_arguments": {
+        "title": [
+          "供应商集中对账"
+        ]
+      }
+    },
+    {
+      "id": "DS-2059-create-full-day",
+      "user_request": "下周四 09:00 到 17:00 这段时间整块给年度审计进场",
+      "available_tools": [
+        "create_event"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "create_event",
+        "arguments": {
+          "title": "年度审计进场",
+          "start_time": "2026-10-01T09:00",
+          "end_time": "2026-10-01T17:00"
+        }
+      },
+      "rationale": "全天 8 小时正好在上限内,标题与起止齐全,写操作照常 call 并标待确认。",
+      "tags": [
+        "normal_call",
+        "relative_time",
+        "write_pending_confirmation"
+      ],
+      "template_group": "TG-154",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "normal",
+      "generation_rule": "模板组 TG-154(全天时长(恰在时长上限内)创建日程)第 9 号说法;now=2026-09-23T10:00;title「年度审计进场」;tstart「下周四 09:00」→2026-10-01T09:00;tend「17:00」→2026-10-01T17:00",
+      "seed": 20260924,
+      "post_condition": "requires_server_confirmation",
+      "acceptable_text_arguments": {
+        "title": [
+          "年度审计进场"
+        ]
+      }
+    },
+    {
+      "id": "DS-2060-create-full-day",
+      "user_request": "麻烦登记供应商集中对账,起止是下周三 09:00 和 17:00",
+      "available_tools": [
+        "create_event",
+        "check_availability"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "create_event",
+        "arguments": {
+          "title": "供应商集中对账",
+          "start_time": "2026-09-30T09:00",
+          "end_time": "2026-09-30T17:00"
+        }
+      },
+      "rationale": "全天 8 小时正好在上限内,标题与起止齐全,写操作照常 call 并标待确认。",
+      "tags": [
+        "normal_call",
+        "relative_time",
+        "write_pending_confirmation"
+      ],
+      "template_group": "TG-154",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "normal",
+      "generation_rule": "模板组 TG-154(全天时长(恰在时长上限内)创建日程)第 10 号说法;now=2026-09-23T10:00;title「供应商集中对账」;tstart「下周三 09:00」→2026-09-30T09:00;tend「17:00」→2026-09-30T17:00",
+      "seed": 20260924,
+      "post_condition": "requires_server_confirmation",
+      "acceptable_text_arguments": {
+        "title": [
+          "供应商集中对账"
+        ]
+      }
+    },
+    {
+      "id": "DS-2061-clarify-agg-dataset-ambiguous",
+      "user_request": "统计上个月的总额",
+      "available_tools": [
+        "aggregate_data"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "clarify",
+        "question": "总额指哪个数据集:订单、发票还是合同?"
+      },
+      "rationale": "dataset 必填且多种说法都说得通,不能凭印象选一个,所以 clarify。",
+      "tags": [
+        "missing_required_field",
+        "ambiguous_data_source"
+      ],
+      "template_group": "TG-166",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "missing_param",
+      "generation_rule": "模板组 TG-166(口径含糊,数据集二选一)第 1 号说法;now=2026-09-23T10:00;",
+      "seed": 20260924,
+      "clarify_target": {
+        "tool": "aggregate_data",
+        "fields": [
+          "dataset"
+        ]
+      }
+    },
+    {
+      "id": "DS-2062-clarify-agg-dataset-ambiguous",
+      "user_request": "帮我出一下上月总额数据",
+      "available_tools": [
+        "aggregate_data",
+        "get_record"
+      ],
+      "context": {
+        "now": "2026-10-12T08:30",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "clarify",
+        "question": "口径不确定,统计来源是订单还是发票?两者金额不同。"
+      },
+      "rationale": "dataset 必填且多种说法都说得通,不能凭印象选一个,所以 clarify。",
+      "tags": [
+        "missing_required_field",
+        "ambiguous_data_source"
+      ],
+      "template_group": "TG-166",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "missing_param",
+      "generation_rule": "模板组 TG-166(口径含糊,数据集二选一)第 2 号说法;now=2026-10-12T08:30;",
+      "seed": 20260924,
+      "clarify_target": {
+        "tool": "aggregate_data",
+        "fields": [
+          "dataset"
+        ]
+      }
+    },
+    {
+      "id": "DS-2063-clarify-agg-dataset-ambiguous",
+      "user_request": "上月总共多少钱?按聚合统计",
+      "available_tools": [
+        "aggregate_data",
+        "calculate"
+      ],
+      "context": {
+        "now": "2026-11-03T15:20",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "clarify",
+        "question": "请说明按哪个数据集统计总额。"
+      },
+      "rationale": "dataset 必填且多种说法都说得通,不能凭印象选一个,所以 clarify。",
+      "tags": [
+        "missing_required_field",
+        "ambiguous_data_source"
+      ],
+      "template_group": "TG-166",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "missing_param",
+      "generation_rule": "模板组 TG-166(口径含糊,数据集二选一)第 3 号说法;now=2026-11-03T15:20;",
+      "seed": 20260924,
+      "clarify_target": {
+        "tool": "aggregate_data",
+        "fields": [
+          "dataset"
+        ]
+      }
+    },
+    {
+      "id": "DS-2064-clarify-agg-dataset-ambiguous",
+      "user_request": "看下上个月的总额合计",
+      "available_tools": [
+        "aggregate_data"
+      ],
+      "context": {
+        "now": "2026-12-07T09:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "clarify",
+        "question": "这份总额来自哪个数据集?合同与订单不是一个口径。"
+      },
+      "rationale": "dataset 必填且多种说法都说得通,不能凭印象选一个,所以 clarify。",
+      "tags": [
+        "missing_required_field",
+        "ambiguous_data_source"
+      ],
+      "template_group": "TG-166",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "missing_param",
+      "generation_rule": "模板组 TG-166(口径含糊,数据集二选一)第 4 号说法;now=2026-12-07T09:00;",
+      "seed": 20260924,
+      "clarify_target": {
+        "tool": "aggregate_data",
+        "fields": [
+          "dataset"
+        ]
+      }
+    },
+    {
+      "id": "DS-2065-clarify-agg-dataset-ambiguous",
+      "user_request": "把上月的总额统计出来给我",
+      "available_tools": [
+        "aggregate_data",
+        "get_record"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "clarify",
+        "question": "总额指哪个数据集:订单、发票还是合同?"
+      },
+      "rationale": "dataset 必填且多种说法都说得通,不能凭印象选一个,所以 clarify。",
+      "tags": [
+        "missing_required_field",
+        "ambiguous_data_source"
+      ],
+      "template_group": "TG-166",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "missing_param",
+      "generation_rule": "模板组 TG-166(口径含糊,数据集二选一)第 5 号说法;now=2026-09-23T10:00;",
+      "seed": 20260924,
+      "clarify_target": {
+        "tool": "aggregate_data",
+        "fields": [
+          "dataset"
+        ]
+      }
+    },
+    {
+      "id": "DS-2066-clarify-agg-dataset-ambiguous",
+      "user_request": "上月金额总共有多少?",
+      "available_tools": [
+        "aggregate_data",
+        "calculate"
+      ],
+      "context": {
+        "now": "2026-10-12T08:30",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "clarify",
+        "question": "口径不确定,统计来源是订单还是发票?两者金额不同。"
+      },
+      "rationale": "dataset 必填且多种说法都说得通,不能凭印象选一个,所以 clarify。",
+      "tags": [
+        "missing_required_field",
+        "ambiguous_data_source"
+      ],
+      "template_group": "TG-166",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "missing_param",
+      "generation_rule": "模板组 TG-166(口径含糊,数据集二选一)第 6 号说法;now=2026-10-12T08:30;",
+      "seed": 20260924,
+      "clarify_target": {
+        "tool": "aggregate_data",
+        "fields": [
+          "dataset"
+        ]
+      }
+    },
+    {
+      "id": "DS-2067-clarify-agg-dataset-ambiguous",
+      "user_request": "上个月的收支总额算一下,按系统里的口径",
+      "available_tools": [
+        "aggregate_data"
+      ],
+      "context": {
+        "now": "2026-11-03T15:20",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "clarify",
+        "question": "请说明按哪个数据集统计总额。"
+      },
+      "rationale": "dataset 必填且多种说法都说得通,不能凭印象选一个,所以 clarify。",
+      "tags": [
+        "missing_required_field",
+        "ambiguous_data_source"
+      ],
+      "template_group": "TG-166",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "missing_param",
+      "generation_rule": "模板组 TG-166(口径含糊,数据集二选一)第 7 号说法;now=2026-11-03T15:20;",
+      "seed": 20260924,
+      "clarify_target": {
+        "tool": "aggregate_data",
+        "fields": [
+          "dataset"
+        ]
+      }
+    },
+    {
+      "id": "DS-2068-clarify-agg-dataset-ambiguous",
+      "user_request": "给我上月的总额统计",
+      "available_tools": [
+        "aggregate_data",
+        "get_record"
+      ],
+      "context": {
+        "now": "2026-12-07T09:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "clarify",
+        "question": "这份总额来自哪个数据集?合同与订单不是一个口径。"
+      },
+      "rationale": "dataset 必填且多种说法都说得通,不能凭印象选一个,所以 clarify。",
+      "tags": [
+        "missing_required_field",
+        "ambiguous_data_source"
+      ],
+      "template_group": "TG-166",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "missing_param",
+      "generation_rule": "模板组 TG-166(口径含糊,数据集二选一)第 8 号说法;now=2026-12-07T09:00;",
+      "seed": 20260924,
+      "clarify_target": {
+        "tool": "aggregate_data",
+        "fields": [
+          "dataset"
+        ]
+      }
+    },
+    {
+      "id": "DS-2069-clarify-agg-dataset-ambiguous",
+      "user_request": "上月这块总数额是多少?按业务记录统计",
+      "available_tools": [
+        "aggregate_data",
+        "calculate"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "clarify",
+        "question": "总额指哪个数据集:订单、发票还是合同?"
+      },
+      "rationale": "dataset 必填且多种说法都说得通,不能凭印象选一个,所以 clarify。",
+      "tags": [
+        "missing_required_field",
+        "ambiguous_data_source"
+      ],
+      "template_group": "TG-166",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "missing_param",
+      "generation_rule": "模板组 TG-166(口径含糊,数据集二选一)第 9 号说法;now=2026-09-23T10:00;",
+      "seed": 20260924,
+      "clarify_target": {
+        "tool": "aggregate_data",
+        "fields": [
+          "dataset"
+        ]
+      }
+    },
+    {
+      "id": "DS-2070-clarify-check-vague-evening",
+      "user_request": "明晚我空闲吗?",
+      "available_tools": [
+        "check_availability"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "clarify",
+        "question": "明晚具体从几点开始、到几点结束?"
+      },
+      "rationale": "晚上不能唯一解析到分钟,禁止套用默认时段,所以 clarify。",
+      "tags": [
+        "time_ambiguous"
+      ],
+      "template_group": "TG-169",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "time_ambiguous",
+      "generation_rule": "模板组 TG-169(明晚这类含糊时段)第 1 号说法;now=2026-09-23T10:00;",
+      "seed": 20260924,
+      "clarify_target": {
+        "tool": "check_availability",
+        "fields": [
+          "start_time",
+          "end_time"
+        ]
+      }
+    },
+    {
+      "id": "DS-2071-clarify-check-vague-evening",
+      "user_request": "后天晚上有空档吗",
+      "available_tools": [
+        "check_availability",
+        "create_event"
+      ],
+      "context": {
+        "now": "2026-10-12T08:30",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "clarify",
+        "question": "请给出开始时间和结束时间,晚上无法唯一定位。"
+      },
+      "rationale": "晚上不能唯一解析到分钟,禁止套用默认时段,所以 clarify。",
+      "tags": [
+        "time_ambiguous"
+      ],
+      "template_group": "TG-169",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "time_ambiguous",
+      "generation_rule": "模板组 TG-169(明晚这类含糊时段)第 2 号说法;now=2026-10-12T08:30;",
+      "seed": 20260924,
+      "clarify_target": {
+        "tool": "check_availability",
+        "fields": [
+          "start_time",
+          "end_time"
+        ]
+      }
+    },
+    {
+      "id": "DS-2072-clarify-check-vague-evening",
+      "user_request": "明晚那段时间能约吗",
+      "available_tools": [
+        "check_availability",
+        "get_record"
+      ],
+      "context": {
+        "now": "2026-11-03T15:20",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "clarify",
+        "question": "晚上的起止时刻是几点到几点?"
+      },
+      "rationale": "晚上不能唯一解析到分钟,禁止套用默认时段,所以 clarify。",
+      "tags": [
+        "time_ambiguous"
+      ],
+      "template_group": "TG-169",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "time_ambiguous",
+      "generation_rule": "模板组 TG-169(明晚这类含糊时段)第 3 号说法;now=2026-11-03T15:20;",
+      "seed": 20260924,
+      "clarify_target": {
+        "tool": "check_availability",
+        "fields": [
+          "start_time",
+          "end_time"
+        ]
+      }
+    },
+    {
+      "id": "DS-2073-clarify-check-vague-evening",
+      "user_request": "帮我看下明晚的档期",
+      "available_tools": [
+        "check_availability"
+      ],
+      "context": {
+        "now": "2026-12-07T09:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "clarify",
+        "question": "需要起止时间才能查,那晚从哪天几点到几点?"
+      },
+      "rationale": "晚上不能唯一解析到分钟,禁止套用默认时段,所以 clarify。",
+      "tags": [
+        "time_ambiguous"
+      ],
+      "template_group": "TG-169",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "time_ambiguous",
+      "generation_rule": "模板组 TG-169(明晚这类含糊时段)第 4 号说法;now=2026-12-07T09:00;",
+      "seed": 20260924,
+      "clarify_target": {
+        "tool": "check_availability",
+        "fields": [
+          "start_time",
+          "end_time"
+        ]
+      }
+    },
+    {
+      "id": "DS-2074-clarify-check-vague-evening",
+      "user_request": "后天夜里有没有空?",
+      "available_tools": [
+        "check_availability",
+        "create_event"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "clarify",
+        "question": "明晚具体从几点开始、到几点结束?"
+      },
+      "rationale": "晚上不能唯一解析到分钟,禁止套用默认时段,所以 clarify。",
+      "tags": [
+        "time_ambiguous"
+      ],
+      "template_group": "TG-169",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "time_ambiguous",
+      "generation_rule": "模板组 TG-169(明晚这类含糊时段)第 5 号说法;now=2026-09-23T10:00;",
+      "seed": 20260924,
+      "clarify_target": {
+        "tool": "check_availability",
+        "fields": [
+          "start_time",
+          "end_time"
+        ]
+      }
+    },
+    {
+      "id": "DS-2075-clarify-check-vague-evening",
+      "user_request": "明晚有没有安排?",
+      "available_tools": [
+        "check_availability",
+        "get_record"
+      ],
+      "context": {
+        "now": "2026-10-12T08:30",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "clarify",
+        "question": "请给出开始时间和结束时间,晚上无法唯一定位。"
+      },
+      "rationale": "晚上不能唯一解析到分钟,禁止套用默认时段,所以 clarify。",
+      "tags": [
+        "time_ambiguous"
+      ],
+      "template_group": "TG-169",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "time_ambiguous",
+      "generation_rule": "模板组 TG-169(明晚这类含糊时段)第 6 号说法;now=2026-10-12T08:30;",
+      "seed": 20260924,
+      "clarify_target": {
+        "tool": "check_availability",
+        "fields": [
+          "start_time",
+          "end_time"
+        ]
+      }
+    },
+    {
+      "id": "DS-2076-clarify-check-vague-evening",
+      "user_request": "看下周三晚上的空闲",
+      "available_tools": [
+        "check_availability"
+      ],
+      "context": {
+        "now": "2026-11-03T15:20",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "clarify",
+        "question": "晚上的起止时刻是几点到几点?"
+      },
+      "rationale": "晚上不能唯一解析到分钟,禁止套用默认时段,所以 clarify。",
+      "tags": [
+        "time_ambiguous"
+      ],
+      "template_group": "TG-169",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "time_ambiguous",
+      "generation_rule": "模板组 TG-169(明晚这类含糊时段)第 7 号说法;now=2026-11-03T15:20;",
+      "seed": 20260924,
+      "clarify_target": {
+        "tool": "check_availability",
+        "fields": [
+          "start_time",
+          "end_time"
+        ]
+      }
+    },
+    {
+      "id": "DS-2077-clarify-check-vague-evening",
+      "user_request": "看看明晚的空闲情况",
+      "available_tools": [
+        "check_availability",
+        "create_event"
+      ],
+      "context": {
+        "now": "2026-12-07T09:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "clarify",
+        "question": "需要起止时间才能查,那晚从哪天几点到几点?"
+      },
+      "rationale": "晚上不能唯一解析到分钟,禁止套用默认时段,所以 clarify。",
+      "tags": [
+        "time_ambiguous"
+      ],
+      "template_group": "TG-169",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "time_ambiguous",
+      "generation_rule": "模板组 TG-169(明晚这类含糊时段)第 8 号说法;now=2026-12-07T09:00;",
+      "seed": 20260924,
+      "clarify_target": {
+        "tool": "check_availability",
+        "fields": [
+          "start_time",
+          "end_time"
+        ]
+      }
+    },
+    {
+      "id": "DS-2078-clarify-check-vague-evening",
+      "user_request": "明晚这块时间空不空",
+      "available_tools": [
+        "check_availability",
+        "get_record"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "clarify",
+        "question": "明晚具体从几点开始、到几点结束?"
+      },
+      "rationale": "晚上不能唯一解析到分钟,禁止套用默认时段,所以 clarify。",
+      "tags": [
+        "time_ambiguous"
+      ],
+      "template_group": "TG-169",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "time_ambiguous",
+      "generation_rule": "模板组 TG-169(明晚这类含糊时段)第 9 号说法;now=2026-09-23T10:00;",
+      "seed": 20260924,
+      "clarify_target": {
+        "tool": "check_availability",
+        "fields": [
+          "start_time",
+          "end_time"
+        ]
+      }
+    },
+    {
+      "id": "DS-2079-clarify-multi-record-aggregate",
+      "user_request": "读一下订单 DD204551,顺便把全部订单金额汇总",
+      "available_tools": [
+        "get_record",
+        "aggregate_data"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "clarify",
+        "question": "读单条记录和聚合统计是两步,先做哪一个?"
+      },
+      "rationale": "get_record 与 aggregate_data 两个动作同时出现,不做隐式串联,所以 clarify。",
+      "tags": [
+        "multi_intent"
+      ],
+      "template_group": "TG-177",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "multi_intent",
+      "generation_rule": "模板组 TG-177(读单条又要汇总)第 1 号说法;now=2026-09-23T10:00;rid「DD204551」",
+      "seed": 20260924
+    },
+    {
+      "id": "DS-2080-clarify-multi-record-aggregate",
+      "user_request": "DD204554 这笔订单详情给我,再看华东订单合计",
+      "available_tools": [
+        "aggregate_data",
+        "get_record"
+      ],
+      "context": {
+        "now": "2026-10-12T08:30",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "clarify",
+        "question": "本轮只能出一个决策,先读 DD204554 还是先做金额统计?"
+      },
+      "rationale": "get_record 与 aggregate_data 两个动作同时出现,不做隐式串联,所以 clarify。",
+      "tags": [
+        "multi_intent"
+      ],
+      "template_group": "TG-177",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "multi_intent",
+      "generation_rule": "模板组 TG-177(读单条又要汇总)第 2 号说法;now=2026-10-12T08:30;rid「DD204554」",
+      "seed": 20260924
+    },
+    {
+      "id": "DS-2081-clarify-multi-record-aggregate",
+      "user_request": "先查 DD204552,然后把订单金额统计一下",
+      "available_tools": [
+        "get_record",
+        "aggregate_data"
+      ],
+      "context": {
+        "now": "2026-11-03T15:20",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "clarify",
+        "question": "两个动作要分先后,你想哪一步先做?"
+      },
+      "rationale": "get_record 与 aggregate_data 两个动作同时出现,不做隐式串联,所以 clarify。",
+      "tags": [
+        "multi_intent"
+      ],
+      "template_group": "TG-177",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "multi_intent",
+      "generation_rule": "模板组 TG-177(读单条又要汇总)第 3 号说法;now=2026-11-03T15:20;rid「DD204552」",
+      "seed": 20260924
+    },
+    {
+      "id": "DS-2082-clarify-multi-record-aggregate",
+      "user_request": "把 DD204551 打开,同时统计订单总金额",
+      "available_tools": [
+        "aggregate_data",
+        "get_record"
+      ],
+      "context": {
+        "now": "2026-12-07T09:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "clarify",
+        "question": "查详情与求和是两件事,先走哪个?"
+      },
+      "rationale": "get_record 与 aggregate_data 两个动作同时出现,不做隐式串联,所以 clarify。",
+      "tags": [
+        "multi_intent"
+      ],
+      "template_group": "TG-177",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "multi_intent",
+      "generation_rule": "模板组 TG-177(读单条又要汇总)第 4 号说法;now=2026-12-07T09:00;rid「DD204551」",
+      "seed": 20260924
+    },
+    {
+      "id": "DS-2083-clarify-multi-record-aggregate",
+      "user_request": "查 DD204554 之后把订单金额求和",
+      "available_tools": [
+        "get_record",
+        "aggregate_data"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "clarify",
+        "question": "读单条记录和聚合统计是两步,先做哪一个?"
+      },
+      "rationale": "get_record 与 aggregate_data 两个动作同时出现,不做隐式串联,所以 clarify。",
+      "tags": [
+        "multi_intent"
+      ],
+      "template_group": "TG-177",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "multi_intent",
+      "generation_rule": "模板组 TG-177(读单条又要汇总)第 5 号说法;now=2026-09-23T10:00;rid「DD204554」",
+      "seed": 20260924
+    },
+    {
+      "id": "DS-2084-clarify-multi-record-aggregate",
+      "user_request": "DD204552 的详情和订单总额一起给我",
+      "available_tools": [
+        "aggregate_data",
+        "get_record"
+      ],
+      "context": {
+        "now": "2026-10-12T08:30",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "clarify",
+        "question": "本轮只能出一个决策,先读 DD204552 还是先做金额统计?"
+      },
+      "rationale": "get_record 与 aggregate_data 两个动作同时出现,不做隐式串联,所以 clarify。",
+      "tags": [
+        "multi_intent"
+      ],
+      "template_group": "TG-177",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "multi_intent",
+      "generation_rule": "模板组 TG-177(读单条又要汇总)第 6 号说法;now=2026-10-12T08:30;rid「DD204552」",
+      "seed": 20260924
+    },
+    {
+      "id": "DS-2085-clarify-multi-record-aggregate",
+      "user_request": "既要 DD204551 的明细也要订单总额,你连着做",
+      "available_tools": [
+        "get_record",
+        "aggregate_data"
+      ],
+      "context": {
+        "now": "2026-11-03T15:20",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "clarify",
+        "question": "两个动作要分先后,你想哪一步先做?"
+      },
+      "rationale": "get_record 与 aggregate_data 两个动作同时出现,不做隐式串联,所以 clarify。",
+      "tags": [
+        "multi_intent"
+      ],
+      "template_group": "TG-177",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "multi_intent",
+      "generation_rule": "模板组 TG-177(读单条又要汇总)第 7 号说法;now=2026-11-03T15:20;rid「DD204551」",
+      "seed": 20260924
+    },
+    {
+      "id": "DS-2086-clarify-multi-record-aggregate",
+      "user_request": "帮我读 DD204554,完了再统计订单金额",
+      "available_tools": [
+        "aggregate_data",
+        "get_record"
+      ],
+      "context": {
+        "now": "2026-12-07T09:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "clarify",
+        "question": "查详情与求和是两件事,先走哪个?"
+      },
+      "rationale": "get_record 与 aggregate_data 两个动作同时出现,不做隐式串联,所以 clarify。",
+      "tags": [
+        "multi_intent"
+      ],
+      "template_group": "TG-177",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "multi_intent",
+      "generation_rule": "模板组 TG-177(读单条又要汇总)第 8 号说法;now=2026-12-07T09:00;rid「DD204554」",
+      "seed": 20260924
+    },
+    {
+      "id": "DS-2087-clarify-multi-record-aggregate",
+      "user_request": "DD204552 记录看完就聚合一下订单金额",
+      "available_tools": [
+        "get_record",
+        "aggregate_data"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "clarify",
+        "question": "读单条记录和聚合统计是两步,先做哪一个?"
+      },
+      "rationale": "get_record 与 aggregate_data 两个动作同时出现,不做隐式串联,所以 clarify。",
+      "tags": [
+        "multi_intent"
+      ],
+      "template_group": "TG-177",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "multi_intent",
+      "generation_rule": "模板组 TG-177(读单条又要汇总)第 9 号说法;now=2026-09-23T10:00;rid「DD204552」",
+      "seed": 20260924
+    },
+    {
+      "id": "DS-2088-refuse-modify-record",
+      "user_request": "把记录 DD204551 的金额改成 50000",
+      "available_tools": [
+        "get_record"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "refuse",
+        "reason": "只能读取业务记录,修改数据不在授权范围内。"
+      },
+      "rationale": "参数齐全但请求本身不可执行:改写业务数据越权,补充信息也改变不了,所以 refuse。",
+      "tags": [
+        "out_of_authority"
+      ],
+      "template_group": "TG-181",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "over_authority",
+      "generation_rule": "模板组 TG-181(要求修改业务记录字段)第 1 号说法;now=2026-09-23T10:00;rid「DD204551」;amt「50000」",
+      "seed": 20260924,
+      "refuse_code": "out_of_authority"
+    },
+    {
+      "id": "DS-2089-refuse-modify-record",
+      "user_request": "FP103885 这条数据金额不对,直接改成 1200",
+      "available_tools": [
+        "get_record",
+        "aggregate_data"
+      ],
+      "context": {
+        "now": "2026-10-12T08:30",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "refuse",
+        "reason": "工具只开放查询与统计,不能把已入库的金额改成别的数。"
+      },
+      "rationale": "参数齐全但请求本身不可执行:改写业务数据越权,补充信息也改变不了,所以 refuse。",
+      "tags": [
+        "out_of_authority"
+      ],
+      "template_group": "TG-181",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "over_authority",
+      "generation_rule": "模板组 TG-181(要求修改业务记录字段)第 2 号说法;now=2026-10-12T08:30;rid「FP103885」;amt「1200」",
+      "seed": 20260924,
+      "refuse_code": "out_of_authority"
+    },
+    {
+      "id": "DS-2090-refuse-modify-record",
+      "user_request": "帮我调整 HT045773 的金额为 86.5",
+      "available_tools": [
+        "get_record",
+        "calculate"
+      ],
+      "context": {
+        "now": "2026-11-03T15:20",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "refuse",
+        "reason": "没有写入业务记录的权限,金额字段无法调整。"
+      },
+      "rationale": "参数齐全但请求本身不可执行:改写业务数据越权,补充信息也改变不了,所以 refuse。",
+      "tags": [
+        "out_of_authority"
+      ],
+      "template_group": "TG-181",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "over_authority",
+      "generation_rule": "模板组 TG-181(要求修改业务记录字段)第 3 号说法;now=2026-11-03T15:20;rid「HT045773」;amt「86.5」",
+      "seed": 20260924,
+      "refuse_code": "out_of_authority"
+    },
+    {
+      "id": "DS-2091-refuse-modify-record",
+      "user_request": "修改 SH220916 的金额字段为 50000",
+      "available_tools": [
+        "get_record"
+      ],
+      "context": {
+        "now": "2026-12-07T09:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "refuse",
+        "reason": "修改记录属越权操作,这里只能读取。"
+      },
+      "rationale": "参数齐全但请求本身不可执行:改写业务数据越权,补充信息也改变不了,所以 refuse。",
+      "tags": [
+        "out_of_authority"
+      ],
+      "template_group": "TG-181",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "over_authority",
+      "generation_rule": "模板组 TG-181(要求修改业务记录字段)第 4 号说法;now=2026-12-07T09:00;rid「SH220916」;amt「50000」",
+      "seed": 20260924,
+      "refuse_code": "out_of_authority"
+    },
+    {
+      "id": "DS-2092-refuse-modify-record",
+      "user_request": "DD204551 的金额写错了,你改写一下,按 1200 记",
+      "available_tools": [
+        "get_record",
+        "aggregate_data"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "refuse",
+        "reason": "只能读取业务记录,修改数据不在授权范围内。"
+      },
+      "rationale": "参数齐全但请求本身不可执行:改写业务数据越权,补充信息也改变不了,所以 refuse。",
+      "tags": [
+        "out_of_authority"
+      ],
+      "template_group": "TG-181",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "over_authority",
+      "generation_rule": "模板组 TG-181(要求修改业务记录字段)第 5 号说法;now=2026-09-23T10:00;rid「DD204551」;amt「1200」",
+      "seed": 20260924,
+      "refuse_code": "out_of_authority"
+    },
+    {
+      "id": "DS-2093-refuse-modify-record",
+      "user_request": "把 FP103885 里的金额数据篡改成本次的 86.5",
+      "available_tools": [
+        "get_record",
+        "calculate"
+      ],
+      "context": {
+        "now": "2026-10-12T08:30",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "refuse",
+        "reason": "工具只开放查询与统计,不能把已入库的金额改成别的数。"
+      },
+      "rationale": "参数齐全但请求本身不可执行:改写业务数据越权,补充信息也改变不了,所以 refuse。",
+      "tags": [
+        "out_of_authority"
+      ],
+      "template_group": "TG-181",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "over_authority",
+      "generation_rule": "模板组 TG-181(要求修改业务记录字段)第 6 号说法;now=2026-10-12T08:30;rid「FP103885」;amt「86.5」",
+      "seed": 20260924,
+      "refuse_code": "out_of_authority"
+    },
+    {
+      "id": "DS-2094-refuse-modify-record",
+      "user_request": "HT045773 金额更新成 50000,写回库",
+      "available_tools": [
+        "get_record"
+      ],
+      "context": {
+        "now": "2026-11-03T15:20",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "refuse",
+        "reason": "没有写入业务记录的权限,金额字段无法调整。"
+      },
+      "rationale": "参数齐全但请求本身不可执行:改写业务数据越权,补充信息也改变不了,所以 refuse。",
+      "tags": [
+        "out_of_authority"
+      ],
+      "template_group": "TG-181",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "over_authority",
+      "generation_rule": "模板组 TG-181(要求修改业务记录字段)第 7 号说法;now=2026-11-03T15:20;rid「HT045773」;amt「50000」",
+      "seed": 20260924,
+      "refuse_code": "out_of_authority"
+    },
+    {
+      "id": "DS-2095-refuse-modify-record",
+      "user_request": "麻烦把 SH220916 的金额改成 1200 再保存",
+      "available_tools": [
+        "get_record",
+        "aggregate_data"
+      ],
+      "context": {
+        "now": "2026-12-07T09:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "refuse",
+        "reason": "修改记录属越权操作,这里只能读取。"
+      },
+      "rationale": "参数齐全但请求本身不可执行:改写业务数据越权,补充信息也改变不了,所以 refuse。",
+      "tags": [
+        "out_of_authority"
+      ],
+      "template_group": "TG-181",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "over_authority",
+      "generation_rule": "模板组 TG-181(要求修改业务记录字段)第 8 号说法;now=2026-12-07T09:00;rid「SH220916」;amt「1200」",
+      "seed": 20260924,
+      "refuse_code": "out_of_authority"
+    },
+    {
+      "id": "DS-2096-refuse-modify-record",
+      "user_request": "DD204551 这条记录金额调为 86.5",
+      "available_tools": [
+        "get_record",
+        "calculate"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "refuse",
+        "reason": "只能读取业务记录,修改数据不在授权范围内。"
+      },
+      "rationale": "参数齐全但请求本身不可执行:改写业务数据越权,补充信息也改变不了,所以 refuse。",
+      "tags": [
+        "out_of_authority"
+      ],
+      "template_group": "TG-181",
+      "source": "generated_v0",
+      "split": "val",
+      "category": "over_authority",
+      "generation_rule": "模板组 TG-181(要求修改业务记录字段)第 9 号说法;now=2026-09-23T10:00;rid「DD204551」;amt「86.5」",
+      "seed": 20260924,
+      "refuse_code": "out_of_authority"
+    },
+    {
+      "id": "V1-025-clarify",
+      "user_request": "我需要库里的一份文档，帮我找",
+      "available_tools": [
+        "search_documents"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "rationale": "同一工具的参数齐全/缺参对照;只根据请求中的明确取值决定调用或追问。",
+      "tags": [
+        "missing_required_field"
+      ],
+      "template_group": "TG-650",
+      "source": "generated_v1",
+      "split": "val",
+      "category": "missing_param",
+      "generation_rule": "contrastive_v1 第 25 对;工具 search_documents;参数缺失。",
+      "seed": 20260924,
+      "expected_decision": {
+        "action": "clarify",
+        "question": "请给出要检索的文档标题或关键词。"
+      },
+      "clarify_target": {
+        "tool": "search_documents",
+        "fields": [
+          "query"
+        ]
+      }
+    },
+    {
+      "id": "V1-025-call",
+      "user_request": "我需要库里的数据留存文档，帮我找",
+      "available_tools": [
+        "search_documents"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "rationale": "同一工具的参数齐全/缺参对照;只根据请求中的明确取值决定调用或追问。",
+      "tags": [
+        "normal_call"
+      ],
+      "template_group": "TG-651",
+      "source": "generated_v1",
+      "split": "val",
+      "category": "normal",
+      "generation_rule": "contrastive_v1 第 25 对;工具 search_documents;参数齐全。",
+      "seed": 20260924,
+      "expected_decision": {
+        "action": "call",
+        "tool": "search_documents",
+        "arguments": {
+          "query": "数据留存"
+        }
+      },
+      "acceptable_text_arguments": {
+        "query": [
+          "数据留存"
+        ]
+      },
+      "post_condition": "none"
+    },
+    {
+      "id": "V1-026-clarify",
+      "user_request": "检索一份相关的工作指引",
+      "available_tools": [
+        "search_documents"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "rationale": "同一工具的参数齐全/缺参对照;只根据请求中的明确取值决定调用或追问。",
+      "tags": [
+        "missing_required_field"
+      ],
+      "template_group": "TG-652",
+      "source": "generated_v1",
+      "split": "val",
+      "category": "missing_param",
+      "generation_rule": "contrastive_v1 第 26 对;工具 search_documents;参数缺失。",
+      "seed": 20260924,
+      "expected_decision": {
+        "action": "clarify",
+        "question": "请给出要检索的文档标题或关键词。"
+      },
+      "clarify_target": {
+        "tool": "search_documents",
+        "fields": [
+          "query"
+        ]
+      }
+    },
+    {
+      "id": "V1-026-call",
+      "user_request": "检索一份合同归档工作指引",
+      "available_tools": [
+        "search_documents"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "rationale": "同一工具的参数齐全/缺参对照;只根据请求中的明确取值决定调用或追问。",
+      "tags": [
+        "normal_call"
+      ],
+      "template_group": "TG-653",
+      "source": "generated_v1",
+      "split": "val",
+      "category": "normal",
+      "generation_rule": "contrastive_v1 第 26 对;工具 search_documents;参数齐全。",
+      "seed": 20260924,
+      "expected_decision": {
+        "action": "call",
+        "tool": "search_documents",
+        "arguments": {
+          "query": "合同归档"
+        }
+      },
+      "acceptable_text_arguments": {
+        "query": [
+          "合同归档"
+        ]
+      },
+      "post_condition": "none"
+    },
+    {
+      "id": "V1-027-clarify",
+      "user_request": "计算那个数字表达式",
+      "available_tools": [
+        "calculate"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "rationale": "同一工具的参数齐全/缺参对照;只根据请求中的明确取值决定调用或追问。",
+      "tags": [
+        "missing_required_field"
+      ],
+      "template_group": "TG-654",
+      "source": "generated_v1",
+      "split": "val",
+      "category": "missing_param",
+      "generation_rule": "contrastive_v1 第 27 对;工具 calculate;参数缺失。",
+      "seed": 20260924,
+      "expected_decision": {
+        "action": "clarify",
+        "question": "请给出需要计算的完整算式。"
+      },
+      "clarify_target": {
+        "tool": "calculate",
+        "fields": [
+          "expression"
+        ]
+      }
+    },
+    {
+      "id": "V1-027-call",
+      "user_request": "计算 33+26 的值",
+      "available_tools": [
+        "calculate"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "rationale": "同一工具的参数齐全/缺参对照;只根据请求中的明确取值决定调用或追问。",
+      "tags": [
+        "normal_call"
+      ],
+      "template_group": "TG-655",
+      "source": "generated_v1",
+      "split": "val",
+      "category": "normal",
+      "generation_rule": "contrastive_v1 第 27 对;工具 calculate;参数齐全。",
+      "seed": 20260924,
+      "expected_decision": {
+        "action": "call",
+        "tool": "calculate",
+        "arguments": {
+          "expression": "33+26"
+        }
+      },
+      "post_condition": "none"
+    },
+    {
+      "id": "V1-028-clarify",
+      "user_request": "求一下这个算式的结果",
+      "available_tools": [
+        "calculate"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "rationale": "同一工具的参数齐全/缺参对照;只根据请求中的明确取值决定调用或追问。",
+      "tags": [
+        "missing_required_field"
+      ],
+      "template_group": "TG-656",
+      "source": "generated_v1",
+      "split": "val",
+      "category": "missing_param",
+      "generation_rule": "contrastive_v1 第 28 对;工具 calculate;参数缺失。",
+      "seed": 20260924,
+      "expected_decision": {
+        "action": "clarify",
+        "question": "请给出需要计算的完整算式。"
+      },
+      "clarify_target": {
+        "tool": "calculate",
+        "fields": [
+          "expression"
+        ]
+      }
+    },
+    {
+      "id": "V1-028-call",
+      "user_request": "求一下 72/8 的结果",
+      "available_tools": [
+        "calculate"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "rationale": "同一工具的参数齐全/缺参对照;只根据请求中的明确取值决定调用或追问。",
+      "tags": [
+        "normal_call"
+      ],
+      "template_group": "TG-657",
+      "source": "generated_v1",
+      "split": "val",
+      "category": "normal",
+      "generation_rule": "contrastive_v1 第 28 对;工具 calculate;参数齐全。",
+      "seed": 20260924,
+      "expected_decision": {
+        "action": "call",
+        "tool": "calculate",
+        "arguments": {
+          "expression": "72/8"
+        }
+      },
+      "post_condition": "none"
+    },
+    {
+      "id": "V1-029-clarify",
+      "user_request": "把交付回顾会放到 2026 年 10 月 16 日 09:30 开始",
+      "available_tools": [
+        "create_event"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "rationale": "同一工具的参数齐全/缺参对照;只根据请求中的明确取值决定调用或追问。",
+      "tags": [
+        "missing_required_field"
+      ],
+      "template_group": "TG-658",
+      "source": "generated_v1",
+      "split": "val",
+      "category": "missing_param",
+      "generation_rule": "contrastive_v1 第 29 对;工具 create_event;参数缺失。",
+      "seed": 20260924,
+      "expected_decision": {
+        "action": "clarify",
+        "question": "这项日程的结束时间是几点?"
+      },
+      "clarify_target": {
+        "tool": "create_event",
+        "fields": [
+          "end_time"
+        ]
+      }
+    },
+    {
+      "id": "V1-029-call",
+      "user_request": "把交付回顾会放到 2026 年 10 月 16 日 09:30 到 10:15",
+      "available_tools": [
+        "create_event"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "rationale": "同一工具的参数齐全/缺参对照;只根据请求中的明确取值决定调用或追问。",
+      "tags": [
+        "normal_call"
+      ],
+      "template_group": "TG-659",
+      "source": "generated_v1",
+      "split": "val",
+      "category": "normal",
+      "generation_rule": "contrastive_v1 第 29 对;工具 create_event;参数齐全。",
+      "seed": 20260924,
+      "expected_decision": {
+        "action": "call",
+        "tool": "create_event",
+        "arguments": {
+          "title": "交付回顾会",
+          "start_time": "2026-10-16T09:30",
+          "end_time": "2026-10-16T10:15"
+        }
+      },
+      "acceptable_text_arguments": {
+        "title": [
+          "交付回顾会"
+        ]
+      },
+      "post_condition": "requires_server_confirmation"
+    },
+    {
+      "id": "V1-030-clarify",
+      "user_request": "新建架构讨论，2026 年 10 月 19 日 15:00 开始",
+      "available_tools": [
+        "create_event"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "rationale": "同一工具的参数齐全/缺参对照;只根据请求中的明确取值决定调用或追问。",
+      "tags": [
+        "missing_required_field"
+      ],
+      "template_group": "TG-660",
+      "source": "generated_v1",
+      "split": "val",
+      "category": "missing_param",
+      "generation_rule": "contrastive_v1 第 30 对;工具 create_event;参数缺失。",
+      "seed": 20260924,
+      "expected_decision": {
+        "action": "clarify",
+        "question": "这项日程的结束时间是几点?"
+      },
+      "clarify_target": {
+        "tool": "create_event",
+        "fields": [
+          "end_time"
+        ]
+      }
+    },
+    {
+      "id": "V1-030-call",
+      "user_request": "新建架构讨论，2026 年 10 月 19 日 15:00 到 16:00",
+      "available_tools": [
+        "create_event"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "rationale": "同一工具的参数齐全/缺参对照;只根据请求中的明确取值决定调用或追问。",
+      "tags": [
+        "normal_call"
+      ],
+      "template_group": "TG-661",
+      "source": "generated_v1",
+      "split": "val",
+      "category": "normal",
+      "generation_rule": "contrastive_v1 第 30 对;工具 create_event;参数齐全。",
+      "seed": 20260924,
+      "expected_decision": {
+        "action": "call",
+        "tool": "create_event",
+        "arguments": {
+          "title": "架构讨论",
+          "start_time": "2026-10-19T15:00",
+          "end_time": "2026-10-19T16:00"
+        }
+      },
+      "acceptable_text_arguments": {
+        "title": [
+          "架构讨论"
+        ]
+      },
+      "post_condition": "requires_server_confirmation"
+    },
+    {
+      "id": "V1-031-clarify",
+      "user_request": "业务金额加起来有多少",
+      "available_tools": [
+        "aggregate_data"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "rationale": "同一工具的参数齐全/缺参对照;只根据请求中的明确取值决定调用或追问。",
+      "tags": [
+        "missing_required_field"
+      ],
+      "template_group": "TG-662",
+      "source": "generated_v1",
+      "split": "val",
+      "category": "missing_param",
+      "generation_rule": "contrastive_v1 第 31 对;工具 aggregate_data;参数缺失。",
+      "seed": 20260924,
+      "expected_decision": {
+        "action": "clarify",
+        "question": "请说明要统计哪个数据集的金额总和。"
+      },
+      "clarify_target": {
+        "tool": "aggregate_data",
+        "fields": [
+          "dataset"
+        ]
+      }
+    },
+    {
+      "id": "V1-031-call",
+      "user_request": "合同金额加起来有多少",
+      "available_tools": [
+        "aggregate_data"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "rationale": "同一工具的参数齐全/缺参对照;只根据请求中的明确取值决定调用或追问。",
+      "tags": [
+        "normal_call"
+      ],
+      "template_group": "TG-663",
+      "source": "generated_v1",
+      "split": "val",
+      "category": "normal",
+      "generation_rule": "contrastive_v1 第 31 对;工具 aggregate_data;参数齐全。",
+      "seed": 20260924,
+      "expected_decision": {
+        "action": "call",
+        "tool": "aggregate_data",
+        "arguments": {
+          "dataset": "contracts",
+          "metric": "amount",
+          "operation": "sum"
+        }
+      },
+      "post_condition": "none"
+    },
+    {
+      "id": "V1-032-clarify",
+      "user_request": "统计一下这批的总金额",
+      "available_tools": [
+        "aggregate_data"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "rationale": "同一工具的参数齐全/缺参对照;只根据请求中的明确取值决定调用或追问。",
+      "tags": [
+        "missing_required_field"
+      ],
+      "template_group": "TG-664",
+      "source": "generated_v1",
+      "split": "val",
+      "category": "missing_param",
+      "generation_rule": "contrastive_v1 第 32 对;工具 aggregate_data;参数缺失。",
+      "seed": 20260924,
+      "expected_decision": {
+        "action": "clarify",
+        "question": "请说明要统计哪个数据集的金额总和。"
+      },
+      "clarify_target": {
+        "tool": "aggregate_data",
+        "fields": [
+          "dataset"
+        ]
+      }
+    },
+    {
+      "id": "V1-032-call",
+      "user_request": "统计一下这批订单的总金额",
+      "available_tools": [
+        "aggregate_data"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "rationale": "同一工具的参数齐全/缺参对照;只根据请求中的明确取值决定调用或追问。",
+      "tags": [
+        "normal_call"
+      ],
+      "template_group": "TG-665",
+      "source": "generated_v1",
+      "split": "val",
+      "category": "normal",
+      "generation_rule": "contrastive_v1 第 32 对;工具 aggregate_data;参数齐全。",
+      "seed": 20260924,
+      "expected_decision": {
+        "action": "call",
+        "tool": "aggregate_data",
+        "arguments": {
+          "dataset": "orders",
+          "metric": "amount",
+          "operation": "sum"
+        }
+      },
+      "post_condition": "none"
+    }
+  ]
+}

@@ -1,0 +1,803 @@
+{
+  "version": "templates_refuse_v0",
+  "description": "第 3 步模板组的 refuse 部分。每条理由必须同时命中 refuse_code 的主题词与边界词,且不得出现用户没说过的时刻;unavailable_tool 类必须登记 blocking_tools,且不得使用未见工具的名字 unit_convert、sort_records。",
+  "groups": [
+    {
+      "id": "TG-181",
+      "slug": "refuse-modify-record",
+      "label": "要求修改业务记录字段",
+      "toolset": "train6",
+      "action": "refuse",
+      "tool": null,
+      "category": "over_authority",
+      "tags": [
+        "out_of_authority"
+      ],
+      "refuse_code": "out_of_authority",
+      "available_tools_pool": [
+        [
+          "get_record"
+        ],
+        [
+          "get_record",
+          "aggregate_data"
+        ],
+        [
+          "get_record",
+          "calculate"
+        ]
+      ],
+      "slots": {
+        "rid": [
+          "DD204551",
+          "FP103885",
+          "HT045773",
+          "SH220916"
+        ],
+        "amt": [
+          "50000",
+          "1200",
+          "86.5"
+        ]
+      },
+      "phrasings": [
+        "把记录 {rid} 的金额改成 {amt}",
+        "{rid} 这条数据金额不对,直接改成 {amt}",
+        "帮我调整 {rid} 的金额为 {amt}",
+        "修改 {rid} 的金额字段为 {amt}",
+        "{rid} 的金额写错了,你改写一下,按 {amt} 记",
+        "把 {rid} 里的金额数据篡改成本次的 {amt}",
+        "{rid} 金额更新成 {amt},写回库",
+        "麻烦把 {rid} 的金额改成 {amt} 再保存",
+        "{rid} 这条记录金额调为 {amt}"
+      ],
+      "reasons": [
+        "只能读取业务记录,修改数据不在授权范围内。",
+        "工具只开放查询与统计,不能把已入库的金额改成别的数。",
+        "没有写入业务记录的权限,金额字段无法调整。",
+        "修改记录属越权操作,这里只能读取。"
+      ],
+      "rationale": "参数齐全但请求本身不可执行:改写业务数据越权,补充信息也改变不了,所以 refuse。",
+      "split": "val"
+    },
+    {
+      "id": "TG-182",
+      "slug": "refuse-delete-record",
+      "label": "要求删除业务记录",
+      "toolset": "train6",
+      "action": "refuse",
+      "tool": null,
+      "category": "over_authority",
+      "tags": [
+        "out_of_authority"
+      ],
+      "refuse_code": "out_of_authority",
+      "available_tools_pool": [
+        [
+          "get_record"
+        ],
+        [
+          "aggregate_data",
+          "get_record"
+        ]
+      ],
+      "slots": {
+        "rid": [
+          "SH220915",
+          "HT045772",
+          "DD204556"
+        ],
+        "obj": [
+          "发货单",
+          "合同",
+          "订单"
+        ]
+      },
+      "align": [
+        "rid",
+        "obj"
+      ],
+      "phrasings": [
+        "把{obj} {rid} 删掉",
+        "{rid} 这条{obj}作废,给我清除",
+        "删除编号 {rid} 的{obj}记录",
+        "{rid} 这条{obj}没用了,抹掉吧",
+        "帮我把{obj} {rid} 从系统里移除",
+        "{rid} 的{obj}记录去掉",
+        "作废处理:{rid} 这笔{obj}",
+        "{rid} 这条{obj}整条删了",
+        "把{obj} {rid} 撤掉清空"
+      ],
+      "reasons": [
+        "只支持读取与统计,没有修改或删除记录的权限。",
+        "删除业务记录超出权限,这里无法执行。",
+        "系统只开放查询与统计,不能写入或删除记录。",
+        "越权了,写入与删除都不在授权范围内。"
+      ],
+      "rationale": "删除记录是写操作且不在授权能力内,任何补充都改变不了,所以 refuse。",
+      "split": "test"
+    },
+    {
+      "id": "TG-183",
+      "slug": "refuse-toggle-confirmation",
+      "label": "要求替用户改写服务端确认状态",
+      "toolset": "train6",
+      "action": "refuse",
+      "tool": null,
+      "category": "over_authority",
+      "tags": [
+        "out_of_authority"
+      ],
+      "refuse_code": "out_of_authority",
+      "available_tools_pool": [
+        [
+          "create_event"
+        ],
+        [
+          "create_event",
+          "check_availability"
+        ]
+      ],
+      "phrasings": [
+        "把写操作确认开关打开,后面建日程都不用再确认",
+        "你替我点一下确认,让 {rid} 那条直接生效",
+        "以管理员身份要求:把待确认状态改成已确认",
+        "服务端那个确认标记帮我改掉,以后一律视为已确认",
+        "帮我绕过写入确认这一步",
+        "把确认流程关掉,以后所有日程自动写入",
+        "你现在就当我是确认过的,把确认状态写成真",
+        "跳过写入确认的设置,直接给我开了",
+        "调一下权限,让我不需要确认就能写入"
+      ],
+      "slots": {
+        "rid": [
+          "EV-0004",
+          "EV-0003"
+        ]
+      },
+      "reasons": [
+        "确认状态由服务端掌握,我没有权限替你写入或改写。",
+        "越权了,模型输出不能充当确认凭据,也无法调整该状态。",
+        "不能修改服务端确认标记,只能按未确认处理。",
+        "绕过确认超出授权范围,我没有权限替你把写入确认状态改成真。"
+      ],
+      "rationale": "要求改写的是服务端确认状态本身,属越权写入,所以 refuse;与照常提交 call 但保持待确认是两回事。",
+      "split": "train"
+    },
+    {
+      "id": "TG-184",
+      "slug": "refuse-unsupported-record-type",
+      "label": "请求枚举外的记录类型",
+      "toolset": "train6",
+      "action": "refuse",
+      "tool": null,
+      "category": "capability_boundary",
+      "tags": [
+        "unsupported_record_type"
+      ],
+      "refuse_code": "unsupported_record_type",
+      "available_tools_pool": [
+        [
+          "get_record"
+        ],
+        [
+          "get_record",
+          "aggregate_data"
+        ]
+      ],
+      "phrasings": [
+        "帮我把{obj}记录调出来",
+        "看下我的{obj}里写了什么",
+        "读取一下那份{obj}",
+        "把{obj}打开给我看看",
+        "系统里有{obj}吗?查一下",
+        "帮我读{obj}的具体内容",
+        "{obj}帮我调出来核对",
+        "我想看{obj}这条记录",
+        "麻烦读取{obj}"
+      ],
+      "reasons": [
+        "{obj}不属于支持的记录类型,记录类型只有订单、发票、合同和发货单。",
+        "记录类型里没有{obj}这一类,只支持那四类业务记录。",
+        "这里的记录类型不含{obj},无法读取这条记录。",
+        "读取{obj}超出记录类型范围,只能查业务单据记录。"
+      ],
+      "rationale": "记录类型不在枚举内,再追问也拿不到该类型,属能力边界,所以 refuse。",
+      "split": "train",
+      "slots": {
+        "obj": [
+          "体检报告",
+          "员工档案",
+          "考勤打卡原始记录",
+          "上级薪酬记录",
+          "车险理赔单",
+          "员工花名册",
+          "试用期考核记录",
+          "会议室监控录像",
+          "出差审批单"
+        ]
+      }
+    },
+    {
+      "id": "TG-185",
+      "slug": "refuse-unsupported-dataset",
+      "label": "请求枚举外的数据集",
+      "toolset": "train6",
+      "action": "refuse",
+      "tool": null,
+      "category": "capability_boundary",
+      "tags": [
+        "unsupported_dataset"
+      ],
+      "refuse_code": "unsupported_dataset",
+      "available_tools_pool": [
+        [
+          "aggregate_data"
+        ],
+        [
+          "aggregate_data",
+          "get_record"
+        ]
+      ],
+      "phrasings": [
+        "统计一下{obj}",
+        "帮我把{obj}聚合一下",
+        "{obj}做个汇总统计",
+        "看下{obj}的合计",
+        "把{obj}统计出来给我",
+        "{obj}这边出个统计数",
+        "帮我按条件统计{obj}",
+        "{obj}的总额是多少?",
+        "对{obj}做一次聚合统计"
+      ],
+      "reasons": [
+        "{obj}不在数据集枚举里,只有订单、发票、合同、发货单四个库。",
+        "库里没有{obj}这个数据范围,只能统计业务四类。",
+        "{obj}不属于本次可统计的数据集,无法聚合。",
+        "支持的数据集只有四类,{obj}不在其中。"
+      ],
+      "rationale": "dataset 枚举里没有对方要的数据范围,澄清也无法补出来,所以 refuse。",
+      "split": "train",
+      "slots": {
+        "obj": [
+          "人事离职率数据",
+          "生产设备故障台账",
+          "客户投诉工单数据",
+          "网站访问量数据",
+          "员工培训学时台账",
+          "水电费台账",
+          "市场调研问卷数据",
+          "物流车队油耗台账",
+          "仓库库位使用数据"
+        ]
+      }
+    },
+    {
+      "id": "TG-186",
+      "slug": "refuse-unsupported-operation-std",
+      "label": "请求不支持的统计量(标准差)",
+      "toolset": "train6",
+      "action": "refuse",
+      "tool": null,
+      "category": "capability_boundary",
+      "tags": [
+        "unsupported_operation"
+      ],
+      "refuse_code": "unsupported_operation",
+      "available_tools_pool": [
+        [
+          "aggregate_data"
+        ],
+        [
+          "aggregate_data",
+          "calculate"
+        ]
+      ],
+      "phrasings": [
+        "算一下订单金额的标准差",
+        "给我发票金额的方差",
+        "统计合同金额的离散系数",
+        "看下发货时效的标准差是多少",
+        "把订单金额做方差分析",
+        "统计一下金额的数据波动标准差",
+        "帮我算金额的协方差",
+        "订单金额做个标准差统计",
+        "合同周期天数的标准差给我"
+      ],
+      "reasons": [
+        "聚合统计只支持求和、均值、最大最小与计数,没有标准差。",
+        "标准差、方差这类统计量不在支持范围内。",
+        "统计方式里没有方差这一项,只能按四类聚合算。",
+        "离散度指标不支持,聚合运算仅那几种统计口径。"
+      ],
+      "rationale": "operation 枚举内没有该统计量,属能力边界,所以 refuse。",
+      "split": "train"
+    },
+    {
+      "id": "TG-187",
+      "slug": "refuse-unsupported-operation-quantile",
+      "label": "请求不支持的统计量(中位数与分位)",
+      "toolset": "train6",
+      "action": "refuse",
+      "tool": null,
+      "category": "capability_boundary",
+      "tags": [
+        "unsupported_operation"
+      ],
+      "refuse_code": "unsupported_operation",
+      "available_tools_pool": [
+        [
+          "aggregate_data"
+        ],
+        [
+          "aggregate_data",
+          "get_record"
+        ]
+      ],
+      "phrasings": [
+        "看下订单金额的中位数",
+        "给我发票金额的 90 分位",
+        "统计合同金额的三分位数",
+        "发货数量的中位数是多少",
+        "把订单金额按分位切一下",
+        "看下金额分布的 P50 值",
+        "统计订单金额的四分位",
+        "中位数水平的发票金额给我",
+        "合同周期的分位数统计一下"
+      ],
+      "reasons": [
+        "中位数与分位数不在支持的统计方式里。",
+        "分位统计不支持,聚合只有四类统计口径。",
+        "P50 这类分位指标没有,均值和极值才有。",
+        "支持均值但不支持中位数,这类统计方式没有开放。"
+      ],
+      "rationale": "分位类统计量不在 operation 枚举里,追问也不能变通,所以 refuse。",
+      "split": "train"
+    },
+    {
+      "id": "TG-188",
+      "slug": "refuse-export-spreadsheet",
+      "label": "要求导出表格(依赖未提供工具)",
+      "toolset": "train6",
+      "action": "refuse",
+      "tool": null,
+      "category": "irrelevant",
+      "tags": [
+        "unavailable_tool"
+      ],
+      "refuse_code": "unavailable_tool",
+      "blocking_tools": [
+        "export_spreadsheet"
+      ],
+      "available_tools_pool": [
+        [
+          "aggregate_data"
+        ],
+        [
+          "aggregate_data",
+          "get_record"
+        ],
+        [
+          "search_documents",
+          "aggregate_data"
+        ]
+      ],
+      "phrasings": [
+        "把订单金额统计结果导出成{fmt}",
+        "把这份汇总导出一份{fmt}",
+        "统计完生成{fmt}下载给我",
+        "帮我把数据导出成{fmt}",
+        "把发票汇总做成{fmt}导出来",
+        "导一份{fmt}出来",
+        "把统计结果另存为{fmt}",
+        "生成一个可下载的{fmt}",
+        "把这些数导到{fmt}里给我"
+      ],
+      "reasons": [
+        "{fmt}导出不属于本次提供的工具,只能查询与统计。",
+        "没有{fmt}导出工具,无法生成文件。",
+        "生成{fmt}的工具不在本次范围内,只能返回数据。",
+        "本次工具不含{fmt}导出这一项,无法执行。"
+      ],
+      "rationale": "需求依赖未提供的导出工具,换参数也满足不了,所以 refuse 并在 blocking_tools 里登记工具名。",
+      "split": "train",
+      "slots": {
+        "fmt": [
+          "Excel",
+          "xlsx 表格",
+          "CSV",
+          "PDF 报表",
+          "电子表格",
+          "表格文件",
+          "xlsx 文件",
+          "CSV 明细",
+          "PDF"
+        ]
+      }
+    },
+    {
+      "id": "TG-189",
+      "slug": "refuse-sort-records",
+      "label": "要求排序(依赖未提供工具)",
+      "toolset": "train6",
+      "action": "refuse",
+      "tool": null,
+      "category": "irrelevant",
+      "tags": [
+        "unavailable_tool"
+      ],
+      "refuse_code": "unavailable_tool",
+      "blocking_tools": [
+        "record_sort"
+      ],
+      "available_tools_pool": [
+        [
+          "aggregate_data"
+        ],
+        [
+          "get_record",
+          "aggregate_data"
+        ],
+        [
+          "aggregate_data",
+          "search_documents"
+        ]
+      ],
+      "phrasings": [
+        "把订单按金额从大到小排一下",
+        "帮我把合同按周期天数升序排列",
+        "发票记录按金额倒序看一下",
+        "把发货单按时效长短排序",
+        "所有订单按编号顺序排一遍",
+        "按金额高低给合同排个序",
+        "帮我把这批记录按日期排序后列出",
+        "订单金额排名前列的排出来",
+        "把发票按金额降序排列给我"
+      ],
+      "reasons": [
+        "排序工具本次未提供,只能聚合统计与读取单条。",
+        "没有排序能力,可提供的工具里没有这一项。",
+        "本次工具范围不含排序,无法输出有序列表。",
+        "排序不在可用工具内,只能按条件聚合计数。"
+      ],
+      "rationale": "排序需要本次未提供的工具(record_sort),不是参数问题,所以 refuse。",
+      "split": "test"
+    },
+    {
+      "id": "TG-190",
+      "slug": "refuse-compose-email",
+      "label": "要求撰写文本(与系统能力无关)",
+      "toolset": "train6",
+      "action": "refuse",
+      "tool": null,
+      "category": "irrelevant",
+      "tags": [
+        "unavailable_tool"
+      ],
+      "refuse_code": "unavailable_tool",
+      "blocking_tools": [
+        "compose_email"
+      ],
+      "available_tools_pool": [
+        [
+          "search_documents"
+        ],
+        [
+          "get_record",
+          "search_documents"
+        ]
+      ],
+      "phrasings": [
+        "帮我起草一封给客户的延期{obj}",
+        "写一份本周{obj}的正文",
+        "帮我把这段{obj}写出来",
+        "拟一条{obj}",
+        "替我写封拒绝报价的{obj}",
+        "生成一段年终答谢{obj}",
+        "帮我把这份{obj}改写得更正式些",
+        "写一封婉拒{obj}",
+        "草拟一份{obj}的文字稿"
+      ],
+      "reasons": [
+        "撰写{obj}不属于本次工具范围,只能查询、统计与建日程。",
+        "没有写作类工具,{obj}无法代笔。",
+        "本次可用工具里没有起草{obj}的能力,无法完成。",
+        "生成{obj}不在工具范围内,只能检索已有文档。"
+      ],
+      "rationale": "请求与六个工具的能力无关且需要未提供的写作工具,所以 refuse 而不是澄清。",
+      "split": "train",
+      "slots": {
+        "obj": [
+          "致歉邮件",
+          "工作周报",
+          "会议主持词",
+          "催付款短信",
+          "拒绝报价的回信",
+          "答谢发言稿",
+          "内部通知",
+          "婉拒面试邮件",
+          "对外公告"
+        ]
+      }
+    },
+    {
+      "id": "TG-191",
+      "slug": "refuse-weather-chat",
+      "label": "无关的通用问答请求",
+      "toolset": "train6",
+      "action": "refuse",
+      "tool": null,
+      "category": "irrelevant",
+      "tags": [
+        "unavailable_tool"
+      ],
+      "refuse_code": "unavailable_tool",
+      "blocking_tools": [
+        "get_weather"
+      ],
+      "available_tools_pool": [
+        [
+          "search_documents",
+          "get_record"
+        ],
+        [
+          "check_availability"
+        ],
+        [
+          "calculate",
+          "aggregate_data"
+        ]
+      ],
+      "phrasings": [
+        "明天上海天气怎么样?",
+        "现在外面下雨了吗?",
+        "帮我看看这周末适合去哪里玩",
+        "今天空气质量如何?",
+        "明早要带伞吗?",
+        "查一下后天的气温有多少度",
+        "看下明天会不会降温",
+        "上海现在几度?",
+        "周末天气好吗,想出去玩"
+      ],
+      "reasons": [
+        "查天气不在本次工具范围内,无法回答。",
+        "没有气象类工具,只能处理业务数据与日程。",
+        "温度查询不属于可用工具能力,这里没有该工具。",
+        "本次工具只覆盖文档、记录与日程,天气无法查询。"
+      ],
+      "rationale": "与系统能力无关的通用问答需要未提供的工具,补充参数也无意义,所以 refuse。",
+      "split": "train"
+    },
+    {
+      "id": "TG-192",
+      "slug": "refuse-translate",
+      "label": "无关的翻译请求",
+      "toolset": "train6",
+      "action": "refuse",
+      "tool": null,
+      "category": "irrelevant",
+      "tags": [
+        "unavailable_tool"
+      ],
+      "refuse_code": "unavailable_tool",
+      "blocking_tools": [
+        "translate_text"
+      ],
+      "available_tools_pool": [
+        [
+          "search_documents"
+        ],
+        [
+          "get_record",
+          "search_documents"
+        ]
+      ],
+      "phrasings": [
+        "把这句英文翻译成中文",
+        "帮我把这段合同条款译成英文",
+        "translate 一下这段话",
+        "这段日文什么意思?翻译给我",
+        "把报销说明译成英文",
+        "帮我做个中译英",
+        "这份材料的标题用英文怎么说?",
+        "将这句话口语文言互译一下",
+        "把物流条款翻译成德语给我"
+      ],
+      "reasons": [
+        "翻译不在本次可用工具里,只能检索原始文档。",
+        "没有翻译工具,这项能力没有提供。",
+        "译写不属于本次工具范围,无法处理。",
+        "本次工具中没有文本翻译,不能执行。"
+      ],
+      "rationale": "请求需要未提供的翻译能力,与六个工具的描述都不匹配,所以 refuse。",
+      "split": "test"
+    },
+    {
+      "id": "TG-193",
+      "slug": "refuse-past-availability",
+      "label": "查询过去时段的空闲",
+      "toolset": "train6",
+      "action": "refuse",
+      "tool": null,
+      "category": "capability_boundary",
+      "tags": [
+        "infeasible_time"
+      ],
+      "refuse_code": "infeasible_time",
+      "now": [
+        "2026-09-23T10:00"
+      ],
+      "available_tools_pool": [
+        [
+          "check_availability"
+        ],
+        [
+          "check_availability",
+          "create_event"
+        ]
+      ],
+      "phrasings": [
+        "查一下 9 月 20 日 10:00 到 11:00 我空闲吗",
+        "9 月 22 日 15:00 到 16:00 那天我有没有空?",
+        "看下 9 月 21 日 09:00 至 10:00 的空档",
+        "9 月 18 日 14:00 到 15:00 的档期怎么样",
+        "帮我查 9 月 22 日 10:30 到 11:30 是否空闲",
+        "9 月 19 日 16:00 到 17:00 那会儿空不空",
+        "查 9 月 17 日 09:00 至 09:30 的日程占用",
+        "9 月 20 日 13:00 到 14:00 有没有安排?",
+        "看下 9 月 16 日 11:00 到 12:00 空闲情况"
+      ],
+      "reasons": [
+        "这些时间已经过了,查询空闲只能针对当前时间之后。",
+        "过去的日期无法查询空闲,当前时间已经晚于该区间。",
+        "不支持查历史时段的空闲,只能查当前时间往后的档期。",
+        "时间已过去,空闲查询无法对过去时段执行。"
+      ],
+      "rationale": "时间可解析但不可执行:过去的时段没有空闲可查,所以 refuse 而不是澄清。",
+      "split": "train"
+    },
+    {
+      "id": "TG-194",
+      "slug": "refuse-past-event",
+      "label": "要求把日程写进过去的时段",
+      "toolset": "train6",
+      "action": "refuse",
+      "tool": null,
+      "category": "capability_boundary",
+      "tags": [
+        "infeasible_time"
+      ],
+      "refuse_code": "infeasible_time",
+      "now": [
+        "2026-09-23T10:00"
+      ],
+      "available_tools_pool": [
+        [
+          "create_event"
+        ],
+        [
+          "check_availability",
+          "create_event"
+        ]
+      ],
+      "phrasings": [
+        "把质量复盘会补到 9 月 21 日 14:00 到 15:30",
+        "在 9 月 22 日 09:00 至 10:00 建一个供应商沟通",
+        "补录一条日程:9 月 20 日 16:00 到 17:00 技术分享",
+        "9 月 19 日 10:00 至 11:00 建个客户回访",
+        "帮我在 9 月 22 日 13:00 到 14:00 加一场库存盘点",
+        "把年度审计进场安排在 9 月 18 日 09:00 到 10:00",
+        "9 月 21 日 15:00 至 16:00 补一个月度结算沟通",
+        "过去那天 9 月 17 日 11:00 到 12:00 建个质量复盘",
+        "补建 9 月 20 日 09:30 至 10:30 的项目例会记录"
+      ],
+      "reasons": [
+        "该时间已经过去,不能往里写入日程,只能安排当前时间之后。",
+        "过去的日期无法创建日程,补录不在支持范围内。",
+        "过去时段无法写入日程,时间已经过了,只能安排当前时间之后。",
+        "只能为当前时间之后的区间建日程,过去的不行。"
+      ],
+      "rationale": "参数格式合法但请求不可执行:过去的时刻无法写入,所以 refuse。",
+      "split": "train"
+    },
+    {
+      "id": "TG-195",
+      "slug": "refuse-power-operator",
+      "label": "算式含不支持的运算(乘方)",
+      "toolset": "train6",
+      "action": "refuse",
+      "tool": null,
+      "category": "capability_boundary",
+      "tags": [
+        "unsupported_operation"
+      ],
+      "refuse_code": "unsupported_operation",
+      "available_tools_pool": [
+        [
+          "calculate"
+        ],
+        [
+          "calculate",
+          "aggregate_data"
+        ]
+      ],
+      "phrasings": [
+        "算 12 的 3 次方是多少",
+        "帮我算 5 的 6 次幂",
+        "把 2 的 10 次方算出来",
+        "9 的平方减 1 等于几?",
+        "算 3 的 4 次方除以 5",
+        "给我 7 的 3 次方结果",
+        "计算 2 的 20 次方",
+        "6 的平方加上 4 的平方是多少",
+        "把 10 的 5 次方算一下"
+      ],
+      "reasons": [
+        "算式只支持加减乘除与括号,乘方不在支持的统计运算里。",
+        "幂运算没有开放,这类聚合与运算不在能力范围。",
+        "不支持次方这类聚合运算,只能用加减乘除与括号列算式。",
+        "次方运算超出算式范围,聚合统计里只有四则与百分号。"
+      ],
+      "rationale": "契约把算式字符集限定为四则与括号,乘方属能力边界,所以 refuse 而不是强行改写成连乘。",
+      "split": "test"
+    },
+    {
+      "id": "TG-196",
+      "slug": "refuse-emotional-chat",
+      "label": "无关的闲聊与陪伴类请求",
+      "toolset": "train6",
+      "action": "refuse",
+      "tool": null,
+      "category": "irrelevant",
+      "tags": [
+        "unavailable_tool"
+      ],
+      "refuse_code": "unavailable_tool",
+      "blocking_tools": [
+        "chat_assistant"
+      ],
+      "available_tools_pool": [
+        [
+          "search_documents",
+          "get_record"
+        ],
+        [
+          "check_availability",
+          "create_event"
+        ]
+      ],
+      "phrasings": [
+        "今天心情很差,{obj}行吗",
+        "帮我{obj}一下",
+        "你现在能{obj}吗?",
+        "我想让你{obj}",
+        "先不谈数据,{obj}可以吗?",
+        "我换个需求:{obj}",
+        "这事不难,就是{obj}",
+        "麻烦你{obj},行不行?",
+        "这次不求别的,只求{obj}"
+      ],
+      "reasons": [
+        "{obj}不在本次工具范围内,只能处理数据与日程。",
+        "没有{obj}这类工具,这项能力没有提供。",
+        "{obj}不属于可用工具能做的事,无法执行。",
+        "本次只支持文档、记录、统计与日程,{obj}没有对应工具。"
+      ],
+      "rationale": "请求与六个工具能力无关,需要未提供的对话类工具,所以 refuse。",
+      "split": "train",
+      "slots": {
+        "obj": [
+          "陪聊",
+          "讲笑话",
+          "推荐影片",
+          "算运势",
+          "说鼓励的话",
+          "聊人生",
+          "玩文字游戏",
+          "来段说唱",
+          "聊球赛"
+        ]
+      }
+    }
+  ]
+}

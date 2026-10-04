@@ -1,0 +1,1423 @@
+{
+  "version": "test_unseen_v0",
+  "seed": 20260924,
+  "generated_from": [
+    "data/templates/template_groups.json",
+    "data/templates/groups_clarify.json",
+    "data/templates/groups_refuse.json",
+    "data/templates/groups_unseen.json"
+  ],
+  "description": "未见工具测试集:只提供 unit_convert 与 sort_records 的说明与 Schema,单独统计,不并入六工具总分。",
+  "samples": [
+    {
+      "id": "UN-001-unseen-convert-length",
+      "user_request": "把 3.2 千米 换算成米",
+      "available_tools": [
+        "unit_convert"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "unit_convert",
+        "arguments": {
+          "value": 3.2,
+          "from_unit": "km",
+          "to_unit": "m"
+        }
+      },
+      "rationale": "工具说明里 from_unit 与 to_unit 都属长度族,数值与两个单位都在请求里,按 Schema 填三项即可,所以 call。",
+      "tags": [
+        "normal_call"
+      ],
+      "template_group": "TG-901",
+      "source": "unseen_v0",
+      "split": "unseen_test",
+      "category": "normal",
+      "generation_rule": "模板组 TG-901(长度单位换算)第 1 号说法;now=2026-09-23T10:00;v「3.2」→3.2;fu「千米」→km;tu「米」→m",
+      "seed": 20260924,
+      "post_condition": "none"
+    },
+    {
+      "id": "UN-002-unseen-convert-length",
+      "user_request": "450 厘米等于多少毫米?",
+      "available_tools": [
+        "unit_convert",
+        "sort_records"
+      ],
+      "context": {
+        "now": "2026-10-12T08:30",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "unit_convert",
+        "arguments": {
+          "value": 450,
+          "from_unit": "cm",
+          "to_unit": "mm"
+        }
+      },
+      "rationale": "工具说明里 from_unit 与 to_unit 都属长度族,数值与两个单位都在请求里,按 Schema 填三项即可,所以 call。",
+      "tags": [
+        "normal_call"
+      ],
+      "template_group": "TG-901",
+      "source": "unseen_v0",
+      "split": "unseen_test",
+      "category": "normal",
+      "generation_rule": "模板组 TG-901(长度单位换算)第 2 号说法;now=2026-10-12T08:30;v「450」→450;fu「厘米」→cm;tu「毫米」→mm",
+      "seed": 20260924,
+      "post_condition": "none"
+    },
+    {
+      "id": "UN-003-unseen-convert-length",
+      "user_request": "帮我算一下 1.5 米转成厘米",
+      "available_tools": [
+        "unit_convert",
+        "get_record"
+      ],
+      "context": {
+        "now": "2026-11-03T15:20",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "unit_convert",
+        "arguments": {
+          "value": 1.5,
+          "from_unit": "m",
+          "to_unit": "cm"
+        }
+      },
+      "rationale": "工具说明里 from_unit 与 to_unit 都属长度族,数值与两个单位都在请求里,按 Schema 填三项即可,所以 call。",
+      "tags": [
+        "normal_call"
+      ],
+      "template_group": "TG-901",
+      "source": "unseen_v0",
+      "split": "unseen_test",
+      "category": "normal",
+      "generation_rule": "模板组 TG-901(长度单位换算)第 3 号说法;now=2026-11-03T15:20;v「1.5」→1.5;fu「米」→m;tu「厘米」→cm",
+      "seed": 20260924,
+      "post_condition": "none"
+    },
+    {
+      "id": "UN-004-unseen-convert-length",
+      "user_request": "0.86 毫米折成千米是多少",
+      "available_tools": [
+        "unit_convert"
+      ],
+      "context": {
+        "now": "2026-12-07T09:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "unit_convert",
+        "arguments": {
+          "value": 0.86,
+          "from_unit": "mm",
+          "to_unit": "km"
+        }
+      },
+      "rationale": "工具说明里 from_unit 与 to_unit 都属长度族,数值与两个单位都在请求里,按 Schema 填三项即可,所以 call。",
+      "tags": [
+        "normal_call"
+      ],
+      "template_group": "TG-901",
+      "source": "unseen_v0",
+      "split": "unseen_test",
+      "category": "normal",
+      "generation_rule": "模板组 TG-901(长度单位换算)第 4 号说法;now=2026-12-07T09:00;v「0.86」→0.86;fu「毫米」→mm;tu「千米」→km",
+      "seed": 20260924,
+      "post_condition": "none"
+    },
+    {
+      "id": "UN-005-unseen-convert-length",
+      "user_request": "用 unit_convert 把 3.2 千米换成米",
+      "available_tools": [
+        "unit_convert",
+        "sort_records"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "unit_convert",
+        "arguments": {
+          "value": 3.2,
+          "from_unit": "km",
+          "to_unit": "m"
+        }
+      },
+      "rationale": "工具说明里 from_unit 与 to_unit 都属长度族,数值与两个单位都在请求里,按 Schema 填三项即可,所以 call。",
+      "tags": [
+        "normal_call"
+      ],
+      "template_group": "TG-901",
+      "source": "unseen_v0",
+      "split": "unseen_test",
+      "category": "normal",
+      "generation_rule": "模板组 TG-901(长度单位换算)第 5 号说法;now=2026-09-23T10:00;v「3.2」→3.2;fu「千米」→km;tu「米」→m",
+      "seed": 20260924,
+      "post_condition": "none"
+    },
+    {
+      "id": "UN-006-unseen-convert-length",
+      "user_request": "450 厘米换成毫米这个换算走一下",
+      "available_tools": [
+        "unit_convert",
+        "get_record"
+      ],
+      "context": {
+        "now": "2026-10-12T08:30",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "unit_convert",
+        "arguments": {
+          "value": 450,
+          "from_unit": "cm",
+          "to_unit": "mm"
+        }
+      },
+      "rationale": "工具说明里 from_unit 与 to_unit 都属长度族,数值与两个单位都在请求里,按 Schema 填三项即可,所以 call。",
+      "tags": [
+        "normal_call"
+      ],
+      "template_group": "TG-901",
+      "source": "unseen_v0",
+      "split": "unseen_test",
+      "category": "normal",
+      "generation_rule": "模板组 TG-901(长度单位换算)第 6 号说法;now=2026-10-12T08:30;v「450」→450;fu「厘米」→cm;tu「毫米」→mm",
+      "seed": 20260924,
+      "post_condition": "none"
+    },
+    {
+      "id": "UN-007-unseen-convert-length",
+      "user_request": "麻烦把 1.5 米按厘米报个数",
+      "available_tools": [
+        "unit_convert"
+      ],
+      "context": {
+        "now": "2026-11-03T15:20",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "unit_convert",
+        "arguments": {
+          "value": 1.5,
+          "from_unit": "m",
+          "to_unit": "cm"
+        }
+      },
+      "rationale": "工具说明里 from_unit 与 to_unit 都属长度族,数值与两个单位都在请求里,按 Schema 填三项即可,所以 call。",
+      "tags": [
+        "normal_call"
+      ],
+      "template_group": "TG-901",
+      "source": "unseen_v0",
+      "split": "unseen_test",
+      "category": "normal",
+      "generation_rule": "模板组 TG-901(长度单位换算)第 7 号说法;now=2026-11-03T15:20;v「1.5」→1.5;fu「米」→m;tu「厘米」→cm",
+      "seed": 20260924,
+      "post_condition": "none"
+    },
+    {
+      "id": "UN-008-unseen-convert-length",
+      "user_request": "0.86 毫米转千米,给我结果",
+      "available_tools": [
+        "unit_convert",
+        "sort_records"
+      ],
+      "context": {
+        "now": "2026-12-07T09:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "unit_convert",
+        "arguments": {
+          "value": 0.86,
+          "from_unit": "mm",
+          "to_unit": "km"
+        }
+      },
+      "rationale": "工具说明里 from_unit 与 to_unit 都属长度族,数值与两个单位都在请求里,按 Schema 填三项即可,所以 call。",
+      "tags": [
+        "normal_call"
+      ],
+      "template_group": "TG-901",
+      "source": "unseen_v0",
+      "split": "unseen_test",
+      "category": "normal",
+      "generation_rule": "模板组 TG-901(长度单位换算)第 8 号说法;now=2026-12-07T09:00;v「0.86」→0.86;fu「毫米」→mm;tu「千米」→km",
+      "seed": 20260924,
+      "post_condition": "none"
+    },
+    {
+      "id": "UN-009-unseen-convert-length",
+      "user_request": "这里 3.2 千米要写成米,换算一下",
+      "available_tools": [
+        "unit_convert",
+        "get_record"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "unit_convert",
+        "arguments": {
+          "value": 3.2,
+          "from_unit": "km",
+          "to_unit": "m"
+        }
+      },
+      "rationale": "工具说明里 from_unit 与 to_unit 都属长度族,数值与两个单位都在请求里,按 Schema 填三项即可,所以 call。",
+      "tags": [
+        "normal_call"
+      ],
+      "template_group": "TG-901",
+      "source": "unseen_v0",
+      "split": "unseen_test",
+      "category": "normal",
+      "generation_rule": "模板组 TG-901(长度单位换算)第 9 号说法;now=2026-09-23T10:00;v「3.2」→3.2;fu「千米」→km;tu「米」→m",
+      "seed": 20260924,
+      "post_condition": "none"
+    },
+    {
+      "id": "UN-010-unseen-convert-mass",
+      "user_request": "发货重量 2.4 吨,换成千克是多少",
+      "available_tools": [
+        "unit_convert"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "unit_convert",
+        "arguments": {
+          "value": 2.4,
+          "from_unit": "t",
+          "to_unit": "kg"
+        }
+      },
+      "rationale": "两个单位同属质量族,数值明确,按未见工具的 Schema 填满三项,所以 call。",
+      "tags": [
+        "normal_call"
+      ],
+      "template_group": "TG-902",
+      "source": "unseen_v0",
+      "split": "unseen_test",
+      "category": "normal",
+      "generation_rule": "模板组 TG-902(质量单位换算)第 1 号说法;now=2026-09-23T10:00;v「2.4」→2.4;fu「吨」→t;tu「千克」→kg",
+      "seed": 20260924,
+      "post_condition": "none"
+    },
+    {
+      "id": "UN-011-unseen-convert-mass",
+      "user_request": "把 750 千克换算为克",
+      "available_tools": [
+        "sort_records",
+        "unit_convert"
+      ],
+      "context": {
+        "now": "2026-10-12T08:30",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "unit_convert",
+        "arguments": {
+          "value": 750,
+          "from_unit": "kg",
+          "to_unit": "g"
+        }
+      },
+      "rationale": "两个单位同属质量族,数值明确,按未见工具的 Schema 填满三项,所以 call。",
+      "tags": [
+        "normal_call"
+      ],
+      "template_group": "TG-902",
+      "source": "unseen_v0",
+      "split": "unseen_test",
+      "category": "normal",
+      "generation_rule": "模板组 TG-902(质量单位换算)第 2 号说法;now=2026-10-12T08:30;v「750」→750;fu「千克」→kg;tu「克」→g",
+      "seed": 20260924,
+      "post_condition": "none"
+    },
+    {
+      "id": "UN-012-unseen-convert-mass",
+      "user_request": "0.35 克等于几吨?",
+      "available_tools": [
+        "unit_convert"
+      ],
+      "context": {
+        "now": "2026-11-03T15:20",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "unit_convert",
+        "arguments": {
+          "value": 0.35,
+          "from_unit": "g",
+          "to_unit": "t"
+        }
+      },
+      "rationale": "两个单位同属质量族,数值明确,按未见工具的 Schema 填满三项,所以 call。",
+      "tags": [
+        "normal_call"
+      ],
+      "template_group": "TG-902",
+      "source": "unseen_v0",
+      "split": "unseen_test",
+      "category": "normal",
+      "generation_rule": "模板组 TG-902(质量单位换算)第 3 号说法;now=2026-11-03T15:20;v「0.35」→0.35;fu「克」→g;tu「吨」→t",
+      "seed": 20260924,
+      "post_condition": "none"
+    },
+    {
+      "id": "UN-013-unseen-convert-mass",
+      "user_request": "重量单位换算:6 吨到千克",
+      "available_tools": [
+        "sort_records",
+        "unit_convert"
+      ],
+      "context": {
+        "now": "2026-12-07T09:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "unit_convert",
+        "arguments": {
+          "value": 6,
+          "from_unit": "t",
+          "to_unit": "kg"
+        }
+      },
+      "rationale": "两个单位同属质量族,数值明确,按未见工具的 Schema 填满三项,所以 call。",
+      "tags": [
+        "normal_call"
+      ],
+      "template_group": "TG-902",
+      "source": "unseen_v0",
+      "split": "unseen_test",
+      "category": "normal",
+      "generation_rule": "模板组 TG-902(质量单位换算)第 4 号说法;now=2026-12-07T09:00;v「6」→6;fu「吨」→t;tu「千克」→kg",
+      "seed": 20260924,
+      "post_condition": "none"
+    },
+    {
+      "id": "UN-014-unseen-convert-mass",
+      "user_request": "帮我把这批货的 2.4 千克改写成克",
+      "available_tools": [
+        "unit_convert"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "unit_convert",
+        "arguments": {
+          "value": 2.4,
+          "from_unit": "kg",
+          "to_unit": "g"
+        }
+      },
+      "rationale": "两个单位同属质量族,数值明确,按未见工具的 Schema 填满三项,所以 call。",
+      "tags": [
+        "normal_call"
+      ],
+      "template_group": "TG-902",
+      "source": "unseen_v0",
+      "split": "unseen_test",
+      "category": "normal",
+      "generation_rule": "模板组 TG-902(质量单位换算)第 5 号说法;now=2026-09-23T10:00;v「2.4」→2.4;fu「千克」→kg;tu「克」→g",
+      "seed": 20260924,
+      "post_condition": "none"
+    },
+    {
+      "id": "UN-015-unseen-convert-mass",
+      "user_request": "750 克按吨记是多少",
+      "available_tools": [
+        "sort_records",
+        "unit_convert"
+      ],
+      "context": {
+        "now": "2026-10-12T08:30",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "unit_convert",
+        "arguments": {
+          "value": 750,
+          "from_unit": "g",
+          "to_unit": "t"
+        }
+      },
+      "rationale": "两个单位同属质量族,数值明确,按未见工具的 Schema 填满三项,所以 call。",
+      "tags": [
+        "normal_call"
+      ],
+      "template_group": "TG-902",
+      "source": "unseen_v0",
+      "split": "unseen_test",
+      "category": "normal",
+      "generation_rule": "模板组 TG-902(质量单位换算)第 6 号说法;now=2026-10-12T08:30;v「750」→750;fu「克」→g;tu「吨」→t",
+      "seed": 20260924,
+      "post_condition": "none"
+    },
+    {
+      "id": "UN-016-unseen-convert-mass",
+      "user_request": "用换算工具把 0.35 吨转成千克",
+      "available_tools": [
+        "unit_convert"
+      ],
+      "context": {
+        "now": "2026-11-03T15:20",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "unit_convert",
+        "arguments": {
+          "value": 0.35,
+          "from_unit": "t",
+          "to_unit": "kg"
+        }
+      },
+      "rationale": "两个单位同属质量族,数值明确,按未见工具的 Schema 填满三项,所以 call。",
+      "tags": [
+        "normal_call"
+      ],
+      "template_group": "TG-902",
+      "source": "unseen_v0",
+      "split": "unseen_test",
+      "category": "normal",
+      "generation_rule": "模板组 TG-902(质量单位换算)第 7 号说法;now=2026-11-03T15:20;v「0.35」→0.35;fu「吨」→t;tu「千克」→kg",
+      "seed": 20260924,
+      "post_condition": "none"
+    },
+    {
+      "id": "UN-017-unseen-convert-mass",
+      "user_request": "6 千克折克,报个数值",
+      "available_tools": [
+        "sort_records",
+        "unit_convert"
+      ],
+      "context": {
+        "now": "2026-12-07T09:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "unit_convert",
+        "arguments": {
+          "value": 6,
+          "from_unit": "kg",
+          "to_unit": "g"
+        }
+      },
+      "rationale": "两个单位同属质量族,数值明确,按未见工具的 Schema 填满三项,所以 call。",
+      "tags": [
+        "normal_call"
+      ],
+      "template_group": "TG-902",
+      "source": "unseen_v0",
+      "split": "unseen_test",
+      "category": "normal",
+      "generation_rule": "模板组 TG-902(质量单位换算)第 8 号说法;now=2026-12-07T09:00;v「6」→6;fu「千克」→kg;tu「克」→g",
+      "seed": 20260924,
+      "post_condition": "none"
+    },
+    {
+      "id": "UN-018-unseen-convert-mass",
+      "user_request": "这个 2.4 克要换成吨再录",
+      "available_tools": [
+        "unit_convert"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "unit_convert",
+        "arguments": {
+          "value": 2.4,
+          "from_unit": "g",
+          "to_unit": "t"
+        }
+      },
+      "rationale": "两个单位同属质量族,数值明确,按未见工具的 Schema 填满三项,所以 call。",
+      "tags": [
+        "normal_call"
+      ],
+      "template_group": "TG-902",
+      "source": "unseen_v0",
+      "split": "unseen_test",
+      "category": "normal",
+      "generation_rule": "模板组 TG-902(质量单位换算)第 9 号说法;now=2026-09-23T10:00;v「2.4」→2.4;fu「克」→g;tu「吨」→t",
+      "seed": 20260924,
+      "post_condition": "none"
+    },
+    {
+      "id": "UN-019-unseen-convert-missing-target",
+      "user_request": "把 1.8 千米换算一下",
+      "available_tools": [
+        "unit_convert"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "clarify",
+        "question": "要换算成哪个目标单位?"
+      },
+      "rationale": "value 与 from_unit 都有,唯独 to_unit 缺失,且不能从枚举里替用户挑一个,所以 clarify。",
+      "tags": [
+        "missing_required_field"
+      ],
+      "template_group": "TG-903",
+      "source": "unseen_v0",
+      "split": "unseen_test",
+      "category": "missing_param",
+      "generation_rule": "模板组 TG-903(换算但没说要换成什么单位)第 1 号说法;now=2026-09-23T10:00;v「1.8」;fu「千米」→km",
+      "seed": 20260924,
+      "clarify_target": {
+        "tool": "unit_convert",
+        "fields": [
+          "to_unit"
+        ]
+      }
+    },
+    {
+      "id": "UN-020-unseen-convert-missing-target",
+      "user_request": "900 千克这个数帮我转个单位",
+      "available_tools": [
+        "unit_convert",
+        "sort_records"
+      ],
+      "context": {
+        "now": "2026-10-12T08:30",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "clarify",
+        "question": "请说明换成米、厘米还是千克这类目标单位。"
+      },
+      "rationale": "value 与 from_unit 都有,唯独 to_unit 缺失,且不能从枚举里替用户挑一个,所以 clarify。",
+      "tags": [
+        "missing_required_field"
+      ],
+      "template_group": "TG-903",
+      "source": "unseen_v0",
+      "split": "unseen_test",
+      "category": "missing_param",
+      "generation_rule": "模板组 TG-903(换算但没说要换成什么单位)第 2 号说法;now=2026-10-12T08:30;v「900」;fu「千克」→kg",
+      "seed": 20260924,
+      "clarify_target": {
+        "tool": "unit_convert",
+        "fields": [
+          "to_unit"
+        ]
+      }
+    },
+    {
+      "id": "UN-021-unseen-convert-missing-target",
+      "user_request": "用 unit_convert 处理 4.5 吨",
+      "available_tools": [
+        "unit_convert"
+      ],
+      "context": {
+        "now": "2026-11-03T15:20",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "clarify",
+        "question": "原单位清楚了,目标单位是哪个?"
+      },
+      "rationale": "value 与 from_unit 都有,唯独 to_unit 缺失,且不能从枚举里替用户挑一个,所以 clarify。",
+      "tags": [
+        "missing_required_field"
+      ],
+      "template_group": "TG-903",
+      "source": "unseen_v0",
+      "split": "unseen_test",
+      "category": "missing_param",
+      "generation_rule": "模板组 TG-903(换算但没说要换成什么单位)第 3 号说法;now=2026-11-03T15:20;v「4.5」;fu「吨」→t",
+      "seed": 20260924,
+      "clarify_target": {
+        "tool": "unit_convert",
+        "fields": [
+          "to_unit"
+        ]
+      }
+    },
+    {
+      "id": "UN-022-unseen-convert-missing-target",
+      "user_request": "1.8 千米要换算,给个常见单位",
+      "available_tools": [
+        "unit_convert",
+        "sort_records"
+      ],
+      "context": {
+        "now": "2026-12-07T09:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "clarify",
+        "question": "换成什么单位?请给出目标单位。"
+      },
+      "rationale": "value 与 from_unit 都有,唯独 to_unit 缺失,且不能从枚举里替用户挑一个,所以 clarify。",
+      "tags": [
+        "missing_required_field"
+      ],
+      "template_group": "TG-903",
+      "source": "unseen_v0",
+      "split": "unseen_test",
+      "category": "missing_param",
+      "generation_rule": "模板组 TG-903(换算但没说要换成什么单位)第 4 号说法;now=2026-12-07T09:00;v「1.8」;fu「千米」→km",
+      "seed": 20260924,
+      "clarify_target": {
+        "tool": "unit_convert",
+        "fields": [
+          "to_unit"
+        ]
+      }
+    },
+    {
+      "id": "UN-023-unseen-convert-missing-target",
+      "user_request": "把 900 千克换算成别的单位报给我",
+      "available_tools": [
+        "unit_convert"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "clarify",
+        "question": "要换算成哪个目标单位?"
+      },
+      "rationale": "value 与 from_unit 都有,唯独 to_unit 缺失,且不能从枚举里替用户挑一个,所以 clarify。",
+      "tags": [
+        "missing_required_field"
+      ],
+      "template_group": "TG-903",
+      "source": "unseen_v0",
+      "split": "unseen_test",
+      "category": "missing_param",
+      "generation_rule": "模板组 TG-903(换算但没说要换成什么单位)第 5 号说法;now=2026-09-23T10:00;v「900」;fu「千克」→kg",
+      "seed": 20260924,
+      "clarify_target": {
+        "tool": "unit_convert",
+        "fields": [
+          "to_unit"
+        ]
+      }
+    },
+    {
+      "id": "UN-024-unseen-convert-missing-target",
+      "user_request": "4.5 吨换算一下,取合适的单位",
+      "available_tools": [
+        "unit_convert",
+        "sort_records"
+      ],
+      "context": {
+        "now": "2026-10-12T08:30",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "clarify",
+        "question": "请说明换成米、厘米还是千克这类目标单位。"
+      },
+      "rationale": "value 与 from_unit 都有,唯独 to_unit 缺失,且不能从枚举里替用户挑一个,所以 clarify。",
+      "tags": [
+        "missing_required_field"
+      ],
+      "template_group": "TG-903",
+      "source": "unseen_v0",
+      "split": "unseen_test",
+      "category": "missing_param",
+      "generation_rule": "模板组 TG-903(换算但没说要换成什么单位)第 6 号说法;now=2026-10-12T08:30;v「4.5」;fu「吨」→t",
+      "seed": 20260924,
+      "clarify_target": {
+        "tool": "unit_convert",
+        "fields": [
+          "to_unit"
+        ]
+      }
+    },
+    {
+      "id": "UN-025-unseen-convert-missing-target",
+      "user_request": "帮我换算 1.8 千米,别用原单位",
+      "available_tools": [
+        "unit_convert"
+      ],
+      "context": {
+        "now": "2026-11-03T15:20",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "clarify",
+        "question": "原单位清楚了,目标单位是哪个?"
+      },
+      "rationale": "value 与 from_unit 都有,唯独 to_unit 缺失,且不能从枚举里替用户挑一个,所以 clarify。",
+      "tags": [
+        "missing_required_field"
+      ],
+      "template_group": "TG-903",
+      "source": "unseen_v0",
+      "split": "unseen_test",
+      "category": "missing_param",
+      "generation_rule": "模板组 TG-903(换算但没说要换成什么单位)第 7 号说法;now=2026-11-03T15:20;v「1.8」;fu「千米」→km",
+      "seed": 20260924,
+      "clarify_target": {
+        "tool": "unit_convert",
+        "fields": [
+          "to_unit"
+        ]
+      }
+    },
+    {
+      "id": "UN-026-unseen-convert-missing-target",
+      "user_request": "900 千克转换下单位再说数",
+      "available_tools": [
+        "unit_convert",
+        "sort_records"
+      ],
+      "context": {
+        "now": "2026-12-07T09:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "clarify",
+        "question": "换成什么单位?请给出目标单位。"
+      },
+      "rationale": "value 与 from_unit 都有,唯独 to_unit 缺失,且不能从枚举里替用户挑一个,所以 clarify。",
+      "tags": [
+        "missing_required_field"
+      ],
+      "template_group": "TG-903",
+      "source": "unseen_v0",
+      "split": "unseen_test",
+      "category": "missing_param",
+      "generation_rule": "模板组 TG-903(换算但没说要换成什么单位)第 8 号说法;now=2026-12-07T09:00;v「900」;fu「千克」→kg",
+      "seed": 20260924,
+      "clarify_target": {
+        "tool": "unit_convert",
+        "fields": [
+          "to_unit"
+        ]
+      }
+    },
+    {
+      "id": "UN-027-unseen-convert-missing-target",
+      "user_request": "这个 4.5 吨换算成其他计量单位",
+      "available_tools": [
+        "unit_convert"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "clarify",
+        "question": "要换算成哪个目标单位?"
+      },
+      "rationale": "value 与 from_unit 都有,唯独 to_unit 缺失,且不能从枚举里替用户挑一个,所以 clarify。",
+      "tags": [
+        "missing_required_field"
+      ],
+      "template_group": "TG-903",
+      "source": "unseen_v0",
+      "split": "unseen_test",
+      "category": "missing_param",
+      "generation_rule": "模板组 TG-903(换算但没说要换成什么单位)第 9 号说法;now=2026-09-23T10:00;v「4.5」;fu「吨」→t",
+      "seed": 20260924,
+      "clarify_target": {
+        "tool": "unit_convert",
+        "fields": [
+          "to_unit"
+        ]
+      }
+    },
+    {
+      "id": "UN-028-unseen-sort-records",
+      "user_request": "把订单金额排一下,从高到低排",
+      "available_tools": [
+        "sort_records"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "sort_records",
+        "arguments": {
+          "field": "orders.amount",
+          "order": "desc"
+        }
+      },
+      "rationale": "字段能唯一映射到 Schema 里的枚举写法,方向也明确,两项必填齐全,所以 call。",
+      "tags": [
+        "normal_call"
+      ],
+      "template_group": "TG-904",
+      "source": "unseen_v0",
+      "split": "unseen_test",
+      "category": "normal",
+      "generation_rule": "模板组 TG-904(按字段与方向排序记录)第 1 号说法;now=2026-09-23T10:00;fld「订单金额」→orders.amount;ord「从高到低」→desc",
+      "seed": 20260924,
+      "post_condition": "none"
+    },
+    {
+      "id": "UN-029-unseen-sort-records",
+      "user_request": "按发票金额排序,方向由小到大",
+      "available_tools": [
+        "sort_records",
+        "unit_convert"
+      ],
+      "context": {
+        "now": "2026-10-12T08:30",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "sort_records",
+        "arguments": {
+          "field": "invoices.amount",
+          "order": "asc"
+        }
+      },
+      "rationale": "字段能唯一映射到 Schema 里的枚举写法,方向也明确,两项必填齐全,所以 call。",
+      "tags": [
+        "normal_call"
+      ],
+      "template_group": "TG-904",
+      "source": "unseen_v0",
+      "split": "unseen_test",
+      "category": "normal",
+      "generation_rule": "模板组 TG-904(按字段与方向排序记录)第 2 号说法;now=2026-10-12T08:30;fld「发票金额」→invoices.amount;ord「由小到大」→asc",
+      "seed": 20260924,
+      "post_condition": "none"
+    },
+    {
+      "id": "UN-030-unseen-sort-records",
+      "user_request": "帮我把记录按合同的周期天数做降序排列",
+      "available_tools": [
+        "aggregate_data",
+        "sort_records"
+      ],
+      "context": {
+        "now": "2026-11-03T15:20",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "sort_records",
+        "arguments": {
+          "field": "contracts.duration_days",
+          "order": "desc"
+        }
+      },
+      "rationale": "字段能唯一映射到 Schema 里的枚举写法,方向也明确,两项必填齐全,所以 call。",
+      "tags": [
+        "normal_call"
+      ],
+      "template_group": "TG-904",
+      "source": "unseen_v0",
+      "split": "unseen_test",
+      "category": "normal",
+      "generation_rule": "模板组 TG-904(按字段与方向排序记录)第 3 号说法;now=2026-11-03T15:20;fld「合同的周期天数」→contracts.duration_days;ord「降序」→desc",
+      "seed": 20260924,
+      "post_condition": "none"
+    },
+    {
+      "id": "UN-031-unseen-sort-records",
+      "user_request": "发货数量帮我排个序列,升序为准",
+      "available_tools": [
+        "sort_records"
+      ],
+      "context": {
+        "now": "2026-12-07T09:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "sort_records",
+        "arguments": {
+          "field": "shipments.quantity",
+          "order": "asc"
+        }
+      },
+      "rationale": "字段能唯一映射到 Schema 里的枚举写法,方向也明确,两项必填齐全,所以 call。",
+      "tags": [
+        "normal_call"
+      ],
+      "template_group": "TG-904",
+      "source": "unseen_v0",
+      "split": "unseen_test",
+      "category": "normal",
+      "generation_rule": "模板组 TG-904(按字段与方向排序记录)第 4 号说法;now=2026-12-07T09:00;fld「发货数量」→shipments.quantity;ord「升序」→asc",
+      "seed": 20260924,
+      "post_condition": "none"
+    },
+    {
+      "id": "UN-032-unseen-sort-records",
+      "user_request": "用 sort_records 按发货单的时效天数排,顺序从高到低",
+      "available_tools": [
+        "sort_records",
+        "unit_convert"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "sort_records",
+        "arguments": {
+          "field": "shipments.duration_days",
+          "order": "desc"
+        }
+      },
+      "rationale": "字段能唯一映射到 Schema 里的枚举写法,方向也明确,两项必填齐全,所以 call。",
+      "tags": [
+        "normal_call"
+      ],
+      "template_group": "TG-904",
+      "source": "unseen_v0",
+      "split": "unseen_test",
+      "category": "normal",
+      "generation_rule": "模板组 TG-904(按字段与方向排序记录)第 5 号说法;now=2026-09-23T10:00;fld「发货单的时效天数」→shipments.duration_days;ord「从高到低」→desc",
+      "seed": 20260924,
+      "post_condition": "none"
+    },
+    {
+      "id": "UN-033-unseen-sort-records",
+      "user_request": "把合同金额排个序,给我由小到大的结果",
+      "available_tools": [
+        "aggregate_data",
+        "sort_records"
+      ],
+      "context": {
+        "now": "2026-10-12T08:30",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "sort_records",
+        "arguments": {
+          "field": "contracts.amount",
+          "order": "asc"
+        }
+      },
+      "rationale": "字段能唯一映射到 Schema 里的枚举写法,方向也明确,两项必填齐全,所以 call。",
+      "tags": [
+        "normal_call"
+      ],
+      "template_group": "TG-904",
+      "source": "unseen_v0",
+      "split": "unseen_test",
+      "category": "normal",
+      "generation_rule": "模板组 TG-904(按字段与方向排序记录)第 6 号说法;now=2026-10-12T08:30;fld「合同金额」→contracts.amount;ord「由小到大」→asc",
+      "seed": 20260924,
+      "post_condition": "none"
+    },
+    {
+      "id": "UN-034-unseen-sort-records",
+      "user_request": "订单数量这块排序,降序来",
+      "available_tools": [
+        "sort_records"
+      ],
+      "context": {
+        "now": "2026-11-03T15:20",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "sort_records",
+        "arguments": {
+          "field": "orders.quantity",
+          "order": "desc"
+        }
+      },
+      "rationale": "字段能唯一映射到 Schema 里的枚举写法,方向也明确,两项必填齐全,所以 call。",
+      "tags": [
+        "normal_call"
+      ],
+      "template_group": "TG-904",
+      "source": "unseen_v0",
+      "split": "unseen_test",
+      "category": "normal",
+      "generation_rule": "模板组 TG-904(按字段与方向排序记录)第 7 号说法;now=2026-11-03T15:20;fld「订单数量」→orders.quantity;ord「降序」→desc",
+      "seed": 20260924,
+      "post_condition": "none"
+    },
+    {
+      "id": "UN-035-unseen-sort-records",
+      "user_request": "按订单金额列出记录,升序",
+      "available_tools": [
+        "sort_records",
+        "unit_convert"
+      ],
+      "context": {
+        "now": "2026-12-07T09:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "sort_records",
+        "arguments": {
+          "field": "orders.amount",
+          "order": "asc"
+        }
+      },
+      "rationale": "字段能唯一映射到 Schema 里的枚举写法,方向也明确,两项必填齐全,所以 call。",
+      "tags": [
+        "normal_call"
+      ],
+      "template_group": "TG-904",
+      "source": "unseen_v0",
+      "split": "unseen_test",
+      "category": "normal",
+      "generation_rule": "模板组 TG-904(按字段与方向排序记录)第 8 号说法;now=2026-12-07T09:00;fld「订单金额」→orders.amount;ord「升序」→asc",
+      "seed": 20260924,
+      "post_condition": "none"
+    },
+    {
+      "id": "UN-036-unseen-sort-records",
+      "user_request": "排序需求:发票金额,从高到低",
+      "available_tools": [
+        "aggregate_data",
+        "sort_records"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "sort_records",
+        "arguments": {
+          "field": "invoices.amount",
+          "order": "desc"
+        }
+      },
+      "rationale": "字段能唯一映射到 Schema 里的枚举写法,方向也明确,两项必填齐全,所以 call。",
+      "tags": [
+        "normal_call"
+      ],
+      "template_group": "TG-904",
+      "source": "unseen_v0",
+      "split": "unseen_test",
+      "category": "normal",
+      "generation_rule": "模板组 TG-904(按字段与方向排序记录)第 9 号说法;now=2026-09-23T10:00;fld「发票金额」→invoices.amount;ord「从高到低」→desc",
+      "seed": 20260924,
+      "post_condition": "none"
+    },
+    {
+      "id": "UN-037-unseen-sort-missing-order",
+      "user_request": "把订单金额排个序",
+      "available_tools": [
+        "sort_records"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "clarify",
+        "question": "排序方向要升序还是降序?"
+      },
+      "rationale": "field 能定但 order 缺失,默认降序会改变结果顺序,所以 clarify。",
+      "tags": [
+        "missing_required_field"
+      ],
+      "template_group": "TG-905",
+      "source": "unseen_v0",
+      "split": "unseen_test",
+      "category": "missing_param",
+      "generation_rule": "模板组 TG-905(排序但没给方向)第 1 号说法;now=2026-09-23T10:00;",
+      "seed": 20260924,
+      "clarify_target": {
+        "tool": "sort_records",
+        "fields": [
+          "order"
+        ]
+      }
+    },
+    {
+      "id": "UN-038-unseen-sort-missing-order",
+      "user_request": "按合同周期天数排序给我",
+      "available_tools": [
+        "unit_convert",
+        "sort_records"
+      ],
+      "context": {
+        "now": "2026-10-12T08:30",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "clarify",
+        "question": "请给出顺序方向,从大到小还是从小到大?"
+      },
+      "rationale": "field 能定但 order 缺失,默认降序会改变结果顺序,所以 clarify。",
+      "tags": [
+        "missing_required_field"
+      ],
+      "template_group": "TG-905",
+      "source": "unseen_v0",
+      "split": "unseen_test",
+      "category": "missing_param",
+      "generation_rule": "模板组 TG-905(排序但没给方向)第 2 号说法;now=2026-10-12T08:30;",
+      "seed": 20260924,
+      "clarify_target": {
+        "tool": "sort_records",
+        "fields": [
+          "order"
+        ]
+      }
+    },
+    {
+      "id": "UN-039-unseen-sort-missing-order",
+      "user_request": "帮我把发票金额排一下",
+      "available_tools": [
+        "sort_records"
+      ],
+      "context": {
+        "now": "2026-11-03T15:20",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "clarify",
+        "question": "要先确认排序方向:升序还是降序?"
+      },
+      "rationale": "field 能定但 order 缺失,默认降序会改变结果顺序,所以 clarify。",
+      "tags": [
+        "missing_required_field"
+      ],
+      "template_group": "TG-905",
+      "source": "unseen_v0",
+      "split": "unseen_test",
+      "category": "missing_param",
+      "generation_rule": "模板组 TG-905(排序但没给方向)第 3 号说法;now=2026-11-03T15:20;",
+      "seed": 20260924,
+      "clarify_target": {
+        "tool": "sort_records",
+        "fields": [
+          "order"
+        ]
+      }
+    },
+    {
+      "id": "UN-040-unseen-sort-missing-order",
+      "user_request": "按发货数量排序列出记录",
+      "available_tools": [
+        "unit_convert",
+        "sort_records"
+      ],
+      "context": {
+        "now": "2026-12-07T09:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "clarify",
+        "question": "要哪个方向的排序?升序或降序都行,请指定。"
+      },
+      "rationale": "field 能定但 order 缺失,默认降序会改变结果顺序,所以 clarify。",
+      "tags": [
+        "missing_required_field"
+      ],
+      "template_group": "TG-905",
+      "source": "unseen_v0",
+      "split": "unseen_test",
+      "category": "missing_param",
+      "generation_rule": "模板组 TG-905(排序但没给方向)第 4 号说法;now=2026-12-07T09:00;",
+      "seed": 20260924,
+      "clarify_target": {
+        "tool": "sort_records",
+        "fields": [
+          "order"
+        ]
+      }
+    },
+    {
+      "id": "UN-041-unseen-sort-missing-order",
+      "user_request": "把合同的金额排个顺序",
+      "available_tools": [
+        "sort_records"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "clarify",
+        "question": "排序方向要升序还是降序?"
+      },
+      "rationale": "field 能定但 order 缺失,默认降序会改变结果顺序,所以 clarify。",
+      "tags": [
+        "missing_required_field"
+      ],
+      "template_group": "TG-905",
+      "source": "unseen_v0",
+      "split": "unseen_test",
+      "category": "missing_param",
+      "generation_rule": "模板组 TG-905(排序但没给方向)第 5 号说法;now=2026-09-23T10:00;",
+      "seed": 20260924,
+      "clarify_target": {
+        "tool": "sort_records",
+        "fields": [
+          "order"
+        ]
+      }
+    },
+    {
+      "id": "UN-042-unseen-sort-missing-order",
+      "user_request": "按发货时效天数排一下序",
+      "available_tools": [
+        "unit_convert",
+        "sort_records"
+      ],
+      "context": {
+        "now": "2026-10-12T08:30",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "clarify",
+        "question": "请给出顺序方向,从大到小还是从小到大?"
+      },
+      "rationale": "field 能定但 order 缺失,默认降序会改变结果顺序,所以 clarify。",
+      "tags": [
+        "missing_required_field"
+      ],
+      "template_group": "TG-905",
+      "source": "unseen_v0",
+      "split": "unseen_test",
+      "category": "missing_param",
+      "generation_rule": "模板组 TG-905(排序但没给方向)第 6 号说法;now=2026-10-12T08:30;",
+      "seed": 20260924,
+      "clarify_target": {
+        "tool": "sort_records",
+        "fields": [
+          "order"
+        ]
+      }
+    },
+    {
+      "id": "UN-043-unseen-sort-missing-order",
+      "user_request": "订单数量这边排序给我看",
+      "available_tools": [
+        "sort_records"
+      ],
+      "context": {
+        "now": "2026-11-03T15:20",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "clarify",
+        "question": "要先确认排序方向:升序还是降序?"
+      },
+      "rationale": "field 能定但 order 缺失,默认降序会改变结果顺序,所以 clarify。",
+      "tags": [
+        "missing_required_field"
+      ],
+      "template_group": "TG-905",
+      "source": "unseen_v0",
+      "split": "unseen_test",
+      "category": "missing_param",
+      "generation_rule": "模板组 TG-905(排序但没给方向)第 7 号说法;now=2026-11-03T15:20;",
+      "seed": 20260924,
+      "clarify_target": {
+        "tool": "sort_records",
+        "fields": [
+          "order"
+        ]
+      }
+    },
+    {
+      "id": "UN-044-unseen-sort-missing-order",
+      "user_request": "把金额相关的记录排好序",
+      "available_tools": [
+        "unit_convert",
+        "sort_records"
+      ],
+      "context": {
+        "now": "2026-12-07T09:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "clarify",
+        "question": "要哪个方向的排序?升序或降序都行,请指定。"
+      },
+      "rationale": "field 能定但 order 缺失,默认降序会改变结果顺序,所以 clarify。",
+      "tags": [
+        "missing_required_field"
+      ],
+      "template_group": "TG-905",
+      "source": "unseen_v0",
+      "split": "unseen_test",
+      "category": "missing_param",
+      "generation_rule": "模板组 TG-905(排序但没给方向)第 8 号说法;now=2026-12-07T09:00;",
+      "seed": 20260924,
+      "clarify_target": {
+        "tool": "sort_records",
+        "fields": [
+          "order"
+        ]
+      }
+    },
+    {
+      "id": "UN-045-unseen-sort-missing-order",
+      "user_request": "按周期天数排一下合同记录",
+      "available_tools": [
+        "sort_records"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "clarify",
+        "question": "排序方向要升序还是降序?"
+      },
+      "rationale": "field 能定但 order 缺失,默认降序会改变结果顺序,所以 clarify。",
+      "tags": [
+        "missing_required_field"
+      ],
+      "template_group": "TG-905",
+      "source": "unseen_v0",
+      "split": "unseen_test",
+      "category": "missing_param",
+      "generation_rule": "模板组 TG-905(排序但没给方向)第 9 号说法;now=2026-09-23T10:00;",
+      "seed": 20260924,
+      "clarify_target": {
+        "tool": "sort_records",
+        "fields": [
+          "order"
+        ]
+      }
+    }
+  ]
+}

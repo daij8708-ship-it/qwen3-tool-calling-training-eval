@@ -1,0 +1,33 @@
+{
+  "name": "get_record",
+  "description": "按类型和编号读取单条业务记录的完整字段。只读;记录是否存在由服务端返回值决定,不要自行预判查不到。",
+  "execution": { "side_effect": "read_only", "requires_server_confirmation": false },
+  "input_schema": {
+    "type": "object",
+    "description": "get_record 的入参。",
+    "properties": {
+      "record_type": {
+        "type": "string",
+        "enum": ["order", "invoice", "contract", "shipment"],
+        "description": "含义:order 订单、invoice 发票、contract 合同、shipment 发货单;其余类型不支持。"
+      },
+      "record_id": {
+        "type": "string",
+        "pattern": "^(DD|FP|HT|SH)\\d{6}$",
+        "description": "前缀须与类型对应:order=DD、invoice=FP、contract=HT、shipment=SH,后接 6 位数字;逐字照抄请求或上下文,不得编造。"
+      }
+    },
+    "required": ["record_type", "record_id"],
+    "additionalProperties": false,
+    "allOf": [
+      { "if": { "required": ["record_type"], "properties": { "record_type": { "const": "order" } } },
+        "then": { "properties": { "record_id": { "pattern": "^DD\\d{6}$" } } } },
+      { "if": { "required": ["record_type"], "properties": { "record_type": { "const": "invoice" } } },
+        "then": { "properties": { "record_id": { "pattern": "^FP\\d{6}$" } } } },
+      { "if": { "required": ["record_type"], "properties": { "record_type": { "const": "contract" } } },
+        "then": { "properties": { "record_id": { "pattern": "^HT\\d{6}$" } } } },
+      { "if": { "required": ["record_type"], "properties": { "record_type": { "const": "shipment" } } },
+        "then": { "properties": { "record_id": { "pattern": "^SH\\d{6}$" } } } }
+    ]
+  }
+}

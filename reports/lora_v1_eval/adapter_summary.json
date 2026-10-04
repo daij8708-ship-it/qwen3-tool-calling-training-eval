@@ -1,0 +1,172 @@
+{
+  "test": {
+    "adversarial": {
+      "count": 11,
+      "verdict_counts": {
+        "correct": 2,
+        "invalid": 2,
+        "manual_review": 1,
+        "wrong": 6
+      },
+      "format_valid_rate": 0.8182,
+      "action_correct_rate_among_valid": 0.6667,
+      "tool_correct_rate_among_gold_calls": 0.5455,
+      "fully_correct_rate": 0.1818,
+      "manual_review_count": 1,
+      "mean_latency_seconds": 1.586
+    },
+    "all": {
+      "count": 144,
+      "verdict_counts": {
+        "correct": 29,
+        "invalid": 48,
+        "manual_review": 1,
+        "wrong": 66
+      },
+      "format_valid_rate": 0.6667,
+      "action_correct_rate_among_valid": 0.4375,
+      "tool_correct_rate_among_gold_calls": 0.4655,
+      "fully_correct_rate": 0.2014,
+      "manual_review_count": 1,
+      "mean_latency_seconds": 1.162
+    },
+    "capability_boundary": {
+      "count": 13,
+      "verdict_counts": {
+        "correct": 1,
+        "invalid": 2,
+        "wrong": 10
+      },
+      "format_valid_rate": 0.8462,
+      "action_correct_rate_among_valid": 0.0909,
+      "tool_correct_rate_among_gold_calls": null,
+      "fully_correct_rate": 0.0769,
+      "manual_review_count": 0,
+      "mean_latency_seconds": 0.775
+    },
+    "irrelevant": {
+      "count": 19,
+      "verdict_counts": {
+        "correct": 8,
+        "invalid": 5,
+        "wrong": 6
+      },
+      "format_valid_rate": 0.7368,
+      "action_correct_rate_among_valid": 0.5714,
+      "tool_correct_rate_among_gold_calls": null,
+      "fully_correct_rate": 0.4211,
+      "manual_review_count": 0,
+      "mean_latency_seconds": 1.042
+    },
+    "missing_param": {
+      "count": 21,
+      "verdict_counts": {
+        "correct": 1,
+        "invalid": 11,
+        "wrong": 9
+      },
+      "format_valid_rate": 0.4762,
+      "action_correct_rate_among_valid": 0.2,
+      "tool_correct_rate_among_gold_calls": null,
+      "fully_correct_rate": 0.0476,
+      "manual_review_count": 0,
+      "mean_latency_seconds": 1.066
+    },
+    "multi_intent": {
+      "count": 10,
+      "verdict_counts": {
+        "invalid": 7,
+        "wrong": 3
+      },
+      "format_valid_rate": 0.3,
+      "action_correct_rate_among_valid": 0.0,
+      "tool_correct_rate_among_gold_calls": null,
+      "fully_correct_rate": 0.0,
+      "manual_review_count": 0,
+      "mean_latency_seconds": 1.226
+    },
+    "normal": {
+      "count": 47,
+      "verdict_counts": {
+        "correct": 16,
+        "invalid": 10,
+        "wrong": 21
+      },
+      "format_valid_rate": 0.7872,
+      "action_correct_rate_among_valid": 0.5676,
+      "tool_correct_rate_among_gold_calls": 0.4468,
+      "fully_correct_rate": 0.3404,
+      "manual_review_count": 0,
+      "mean_latency_seconds": 1.151
+    },
+    "over_authority": {
+      "count": 10,
+      "verdict_counts": {
+        "wrong": 10
+      },
+      "format_valid_rate": 1.0,
+      "action_correct_rate_among_valid": 0.3,
+      "tool_correct_rate_among_gold_calls": null,
+      "fully_correct_rate": 0.0,
+      "manual_review_count": 0,
+      "mean_latency_seconds": 0.823
+    },
+    "time_ambiguous": {
+      "count": 13,
+      "verdict_counts": {
+        "correct": 1,
+        "invalid": 11,
+        "wrong": 1
+      },
+      "format_valid_rate": 0.1538,
+      "action_correct_rate_among_valid": 0.5,
+      "tool_correct_rate_among_gold_calls": null,
+      "fully_correct_rate": 0.0769,
+      "manual_review_count": 0,
+      "mean_latency_seconds": 1.779
+    }
+  },
+  "unseen_test": {
+    "all": {
+      "count": 45,
+      "verdict_counts": {
+        "correct": 7,
+        "invalid": 27,
+        "wrong": 11
+      },
+      "format_valid_rate": 0.4,
+      "action_correct_rate_among_valid": 0.6111,
+      "tool_correct_rate_among_gold_calls": 0.2593,
+      "fully_correct_rate": 0.1556,
+      "manual_review_count": 0,
+      "mean_latency_seconds": 0.848
+    },
+    "missing_param": {
+      "count": 18,
+      "verdict_counts": {
+        "invalid": 9,
+        "wrong": 9
+      },
+      "format_valid_rate": 0.5,
+      "action_correct_rate_among_valid": 0.3333,
+      "tool_correct_rate_among_gold_calls": null,
+      "fully_correct_rate": 0.0,
+      "manual_review_count": 0,
+      "mean_latency_seconds": 0.859
+    },
+    "normal": {
+      "count": 27,
+      "verdict_counts": {
+        "correct": 7,
+        "invalid": 18,
+        "wrong": 2
+      },
+      "format_valid_rate": 0.3333,
+      "action_correct_rate_among_valid": 0.8889,
+      "tool_correct_rate_among_gold_calls": 0.2593,
+      "fully_correct_rate": 0.2593,
+      "manual_review_count": 0,
+      "mean_latency_seconds": 0.841
+    }
+  }
+}

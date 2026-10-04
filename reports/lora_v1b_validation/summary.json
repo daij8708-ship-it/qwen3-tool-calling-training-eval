@@ -1,0 +1,85 @@
+{
+  "val": {
+    "all": {
+      "count": 112,
+      "verdict_counts": {
+        "correct": 36,
+        "invalid": 5,
+        "manual_review": 1,
+        "wrong": 70
+      },
+      "format_valid_rate": 0.9554,
+      "action_correct_rate_among_valid": 0.4766,
+      "tool_correct_rate_among_gold_calls": 0.6176,
+      "fully_correct_rate": 0.3214,
+      "manual_review_count": 1,
+      "mean_latency_seconds": 0.903
+    },
+    "missing_param": {
+      "count": 17,
+      "verdict_counts": {
+        "correct": 2,
+        "invalid": 5,
+        "wrong": 10
+      },
+      "format_valid_rate": 0.7059,
+      "action_correct_rate_among_valid": 0.1667,
+      "tool_correct_rate_among_gold_calls": null,
+      "fully_correct_rate": 0.1176,
+      "manual_review_count": 0,
+      "mean_latency_seconds": 1.287
+    },
+    "multi_intent": {
+      "count": 9,
+      "verdict_counts": {
+        "wrong": 9
+      },
+      "format_valid_rate": 1.0,
+      "action_correct_rate_among_valid": 0.0,
+      "tool_correct_rate_among_gold_calls": null,
+      "fully_correct_rate": 0.0,
+      "manual_review_count": 0,
+      "mean_latency_seconds": 1.04
+    },
+    "normal": {
+      "count": 68,
+      "verdict_counts": {
+        "correct": 29,
+        "manual_review": 1,
+        "wrong": 38
+      },
+      "format_valid_rate": 1.0,
+      "action_correct_rate_among_valid": 0.6324,
+      "tool_correct_rate_among_gold_calls": 0.6176,
+      "fully_correct_rate": 0.4265,
+      "manual_review_count": 1,
+      "mean_latency_seconds": 0.827
+    },
+    "over_authority": {
+      "count": 9,
+      "verdict_counts": {
+        "correct": 3,
+        "wrong": 6
+      },
+      "format_valid_rate": 1.0,
+      "action_correct_rate_among_valid": 0.3333,
+      "tool_correct_rate_among_gold_calls": null,
+      "fully_correct_rate": 0.3333,
+      "manual_review_count": 0,
+      "mean_latency_seconds": 0.764
+    },
+    "time_ambiguous": {
+      "count": 9,
+      "verdict_counts": {
+        "correct": 2,
+        "wrong": 7
+      },
+      "format_valid_rate": 1.0,
+      "action_correct_rate_among_valid": 0.3333,
+      "tool_correct_rate_among_gold_calls": null,
+      "fully_correct_rate": 0.2222,
+      "manual_review_count": 0,
+      "mean_latency_seconds": 0.755
+    }
+  }
+}

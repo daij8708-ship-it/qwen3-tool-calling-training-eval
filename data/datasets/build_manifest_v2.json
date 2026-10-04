@@ -1,0 +1,6 @@
+{
+  "version": "dataset_v2",
+  "train_sha256": "d14fb3dc6e63f0eeb4d3fa69a8c9951fde131b89952a1a594335ebf01d6b60b0",
+  "val_sha256": "2fa888107779d5105321052e152d2d92c7d3ce3745aa67b559b5c6fd8db0bfe4",
+  "acceptance_v3_sha256": "920c52c1fefea0391422a68d57b3241dfe829b749cda332d12e1696f2c69ae1e"
+}

@@ -1,0 +1,92 @@
+{
+  "name": "tool_call_decision",
+  "version": "v0",
+  "description": "模型对每一次用户请求只输出一个 JSON 决策对象,动作限于 call / clarify / refuse。该对象是待校验的建议,不是执行凭据;服务端必须做 Schema 校验、权限检查与写操作确认。",
+  "serialization": {
+    "encoding": "UTF-8",
+    "form": "单个 JSON 对象,序列化为一行,不包裹 Markdown 代码块,不含注释与多余文本",
+    "key_order_meaningful": false,
+    "extra_fields": "禁止:任何未在本 schema 列出的键都判为格式非法",
+    "one_decision_per_turn": true
+  },
+  "field_rules": {
+    "action": "必填,枚举 call / clarify / refuse,不得为空字符串或同义词",
+    "tool": "仅 action=call 时出现,取值必须是当前 available_tools 中的工具名",
+    "arguments": "仅 action=call 时出现,必须是该工具 input_schema 合法且非空的入参对象",
+    "question": "仅 action=clarify 时出现,一句中文追问,4~80 字符,需点明缺什么或歧义在哪",
+    "reason": "仅 action=refuse 时出现,一句中文原因,4~80 字符,说明哪一项能力不支持"
+  },
+  "prohibited_fields_examples": ["confirmed", "user_confirmed", "requires_confirmation", "result", "answer", "note", "notes", "confidence", "thought", "thinking", "tool_name", "params", "args", "actions", "multiple_tools"],
+  "schema": {
+    "type": "object",
+    "description": "统一决策对象。",
+    "required": ["action"],
+    "properties": {
+      "action": {
+        "type": "string",
+        "enum": ["call", "clarify", "refuse"],
+        "description": "本轮动作。"
+      },
+      "tool": {
+        "type": "string",
+        "enum": ["search_documents", "get_record", "calculate", "aggregate_data", "check_availability", "create_event"],
+        "description": "被调用的工具名,只能取本次请求可用工具之一。"
+      },
+      "arguments": {
+        "type": "object",
+        "minProperties": 1,
+        "description": "工具入参对象,键与值由对应工具 input_schema 校验。"
+      },
+      "question": {
+        "type": "string",
+        "minLength": 4,
+        "maxLength": 80,
+        "pattern": "[\\u4e00-\\u9fff]",
+        "description": "需要用户补充信息的问题,中文。"
+      },
+      "reason": {
+        "type": "string",
+        "minLength": 4,
+        "maxLength": 80,
+        "pattern": "[\\u4e00-\\u9fff]",
+        "description": "拒绝或无法执行的原因,中文。"
+      }
+    },
+    "additionalProperties": false,
+    "allOf": [
+      {
+        "if": { "required": ["action"], "properties": { "action": { "const": "call" } } },
+        "then": {
+          "required": ["action", "tool", "arguments"],
+          "not": { "anyOf": [{ "required": ["question"] }, { "required": ["reason"] }] }
+        }
+      },
+      {
+        "if": { "required": ["action"], "properties": { "action": { "const": "clarify" } } },
+        "then": {
+          "required": ["action", "question"],
+          "not": {
+            "anyOf": [
+              { "required": ["tool"] },
+              { "required": ["arguments"] },
+              { "required": ["reason"] }
+            ]
+          }
+        }
+      },
+      {
+        "if": { "required": ["action"], "properties": { "action": { "const": "refuse" } } },
+        "then": {
+          "required": ["action", "reason"],
+          "not": {
+            "anyOf": [
+              { "required": ["tool"] },
+              { "required": ["arguments"] },
+              { "required": ["question"] }
+            ]
+          }
+        }
+      }
+    ]
+  }
+}

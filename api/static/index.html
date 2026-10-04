@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>中文工具调用演示</title>
+  <link rel="stylesheet" href="/static/style.css">
+  <script src="/static/app.js" defer></script>
+</head>
+<body>
+  <div class="shell">
+    <header class="topbar">
+      <div class="brand"><span class="brand-mark">令</span><span>中文工具调用实验室</span></div>
+      <div class="top-meta"><span class="status-dot"></span><span id="model-status">正在连接本地模型</span></div>
+    </header>
+
+    <main>
+      <section class="hero">
+        <p class="eyebrow">QWEN3-1.7B · LORA · 本地运行</p>
+        <h1>一句中文请求，<br><span>看清每一步决策。</span></h1>
+        <p class="hero-copy">输入自然语言，观察模型选择工具、提取参数，以及服务端如何校验和执行。创建日程需要你明确确认。</p>
+      </section>
+
+      <div class="workspace">
+        <section class="card input-card" aria-labelledby="request-title">
+          <div class="section-heading"><span class="step">01</span><div><h2 id="request-title">提出请求</h2><p>你可以直接输入，或从示例开始。</p></div></div>
+          <div class="examples" aria-label="示例请求">
+            <button type="button" class="example" data-example="query">查找制度</button>
+            <button type="button" class="example" data-example="calculate">计算数值</button>
+            <button type="button" class="example" data-example="calendar">创建日程</button>
+          </div>
+          <form id="request-form">
+            <label for="user-request">你的请求</label>
+            <textarea id="user-request" name="user_request" maxlength="500" minlength="2" required>帮我查一下差旅报销制度</textarea>
+            <div class="form-bottom">
+              <div class="field"><label for="profile">本次工具场景</label><select id="profile" name="profile"><option value="all">全部工具</option><option value="query" selected>信息查询</option><option value="calculate">数据计算</option><option value="calendar">日程操作</option></select></div>
+              <button class="primary" id="submit-button" type="submit">生成决策 <span aria-hidden="true">↗</span></button>
+            </div>
+          </form>
+          <p class="hint">模型输出仅是建议。缺参、越权、工具参数和写操作由服务端校验。</p>
+        </section>
+
+        <section class="card output-card" aria-labelledby="result-title">
+          <div class="section-heading"><span class="step">02</span><div><h2 id="result-title">查看结果</h2><p>模型原始建议、系统决策与执行结果分开展示。</p></div></div>
+          <div id="idle-state" class="idle"><span class="idle-icon">⌘</span><strong>等待你的请求</strong><p>点击“生成决策”，这里会显示完整流程。</p></div>
+          <div id="result-state" hidden>
+            <div class="result-top"><span id="result-badge" class="badge">处理中</span><span id="latency"></span></div>
+            <div class="result-section"><h3>模型原始建议</h3><pre id="model-json"></pre></div>
+            <div class="result-section"><h3>系统决策</h3><p id="decision-summary" class="decision-summary"></p><p id="policy-summary"></p><pre id="decision-json"></pre></div>
+            <div class="result-section"><h3>服务端校验与工具结果</h3><p id="gate-summary" class="gate-summary"></p><pre id="gate-json"></pre></div>
+            <div id="confirm-panel" class="confirm-panel" hidden><div><strong>等待你的确认</strong><p>日程尚未写入。请核对上方草案，再决定是否创建。</p></div><button id="confirm-button" type="button" class="confirm-button">确认创建日程</button></div>
+          </div>
+          <div id="error-state" class="error-state" role="alert" hidden></div>
+        </section>
+      </div>
+
+      <section class="explain"><div><span class="explain-number">①</span><strong>模型建议</strong><p>根据当前工具说明生成结构化决策。</p></div><div><span class="explain-number">②</span><strong>服务端把关</strong><p>检查缺参、越权、参数和工具范围。</p></div><div><span class="explain-number">③</span><strong>明确确认</strong><p>日程写入必须由你单独点击确认。</p></div></section>
+    </main>
+
+    <footer><span>本地演示 · 固定模拟数据</span><a href="/docs">开发者接口文档 ↗</a></footer>
+  </div>
+</body>
+</html>

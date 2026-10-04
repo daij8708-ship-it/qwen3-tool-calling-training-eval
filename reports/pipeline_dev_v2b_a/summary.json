@@ -1,0 +1,100 @@
+{
+  "all": {
+    "count": 48,
+    "model_verdict_counts": {
+      "correct": 31,
+      "wrong": 14,
+      "manual_review": 1,
+      "invalid": 2
+    },
+    "pipeline_verdict_counts": {
+      "correct": 45,
+      "wrong": 2,
+      "manual_review": 1
+    },
+    "model_correct": 31,
+    "pipeline_correct": 45,
+    "policy_changed": 29
+  },
+  "capability_boundary": {
+    "count": 4,
+    "model_verdict_counts": {
+      "wrong": 1,
+      "correct": 3
+    },
+    "pipeline_verdict_counts": {
+      "correct": 4
+    },
+    "model_correct": 3,
+    "pipeline_correct": 4,
+    "policy_changed": 4
+  },
+  "missing_param": {
+    "count": 16,
+    "model_verdict_counts": {
+      "correct": 9,
+      "wrong": 5,
+      "invalid": 2
+    },
+    "pipeline_verdict_counts": {
+      "correct": 16
+    },
+    "model_correct": 9,
+    "pipeline_correct": 16,
+    "policy_changed": 16
+  },
+  "normal": {
+    "count": 12,
+    "model_verdict_counts": {
+      "correct": 9,
+      "wrong": 2,
+      "manual_review": 1
+    },
+    "pipeline_verdict_counts": {
+      "correct": 9,
+      "wrong": 2,
+      "manual_review": 1
+    },
+    "model_correct": 9,
+    "pipeline_correct": 9,
+    "policy_changed": 0
+  },
+  "over_authority": {
+    "count": 4,
+    "model_verdict_counts": {
+      "correct": 3,
+      "wrong": 1
+    },
+    "pipeline_verdict_counts": {
+      "correct": 4
+    },
+    "model_correct": 3,
+    "pipeline_correct": 4,
+    "policy_changed": 3
+  },
+  "unseen_missing": {
+    "count": 6,
+    "model_verdict_counts": {
+      "wrong": 5,
+      "correct": 1
+    },
+    "pipeline_verdict_counts": {
+      "correct": 6
+    },
+    "model_correct": 1,
+    "pipeline_correct": 6,
+    "policy_changed": 6
+  },
+  "unseen_normal": {
+    "count": 6,
+    "model_verdict_counts": {
+      "correct": 6
+    },
+    "pipeline_verdict_counts": {
+      "correct": 6
+    },
+    "model_correct": 6,
+    "pipeline_correct": 6,
+    "policy_changed": 0
+  }
+}

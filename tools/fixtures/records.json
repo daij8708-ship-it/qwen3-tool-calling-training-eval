@@ -1,0 +1,35 @@
+{
+  "version": "fixture_v0",
+  "description": "本地模拟业务记录。四类记录对应 tools/schemas 里的 record_type 与 dataset 取值,金额为合成数据。编号 DD204551 等刻意与手工案例保持一致,SH888114 刻意不存在,用于演示 not_found。",
+  "time_field": "business_time",
+  "records": {
+    "orders": [
+      { "record_id": "DD204551", "amount": 12800.0, "quantity": 8, "status": "completed", "region": "华东", "business_time": "2026-06-05T10:20", "customer": "明远科技" },
+      { "record_id": "DD204552", "amount": 7400.5, "quantity": 3, "status": "completed", "region": "华东", "business_time": "2026-06-18T15:40", "customer": "临江装备" },
+      { "record_id": "DD204553", "amount": 3200.0, "quantity": 12, "status": "cancelled", "region": "华南", "business_time": "2026-06-28T09:05", "customer": "恒通物流" },
+      { "record_id": "DD204554", "amount": 21600.0, "quantity": 15, "status": "shipped", "region": "上海", "business_time": "2026-07-03T11:00", "customer": "启元电子" },
+      { "record_id": "DD204555", "amount": 4800.0, "quantity": 5, "status": "pending", "region": "华东", "business_time": "2026-07-11T16:25", "customer": "明远科技" },
+      { "record_id": "DD204556", "amount": 9600.0, "quantity": 7, "status": "refunded", "region": "华南", "business_time": "2026-05-30T08:15", "customer": "南岭建材" }
+    ],
+    "invoices": [
+      { "record_id": "FP103882", "amount": 12800.0, "status": "paid", "region": "华东", "business_time": "2026-06-06T09:30", "customer": "明远科技" },
+      { "record_id": "FP103883", "amount": 7400.5, "status": "paid", "region": "华东", "business_time": "2026-06-19T10:00", "customer": "临江装备" },
+      { "record_id": "FP103884", "amount": 21600.0, "status": "pending", "region": "上海", "business_time": "2026-07-04T09:00", "customer": "启元电子" },
+      { "record_id": "FP103885", "amount": 3200.0, "status": "cancelled", "region": "华南", "business_time": "2026-06-29T14:00", "customer": "恒通物流" },
+      { "record_id": "FP103886", "amount": 4800.0, "status": "refunded", "region": "华南", "business_time": "2026-05-31T11:20", "customer": "南岭建材" }
+    ],
+    "contracts": [
+      { "record_id": "HT045771", "amount": 420000.0, "duration_days": 365, "status": "completed", "region": "华东", "business_time": "2025-11-18T00:00", "counterparty": "明远科技" },
+      { "record_id": "HT045772", "amount": 158000.0, "duration_days": 180, "status": "paid", "region": "上海", "business_time": "2026-04-02T00:00", "counterparty": "启元电子" },
+      { "record_id": "HT045773", "amount": 96000.0, "duration_days": 90, "status": "pending", "region": "华南", "business_time": "2026-06-15T00:00", "counterparty": "恒通物流" },
+      { "record_id": "HT045774", "amount": 234000.0, "duration_days": 730, "status": "completed", "region": "华东", "business_time": "2026-07-01T00:00", "counterparty": "临江装备" }
+    ],
+    "shipments": [
+      { "record_id": "SH220913", "quantity": 8, "duration_days": 2, "status": "shipped", "region": "华东", "business_time": "2026-06-07T08:00", "carrier": "顺达承运" },
+      { "record_id": "SH220914", "quantity": 3, "duration_days": 4, "status": "completed", "region": "华东", "business_time": "2026-06-20T08:00", "carrier": "顺达承运" },
+      { "record_id": "SH220915", "quantity": 12, "duration_days": 6, "status": "pending", "region": "华南", "business_time": "2026-07-05T08:00", "carrier": "南岭专线" },
+      { "record_id": "SH220916", "quantity": 15, "duration_days": 3, "status": "cancelled", "region": "上海", "business_time": "2026-07-12T08:00", "carrier": "临港快运" }
+    ]
+  },
+  "record_type_to_dataset": { "order": "orders", "invoice": "invoices", "contract": "contracts", "shipment": "shipments" }
+}

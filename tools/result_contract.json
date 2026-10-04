@@ -1,0 +1,52 @@
+{
+  "version": "execution_v0",
+  "description": "服务端执行结果封装与错误码字典。模型看不到本文件:tools/schemas 下的六个契约才是模型可见输入,这里固定的是返回值口径。模拟器与执行闸门共用它,任何未登记的状态或错误码都不允许返回。",
+  "notes": {
+    "envelope_fields": "每次工具执行返回一个对象:status 必填,message 必填中文,data 在成功时放结果,error_code 仅在 status 为 rejected 时必填。",
+    "not_model_output": "本契约约束的是服务端返回值,不是模型输出。模型的 decision 只有 action/tool/arguments/question/reason 五个字段。",
+    "write_boundary": "只有 create_event 会写日历,且只在闸门全部通过且服务端确认状态为 true 时写入;任何闸门失败都不得改变日历状态。"
+  },
+  "envelope": {
+    "fields": ["status", "message", "data", "error_code"],
+    "required": ["status", "message"],
+    "status_enum": ["ok", "not_found", "no_data", "conflict", "pending_confirmation", "rejected"],
+    "error_code_required_when": "rejected"
+  },
+  "status_glossary": {
+    "ok": "执行成功,结果在 data 里",
+    "not_found": "按编号读取记录时该编号不存在,属于正常业务结果而不是错误",
+    "no_data": "筛选条件没有命中任何数据行,统计给不出数值",
+    "conflict": "请求的时间区间与日历上已有日程重叠",
+    "pending_confirmation": "写操作已作为草案提交,服务端确认状态为 false,未写入日历",
+    "rejected": "参数格式合法但服务端拒绝执行,如表达式非法、时间在过去、时长越界"
+  },
+  "error_code_glossary": {
+    "expression_unsupported_char": "算式含契约未允许的字符",
+    "expression_syntax": "算式括号、运算符或操作数不完整",
+    "division_by_zero": "算式中出现除以零",
+    "value_out_of_range": "算式操作数或结果超出允许范围",
+    "past_time_not_supported": "查询或创建的起始时间早于服务端当前时间",
+    "duration_limit_exceeded": "单条日程时长超过契约上限 480 分钟",
+    "record_not_found": "按编号找不到记录",
+    "no_matching_rows": "筛选后没有数据行可统计"
+  },
+  "gate": {
+    "description": "执行闸门按 stage 顺序判定,任一步失败立即返回且不执行工具。",
+    "stages": ["decision_format", "tool_availability", "argument_schema", "semantic_constraint", "not_executed", "executed"],
+    "codes": {
+      "decision_invalid": "决策不是合法 JSON 对象、含多余字段、动作不是 call/clarify/refuse,或 call 缺工具与参数",
+      "tool_unavailable": "决策要求的工具不在服务端本次提供的 available_tools 里",
+      "arguments_invalid": "参数不符合该工具 input_schema,或违反跨字段约束",
+      "action_not_call": "决策动作是 clarify 或 refuse,闸门不执行任何工具",
+      "internal_unregistered_result": "工具返回了未登记在本契约里的状态或错误码,属实现缺陷"
+    }
+  },
+  "tools": {
+    "search_documents": { "statuses": ["ok"], "error_codes": [], "writes": false },
+    "get_record": { "statuses": ["ok", "not_found"], "error_codes": ["record_not_found"], "writes": false },
+    "calculate": { "statuses": ["ok", "rejected"], "error_codes": ["expression_unsupported_char", "expression_syntax", "division_by_zero", "value_out_of_range"], "writes": false },
+    "aggregate_data": { "statuses": ["ok", "no_data"], "error_codes": ["no_matching_rows"], "writes": false, "metric_field": { "amount": "amount", "quantity": "quantity", "duration_days": "duration_days", "record": null } },
+    "check_availability": { "statuses": ["ok", "rejected"], "error_codes": ["past_time_not_supported"], "writes": false },
+    "create_event": { "statuses": ["pending_confirmation", "ok", "conflict", "rejected"], "error_codes": ["past_time_not_supported", "duration_limit_exceeded"], "writes": true }
+  }
+}

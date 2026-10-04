@@ -1,0 +1,108 @@
+{
+  "name": "unit_convert",
+  "description": "把一个数值从某种单位换算成另一种同类单位,只支持长度与质量两个量纲族,跨族换算无法执行。",
+  "execution": {
+    "side_effect": "read_only",
+    "requires_server_confirmation": false
+  },
+  "input_schema": {
+    "type": "object",
+    "description": "单位换算入参。",
+    "required": [
+      "value",
+      "from_unit",
+      "to_unit"
+    ],
+    "properties": {
+      "value": {
+        "type": "number",
+        "description": "待换算的原始数值,必须取自请求原文,不做估算。"
+      },
+      "from_unit": {
+        "type": "string",
+        "enum": [
+          "mm",
+          "cm",
+          "m",
+          "km",
+          "g",
+          "kg",
+          "t"
+        ],
+        "description": "原始单位:mm 毫米、cm 厘米、m 米、km 千米、g 克、kg 千克、t 吨。"
+      },
+      "to_unit": {
+        "type": "string",
+        "enum": [
+          "mm",
+          "cm",
+          "m",
+          "km",
+          "g",
+          "kg",
+          "t"
+        ],
+        "description": "换算目标单位,取值范围同原始单位,且必须与原始单位同族。"
+      }
+    },
+    "additionalProperties": false,
+    "allOf": [
+      {
+        "if": {
+          "required": [
+            "from_unit"
+          ],
+          "properties": {
+            "from_unit": {
+              "enum": [
+                "mm",
+                "cm",
+                "m",
+                "km"
+              ]
+            }
+          }
+        },
+        "then": {
+          "properties": {
+            "to_unit": {
+              "enum": [
+                "mm",
+                "cm",
+                "m",
+                "km"
+              ]
+            }
+          }
+        }
+      },
+      {
+        "if": {
+          "required": [
+            "from_unit"
+          ],
+          "properties": {
+            "from_unit": {
+              "enum": [
+                "g",
+                "kg",
+                "t"
+              ]
+            }
+          }
+        },
+        "then": {
+          "properties": {
+            "to_unit": {
+              "enum": [
+                "g",
+                "kg",
+                "t"
+              ]
+            }
+          }
+        }
+      }
+    ]
+  }
+}

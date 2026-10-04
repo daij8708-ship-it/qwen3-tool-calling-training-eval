@@ -1,0 +1,413 @@
+{
+  "version": "templates_unseen_v0",
+  "description": "未见工具测试集的模板组。unit_convert 与 sort_records 不在训练与验证样本中出现,测试时才把名称、说明与 Schema 一并给模型;这五个组的样本全部落 unseen_test,单独统计。",
+  "groups": [
+    {
+      "id": "TG-901",
+      "slug": "unseen-convert-length",
+      "label": "长度单位换算",
+      "toolset": "unseen",
+      "action": "call",
+      "tool": "unit_convert",
+      "category": "normal",
+      "tags": [
+        "normal_call"
+      ],
+      "post_condition": "none",
+      "available_tools_pool": [
+        [
+          "unit_convert"
+        ],
+        [
+          "unit_convert",
+          "sort_records"
+        ],
+        [
+          "unit_convert",
+          "get_record"
+        ]
+      ],
+      "align": [
+        "v",
+        "fu",
+        "tu"
+      ],
+      "slots": {
+        "v": [
+          {
+            "surface": "3.2",
+            "value": 3.2
+          },
+          {
+            "surface": "450",
+            "value": 450
+          },
+          {
+            "surface": "1.5",
+            "value": 1.5
+          },
+          {
+            "surface": "0.86",
+            "value": 0.86
+          }
+        ],
+        "fu": [
+          {
+            "surface": "千米",
+            "value": "km"
+          },
+          {
+            "surface": "厘米",
+            "value": "cm"
+          },
+          {
+            "surface": "米",
+            "value": "m"
+          },
+          {
+            "surface": "毫米",
+            "value": "mm"
+          }
+        ],
+        "tu": [
+          {
+            "surface": "米",
+            "value": "m"
+          },
+          {
+            "surface": "毫米",
+            "value": "mm"
+          },
+          {
+            "surface": "厘米",
+            "value": "cm"
+          },
+          {
+            "surface": "千米",
+            "value": "km"
+          }
+        ]
+      },
+      "arguments": {
+        "value": "{v}",
+        "from_unit": "{fu}",
+        "to_unit": "{tu}"
+      },
+      "phrasings": [
+        "把 {v}{fu} 换算成{tu}",
+        "{v}{fu}等于多少{tu}?",
+        "帮我算一下 {v}{fu}转成{tu}",
+        "{v}{fu}折成{tu}是多少",
+        "用 unit_convert 把 {v}{fu}换成{tu}",
+        "{v}{fu}换成{tu}这个换算走一下",
+        "麻烦把 {v}{fu}按{tu}报个数",
+        "{v}{fu}转{tu},给我结果",
+        "这里 {v}{fu}要写成{tu},换算一下"
+      ],
+      "rationale": "工具说明里 from_unit 与 to_unit 都属长度族,数值与两个单位都在请求里,按 Schema 填三项即可,所以 call。",
+      "split": "unseen_test"
+    },
+    {
+      "id": "TG-902",
+      "slug": "unseen-convert-mass",
+      "label": "质量单位换算",
+      "toolset": "unseen",
+      "action": "call",
+      "tool": "unit_convert",
+      "category": "normal",
+      "tags": [
+        "normal_call"
+      ],
+      "post_condition": "none",
+      "available_tools_pool": [
+        [
+          "unit_convert"
+        ],
+        [
+          "sort_records",
+          "unit_convert"
+        ]
+      ],
+      "align": [
+        "fu",
+        "tu"
+      ],
+      "slots": {
+        "v": [
+          {
+            "surface": "2.4",
+            "value": 2.4
+          },
+          {
+            "surface": "750",
+            "value": 750
+          },
+          {
+            "surface": "0.35",
+            "value": 0.35
+          },
+          {
+            "surface": "6",
+            "value": 6
+          }
+        ],
+        "fu": [
+          {
+            "surface": "吨",
+            "value": "t"
+          },
+          {
+            "surface": "千克",
+            "value": "kg"
+          },
+          {
+            "surface": "克",
+            "value": "g"
+          }
+        ],
+        "tu": [
+          {
+            "surface": "千克",
+            "value": "kg"
+          },
+          {
+            "surface": "克",
+            "value": "g"
+          },
+          {
+            "surface": "吨",
+            "value": "t"
+          }
+        ]
+      },
+      "arguments": {
+        "value": "{v}",
+        "from_unit": "{fu}",
+        "to_unit": "{tu}"
+      },
+      "phrasings": [
+        "发货重量 {v}{fu},换成{tu}是多少",
+        "把 {v}{fu}换算为{tu}",
+        "{v}{fu}等于几{tu}?",
+        "重量单位换算:{v}{fu}到{tu}",
+        "帮我把这批货的 {v}{fu}改写成{tu}",
+        "{v}{fu}按{tu}记是多少",
+        "用换算工具把 {v}{fu}转成{tu}",
+        "{v}{fu}折{tu},报个数值",
+        "这个 {v}{fu}要换成{tu}再录"
+      ],
+      "rationale": "两个单位同属质量族,数值明确,按未见工具的 Schema 填满三项,所以 call。",
+      "split": "unseen_test"
+    },
+    {
+      "id": "TG-903",
+      "slug": "unseen-convert-missing-target",
+      "label": "换算但没说要换成什么单位",
+      "toolset": "unseen",
+      "action": "clarify",
+      "tool": null,
+      "category": "missing_param",
+      "tags": [
+        "missing_required_field"
+      ],
+      "clarify_target": {
+        "tool": "unit_convert",
+        "fields": [
+          "to_unit"
+        ]
+      },
+      "available_tools_pool": [
+        [
+          "unit_convert"
+        ],
+        [
+          "unit_convert",
+          "sort_records"
+        ]
+      ],
+      "slots": {
+        "v": [
+          "1.8",
+          "900",
+          "4.5"
+        ],
+        "fu": [
+          {
+            "surface": "千米",
+            "value": "km"
+          },
+          {
+            "surface": "千克",
+            "value": "kg"
+          },
+          {
+            "surface": "吨",
+            "value": "t"
+          }
+        ]
+      },
+      "align": [
+        "v",
+        "fu"
+      ],
+      "phrasings": [
+        "把 {v}{fu}换算一下",
+        "{v}{fu}这个数帮我转个单位",
+        "用 unit_convert 处理 {v}{fu}",
+        "{v}{fu}要换算,给个常见单位",
+        "把 {v}{fu}换算成别的单位报给我",
+        "{v}{fu}换算一下,取合适的单位",
+        "帮我换算 {v}{fu},别用原单位",
+        "{v}{fu}转换下单位再说数",
+        "这个 {v}{fu}换算成其他计量单位"
+      ],
+      "questions": [
+        "要换算成哪个目标单位?",
+        "请说明换成米、厘米还是千克这类目标单位。",
+        "原单位清楚了,目标单位是哪个?",
+        "换成什么单位?请给出目标单位。"
+      ],
+      "rationale": "value 与 from_unit 都有,唯独 to_unit 缺失,且不能从枚举里替用户挑一个,所以 clarify。",
+      "split": "unseen_test"
+    },
+    {
+      "id": "TG-904",
+      "slug": "unseen-sort-records",
+      "label": "按字段与方向排序记录",
+      "toolset": "unseen",
+      "action": "call",
+      "tool": "sort_records",
+      "category": "normal",
+      "tags": [
+        "normal_call"
+      ],
+      "post_condition": "none",
+      "available_tools_pool": [
+        [
+          "sort_records"
+        ],
+        [
+          "sort_records",
+          "unit_convert"
+        ],
+        [
+          "aggregate_data",
+          "sort_records"
+        ]
+      ],
+      "slots": {
+        "fld": [
+          {
+            "surface": "订单金额",
+            "value": "orders.amount"
+          },
+          {
+            "surface": "发票金额",
+            "value": "invoices.amount"
+          },
+          {
+            "surface": "合同的周期天数",
+            "value": "contracts.duration_days"
+          },
+          {
+            "surface": "发货数量",
+            "value": "shipments.quantity"
+          },
+          {
+            "surface": "发货单的时效天数",
+            "value": "shipments.duration_days"
+          },
+          {
+            "surface": "合同金额",
+            "value": "contracts.amount"
+          },
+          {
+            "surface": "订单数量",
+            "value": "orders.quantity"
+          }
+        ],
+        "ord": [
+          {
+            "surface": "从高到低",
+            "value": "desc"
+          },
+          {
+            "surface": "由小到大",
+            "value": "asc"
+          },
+          {
+            "surface": "降序",
+            "value": "desc"
+          },
+          {
+            "surface": "升序",
+            "value": "asc"
+          }
+        ]
+      },
+      "arguments": {
+        "field": "{fld}",
+        "order": "{ord}"
+      },
+      "phrasings": [
+        "把{fld}排一下,{ord}排",
+        "按{fld}排序,方向{ord}",
+        "帮我把记录按{fld}做{ord}排列",
+        "{fld}帮我排个序列,{ord}为准",
+        "用 sort_records 按{fld}排,顺序{ord}",
+        "把{fld}排个序,给我{ord}的结果",
+        "{fld}这块排序,{ord}来",
+        "按{fld}列出记录,{ord}",
+        "排序需求:{fld},{ord}"
+      ],
+      "rationale": "字段能唯一映射到 Schema 里的枚举写法,方向也明确,两项必填齐全,所以 call。",
+      "split": "unseen_test"
+    },
+    {
+      "id": "TG-905",
+      "slug": "unseen-sort-missing-order",
+      "label": "排序但没给方向",
+      "toolset": "unseen",
+      "action": "clarify",
+      "tool": null,
+      "category": "missing_param",
+      "tags": [
+        "missing_required_field"
+      ],
+      "clarify_target": {
+        "tool": "sort_records",
+        "fields": [
+          "order"
+        ]
+      },
+      "available_tools_pool": [
+        [
+          "sort_records"
+        ],
+        [
+          "unit_convert",
+          "sort_records"
+        ]
+      ],
+      "phrasings": [
+        "把订单金额排个序",
+        "按合同周期天数排序给我",
+        "帮我把发票金额排一下",
+        "按发货数量排序列出记录",
+        "把合同的金额排个顺序",
+        "按发货时效天数排一下序",
+        "订单数量这边排序给我看",
+        "把金额相关的记录排好序",
+        "按周期天数排一下合同记录"
+      ],
+      "questions": [
+        "排序方向要升序还是降序?",
+        "请给出顺序方向,从大到小还是从小到大?",
+        "要先确认排序方向:升序还是降序?",
+        "要哪个方向的排序?升序或降序都行,请指定。"
+      ],
+      "rationale": "field 能定但 order 缺失,默认降序会改变结果顺序,所以 clarify。",
+      "split": "unseen_test"
+    }
+  ]
+}

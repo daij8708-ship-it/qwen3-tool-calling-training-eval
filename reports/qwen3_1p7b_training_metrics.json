@@ -1,0 +1,17 @@
+{
+  "model": "Qwen3-1.7B",
+  "train_samples": 408,
+  "validation_samples": 96,
+  "trainable_parameters": 1605632,
+  "total_parameters": 1722180608,
+  "best_epoch": 2,
+  "epochs": [
+    {"epoch": 1, "train_loss": 1.274246, "val_loss": 0.683448, "peak_vram_mib": 5083, "elapsed_seconds": 131.0},
+    {"epoch": 2, "train_loss": 0.628287, "val_loss": 0.639254, "peak_vram_mib": 5086, "elapsed_seconds": 261.8}
+  ],
+  "train_config_sha256": "c7e5bc8a9f77baa907732464bf6c1efc6738e7bb9c638f0fa844d1d43b068f6d",
+  "train_dataset_sha256": "32598b5d13c40f9b32a14a942a561492afd6671dcce8fff792ebb6f62f1516a6",
+  "validation_dataset_sha256": "69f95ff3afc89806639ca17f4ca6cf7da1062f72a7c050610f3813d0f39238b7",
+  "prompt_sha256": "7471a68feee4ac4a717c700836636b85768448672c9d59908b2b3221b921aa94",
+  "best_adapter_sha256": "d30ffb9119a8e259f5ffd9f0f275dedd95f5307648298deb7840943e958193ce"
+}

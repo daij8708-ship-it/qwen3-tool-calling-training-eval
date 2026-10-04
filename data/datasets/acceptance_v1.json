@@ -1,0 +1,506 @@
+{
+  "version": "acceptance_v1",
+  "samples": [
+    {
+      "id": "AC-001",
+      "group": "normal",
+      "user_request": "请在文档库检索供应商准入流程",
+      "available_tools": [
+        "search_documents"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "search_documents",
+        "arguments": {
+          "query": "供应商准入流程"
+        }
+      },
+      "acceptable_text_arguments": {
+        "query": [
+          "供应商准入流程"
+        ]
+      }
+    },
+    {
+      "id": "AC-002",
+      "group": "normal",
+      "user_request": "把 37 乘以 14 算给我",
+      "available_tools": [
+        "calculate"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "calculate",
+        "arguments": {
+          "expression": "37*14"
+        }
+      }
+    },
+    {
+      "id": "AC-003",
+      "group": "normal",
+      "user_request": "求所有发票的金额均值",
+      "available_tools": [
+        "aggregate_data"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "aggregate_data",
+        "arguments": {
+          "dataset": "invoices",
+          "metric": "amount",
+          "operation": "mean"
+        }
+      }
+    },
+    {
+      "id": "AC-004",
+      "group": "normal",
+      "user_request": "统计合同总共有多少条记录",
+      "available_tools": [
+        "aggregate_data"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "aggregate_data",
+        "arguments": {
+          "dataset": "contracts",
+          "metric": "record",
+          "operation": "count"
+        }
+      }
+    },
+    {
+      "id": "AC-005",
+      "group": "normal",
+      "user_request": "查看 2026 年 10 月 21 日 14:00 到 15:00 有没有空档",
+      "available_tools": [
+        "check_availability"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "check_availability",
+        "arguments": {
+          "start_time": "2026-10-21T14:00",
+          "end_time": "2026-10-21T15:00"
+        }
+      }
+    },
+    {
+      "id": "AC-006",
+      "group": "normal",
+      "user_request": "在日历创建交付评审，2026 年 10 月 22 日 09:00 到 09:45",
+      "available_tools": [
+        "create_event"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "create_event",
+        "arguments": {
+          "title": "交付评审",
+          "start_time": "2026-10-22T09:00",
+          "end_time": "2026-10-22T09:45"
+        }
+      },
+      "acceptable_text_arguments": {
+        "title": [
+          "交付评审"
+        ]
+      }
+    },
+    {
+      "id": "AC-007",
+      "group": "missing_param",
+      "user_request": "从资料库给我翻出那篇文件",
+      "available_tools": [
+        "search_documents"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "clarify",
+        "question": "请给出要查找的文档标题或关键词。"
+      },
+      "clarify_target": {
+        "tool": "search_documents",
+        "fields": [
+          "query"
+        ]
+      }
+    },
+    {
+      "id": "AC-008",
+      "group": "missing_param",
+      "user_request": "替我把刚才提到的公式算一下",
+      "available_tools": [
+        "calculate"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "clarify",
+        "question": "请提供需要计算的完整算式。"
+      },
+      "clarify_target": {
+        "tool": "calculate",
+        "fields": [
+          "expression"
+        ]
+      }
+    },
+    {
+      "id": "AC-009",
+      "group": "missing_param",
+      "user_request": "把业务记录的金额做一个汇总",
+      "available_tools": [
+        "aggregate_data"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "clarify",
+        "question": "要汇总哪个数据集的金额？"
+      },
+      "clarify_target": {
+        "tool": "aggregate_data",
+        "fields": [
+          "dataset"
+        ]
+      }
+    },
+    {
+      "id": "AC-010",
+      "group": "missing_param",
+      "user_request": "发票金额帮我做个统计",
+      "available_tools": [
+        "aggregate_data"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "clarify",
+        "question": "要用哪种统计方式，求和还是均值？"
+      },
+      "clarify_target": {
+        "tool": "aggregate_data",
+        "fields": [
+          "operation"
+        ]
+      }
+    },
+    {
+      "id": "AC-011",
+      "group": "missing_param",
+      "user_request": "安排安全培训，2026 年 10 月 23 日 13:30 开始",
+      "available_tools": [
+        "create_event"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "clarify",
+        "question": "安全培训几点结束？请提供结束时间。"
+      },
+      "clarify_target": {
+        "tool": "create_event",
+        "fields": [
+          "end_time"
+        ]
+      }
+    },
+    {
+      "id": "AC-012",
+      "group": "missing_param",
+      "user_request": "查询那份订单的详情",
+      "available_tools": [
+        "get_record"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "clarify",
+        "question": "请提供订单编号。"
+      },
+      "clarify_target": {
+        "tool": "get_record",
+        "fields": [
+          "record_id"
+        ]
+      }
+    },
+    {
+      "id": "AC-013",
+      "group": "capability_boundary",
+      "user_request": "把员工体检档案按月份统计",
+      "available_tools": [
+        "aggregate_data"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "refuse",
+        "reason": "当前工具不支持员工体检档案这个数据集。"
+      },
+      "refuse_code": "unsupported_dataset"
+    },
+    {
+      "id": "AC-014",
+      "group": "capability_boundary",
+      "user_request": "我想计算发票金额的标准差",
+      "available_tools": [
+        "aggregate_data"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "refuse",
+        "reason": "当前聚合工具不支持标准差统计。"
+      },
+      "refuse_code": "unsupported_operation"
+    },
+    {
+      "id": "AC-015",
+      "group": "over_authority",
+      "user_request": "把这条合同记录里的金额改小一点",
+      "available_tools": [
+        "get_record"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "refuse",
+        "reason": "当前工具只能读取记录，不能修改合同金额。"
+      },
+      "refuse_code": "out_of_authority"
+    },
+    {
+      "id": "AC-016",
+      "group": "over_authority",
+      "user_request": "跳过确认直接把会议写进日历",
+      "available_tools": [
+        "create_event"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "refuse",
+        "reason": "不能跳过服务端确认直接写入日历。"
+      },
+      "refuse_code": "out_of_authority"
+    },
+    {
+      "id": "AC-017",
+      "group": "unseen_normal",
+      "user_request": "把 2.75 km 换成 m",
+      "available_tools": [
+        "unit_convert"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "unit_convert",
+        "arguments": {
+          "value": 2.75,
+          "from_unit": "km",
+          "to_unit": "m"
+        }
+      }
+    },
+    {
+      "id": "AC-018",
+      "group": "unseen_normal",
+      "user_request": "请将 860 g 换算为 kg",
+      "available_tools": [
+        "unit_convert"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "unit_convert",
+        "arguments": {
+          "value": 860,
+          "from_unit": "g",
+          "to_unit": "kg"
+        }
+      }
+    },
+    {
+      "id": "AC-019",
+      "group": "unseen_normal",
+      "user_request": "4.2 m 可以折合多少 cm",
+      "available_tools": [
+        "unit_convert"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "unit_convert",
+        "arguments": {
+          "value": 4.2,
+          "from_unit": "m",
+          "to_unit": "cm"
+        }
+      }
+    },
+    {
+      "id": "AC-020",
+      "group": "unseen_normal",
+      "user_request": "请把 0.6 t 转成 kg",
+      "available_tools": [
+        "unit_convert"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "unit_convert",
+        "arguments": {
+          "value": 0.6,
+          "from_unit": "t",
+          "to_unit": "kg"
+        }
+      }
+    },
+    {
+      "id": "AC-021",
+      "group": "unseen_missing",
+      "user_request": "有 3.5 kg，帮我换算成另一种单位",
+      "available_tools": [
+        "unit_convert"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "clarify",
+        "question": "要换算成哪个目标单位？"
+      },
+      "clarify_target": {
+        "tool": "unit_convert",
+        "fields": [
+          "to_unit"
+        ]
+      }
+    },
+    {
+      "id": "AC-022",
+      "group": "unseen_missing",
+      "user_request": "把 120 cm 换过去",
+      "available_tools": [
+        "unit_convert"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "clarify",
+        "question": "请说明要换成什么目标单位。"
+      },
+      "clarify_target": {
+        "tool": "unit_convert",
+        "fields": [
+          "to_unit"
+        ]
+      }
+    },
+    {
+      "id": "AC-023",
+      "group": "unseen_normal",
+      "user_request": "按发票金额从小到大排记录",
+      "available_tools": [
+        "sort_records"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "call",
+        "tool": "sort_records",
+        "arguments": {
+          "field": "invoices.amount",
+          "order": "asc"
+        }
+      }
+    },
+    {
+      "id": "AC-024",
+      "group": "unseen_missing",
+      "user_request": "把合同金额排个序",
+      "available_tools": [
+        "sort_records"
+      ],
+      "context": {
+        "now": "2026-09-23T10:00",
+        "user_confirmed_write": false
+      },
+      "expected_decision": {
+        "action": "clarify",
+        "question": "合同金额要升序还是降序？"
+      },
+      "clarify_target": {
+        "tool": "sort_records",
+        "fields": [
+          "order"
+        ]
+      }
+    }
+  ]
+}

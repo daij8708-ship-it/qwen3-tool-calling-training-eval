@@ -1,0 +1,24 @@
+{
+  "name": "search_documents",
+  "description": "在本地模拟文档库按关键词检索制度、流程与产品说明,返回标题与摘要。只读;已知记录编号时改用 get_record。",
+  "execution": {
+    "side_effect": "read_only",
+    "requires_server_confirmation": false
+  },
+  "input_schema": {
+    "type": "object",
+    "description": "search_documents 的入参。",
+    "properties": {
+      "query": {
+        "type": "string",
+        "minLength": 2,
+        "maxLength": 40,
+        "description": "多词用单个空格分隔,须是请求或上下文里的实义词。"
+      }
+    },
+    "required": [
+      "query"
+    ],
+    "additionalProperties": false
+  }
+}

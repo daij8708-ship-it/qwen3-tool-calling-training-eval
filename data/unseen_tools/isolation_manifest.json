@@ -1,0 +1,71 @@
+{
+  "version": "unseen_isolation_v0",
+  "description": "未见工具测试集的隔离政策与派生契约差异登记表。unit_convert 与 sort_records 只在 unseen_test 出现,其结果单独统计,不并入六个训练内工具的总分。",
+  "forbidden_names": ["unit_convert", "sort_records"],
+  "forbidden_files": ["data/datasets/train_v0.json", "data/datasets/val_v0.json"],
+  "allowed_files": ["data/datasets/test_unseen_v0.json", "data/unseen_tools/", "data/templates/groups_unseen.json", "data/unseen_tools/isolation_manifest.json"],
+  "isolation_rules": [
+    "两个名字不得作为字符串出现在训练集与验证集文件的任何字段里(不只看模型可见输入)。",
+    "任何集合的模型可见输入里都不得出现 training_input_projection 之外的未见工具名,除非该样本属于 unseen_test。",
+    "六工具样本需要指代缺失的排序或换算能力时,统一使用 record_sort 与 unit_transform 两个占位名,不用未见工具集的真名。",
+    "六个训练内工具的契约目录 tools/schemas 内不得出现这两个文件;它们只放在 data/unseen_tools。"
+  ],
+  "known_exception": {
+    "file": "data/cases/handwritten_v0.json",
+    "case_id": "TC-23-refuse-sort-and-export",
+    "field": "blocking_tools",
+    "value": "sort_records",
+    "why_not_leak": "blocking_tools 是标注元信息,不渲染进模型可见输入;第 1 步 24 条手工案例在模板组登记表里固定为 test 集合,不进入训练与验证。",
+    "needs_ruling": "若训练流程直接把 data/cases/ 整个喂给模型,需先把该字段改成 record_sort 再重跑审计;本次未擅自修改已验收的第 1 步数据。"
+  },
+  "separate_reporting": {
+    "rule": "unseen_test 的样本数、动作分布与后续得分单独成节报告,不与 test 集合的六工具总分合并,也不参与其分母。",
+    "claim_limit": "只有该集表现支持时才允许声称跨工具泛化能力。"
+  },
+  "unseen_tools": ["unit_convert", "sort_records"],
+  "schema_delta": [
+    {
+      "file": "tools/decision_schema.json",
+      "path": "schema.properties.tool.enum",
+      "operation": "add",
+      "add": ["unit_convert", "sort_records"],
+      "why": "决策契约的工具枚举按六个训练内工具闭合;未见工具样本要用同一套动作与禁止字段规则,只把工具名枚举加宽。"
+    },
+    {
+      "file": "data/cases/case_schema.json",
+      "path": "case_schema.properties.available_tools.items.enum",
+      "operation": "add",
+      "add": ["unit_convert", "sort_records"],
+      "why": "未见工具集的可用工具列表需要能声明这两个工具。"
+    },
+    {
+      "file": "data/cases/case_schema.json",
+      "path": "case_schema.properties.clarify_target.properties.tool.enum",
+      "operation": "add",
+      "add": ["unit_convert", "sort_records"],
+      "why": "澄清目标工具可以是未见工具,用于考察读 Schema 后定位缺失项的能力。"
+    },
+    {
+      "file": "data/cases/case_schema.json",
+      "path": "case_schema.properties.clarify_target.properties.fields.items.enum",
+      "operation": "add",
+      "add": ["value", "from_unit", "to_unit", "field", "order"],
+      "why": "未见工具的参数名要能进缺失字段列表。"
+    },
+    {
+      "file": "data/cases/case_schema.json",
+      "path": "scoring_conventions.field_question_terms",
+      "operation": "add_entries",
+      "add_entries": {
+        "value": ["数值", "多少", "数字", "量"],
+        "from_unit": ["单位", "原单位", "哪个单位", "换成前"],
+        "to_unit": ["单位", "目标单位", "换算成", "折成"],
+        "field": ["字段", "排序依据", "哪一列", "按什么"],
+        "order": ["升序", "降序", "方向", "从大到小", "从小到大", "顺序"]
+      },
+      "why": "追问线索词表按参数名登记,新增参数必须补词,否则未见工具的澄清样本无法判定。"
+    }
+  ],
+  "delta_guarantee": "审计脚本按本表逐条应用差异生成派生契约,并对派生件与原始件做深度差异比对:出现表外差异即 UNSEEN_DELTA_DRIFT 失败,保证除工具名与参数名枚举外,动作分支、禁止字段、长度与格式约束完全一致。",
+  "not_implemented": "本地不实现这两个工具的执行,因此 unseen_test 样本只做契约校验与评分口径校验,不通过第 2 步闸门;第 4 步接模型时按描述与 Schema 判格式与取值。"
+}

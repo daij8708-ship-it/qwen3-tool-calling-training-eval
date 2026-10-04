@@ -1,0 +1,150 @@
+{
+  "test": {
+    "adversarial": {
+      "count": 11,
+      "verdict_counts": {
+        "invalid": 11
+      },
+      "format_valid_rate": 0.0,
+      "action_correct_rate_among_valid": null,
+      "tool_correct_rate_among_gold_calls": 0.0,
+      "fully_correct_rate": 0.0,
+      "manual_review_count": 0,
+      "mean_latency_seconds": 1.888
+    },
+    "all": {
+      "count": 144,
+      "verdict_counts": {
+        "invalid": 144
+      },
+      "format_valid_rate": 0.0,
+      "action_correct_rate_among_valid": null,
+      "tool_correct_rate_among_gold_calls": 0.0,
+      "fully_correct_rate": 0.0,
+      "manual_review_count": 0,
+      "mean_latency_seconds": 1.792
+    },
+    "capability_boundary": {
+      "count": 13,
+      "verdict_counts": {
+        "invalid": 13
+      },
+      "format_valid_rate": 0.0,
+      "action_correct_rate_among_valid": null,
+      "tool_correct_rate_among_gold_calls": null,
+      "fully_correct_rate": 0.0,
+      "manual_review_count": 0,
+      "mean_latency_seconds": 1.662
+    },
+    "irrelevant": {
+      "count": 19,
+      "verdict_counts": {
+        "invalid": 19
+      },
+      "format_valid_rate": 0.0,
+      "action_correct_rate_among_valid": null,
+      "tool_correct_rate_among_gold_calls": null,
+      "fully_correct_rate": 0.0,
+      "manual_review_count": 0,
+      "mean_latency_seconds": 1.584
+    },
+    "missing_param": {
+      "count": 21,
+      "verdict_counts": {
+        "invalid": 21
+      },
+      "format_valid_rate": 0.0,
+      "action_correct_rate_among_valid": null,
+      "tool_correct_rate_among_gold_calls": null,
+      "fully_correct_rate": 0.0,
+      "manual_review_count": 0,
+      "mean_latency_seconds": 1.777
+    },
+    "multi_intent": {
+      "count": 10,
+      "verdict_counts": {
+        "invalid": 10
+      },
+      "format_valid_rate": 0.0,
+      "action_correct_rate_among_valid": null,
+      "tool_correct_rate_among_gold_calls": null,
+      "fully_correct_rate": 0.0,
+      "manual_review_count": 0,
+      "mean_latency_seconds": 1.595
+    },
+    "normal": {
+      "count": 47,
+      "verdict_counts": {
+        "invalid": 47
+      },
+      "format_valid_rate": 0.0,
+      "action_correct_rate_among_valid": null,
+      "tool_correct_rate_among_gold_calls": 0.0,
+      "fully_correct_rate": 0.0,
+      "manual_review_count": 0,
+      "mean_latency_seconds": 1.95
+    },
+    "over_authority": {
+      "count": 10,
+      "verdict_counts": {
+        "invalid": 10
+      },
+      "format_valid_rate": 0.0,
+      "action_correct_rate_among_valid": null,
+      "tool_correct_rate_among_gold_calls": null,
+      "fully_correct_rate": 0.0,
+      "manual_review_count": 0,
+      "mean_latency_seconds": 1.489
+    },
+    "time_ambiguous": {
+      "count": 13,
+      "verdict_counts": {
+        "invalid": 13
+      },
+      "format_valid_rate": 0.0,
+      "action_correct_rate_among_valid": null,
+      "tool_correct_rate_among_gold_calls": null,
+      "fully_correct_rate": 0.0,
+      "manual_review_count": 0,
+      "mean_latency_seconds": 1.986
+    }
+  },
+  "unseen_test": {
+    "all": {
+      "count": 45,
+      "verdict_counts": {
+        "invalid": 45
+      },
+      "format_valid_rate": 0.0,
+      "action_correct_rate_among_valid": null,
+      "tool_correct_rate_among_gold_calls": 0.0,
+      "fully_correct_rate": 0.0,
+      "manual_review_count": 0,
+      "mean_latency_seconds": 1.507
+    },
+    "missing_param": {
+      "count": 18,
+      "verdict_counts": {
+        "invalid": 18
+      },
+      "format_valid_rate": 0.0,
+      "action_correct_rate_among_valid": null,
+      "tool_correct_rate_among_gold_calls": null,
+      "fully_correct_rate": 0.0,
+      "manual_review_count": 0,
+      "mean_latency_seconds": 1.415
+    },
+    "normal": {
+      "count": 27,
+      "verdict_counts": {
+        "invalid": 27
+      },
+      "format_valid_rate": 0.0,
+      "action_correct_rate_among_valid": null,
+      "tool_correct_rate_among_gold_calls": 0.0,
+      "fully_correct_rate": 0.0,
+      "manual_review_count": 0,
+      "mean_latency_seconds": 1.568
+    }
+  }
+}

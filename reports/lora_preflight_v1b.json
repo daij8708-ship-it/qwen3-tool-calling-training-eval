@@ -1,0 +1,18 @@
+{
+  "status": "preflight_only_no_optimizer_step",
+  "base_revision": "c1899de289a04d12100db370d81485cdf75e47ca",
+  "train_samples": 456,
+  "val_samples": 112,
+  "max_train_tokens": 944,
+  "max_val_tokens": 885,
+  "longest_train_id": "DS-0035-get-record-invoice",
+  "longest_sample_loss": 0.510291,
+  "two_sample_val_loss": 0.148224,
+  "peak_backward_vram_mib": 2850,
+  "trainable_parameters": 1146880,
+  "gpu": "NVIDIA GeForce RTX 4060 Ti",
+  "torch": "2.6.0+cu118",
+  "transformers": "4.52.3",
+  "peft": "0.15.2",
+  "config_sha256": "a1b275f1e67b71ef8987c42368c787d8df5fb3bf5ba5b0a97932d702dc569434"
+}

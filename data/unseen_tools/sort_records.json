@@ -1,0 +1,40 @@
+{
+  "name": "sort_records",
+  "description": "按指定字段对业务记录排序并返回有序结果,字段以数据集点指标的形式给出。",
+  "execution": {
+    "side_effect": "read_only",
+    "requires_server_confirmation": false
+  },
+  "input_schema": {
+    "type": "object",
+    "description": "记录排序入参。",
+    "required": [
+      "field",
+      "order"
+    ],
+    "properties": {
+      "field": {
+        "type": "string",
+        "enum": [
+          "orders.amount",
+          "orders.quantity",
+          "invoices.amount",
+          "contracts.amount",
+          "contracts.duration_days",
+          "shipments.quantity",
+          "shipments.duration_days"
+        ],
+        "description": "排序字段,写成「数据集.指标」的形式,如 orders.amount 表示按订单金额排序。"
+      },
+      "order": {
+        "type": "string",
+        "enum": [
+          "asc",
+          "desc"
+        ],
+        "description": "排序方向:asc 为由小到大的升序,desc 为由大到小的降序。"
+      }
+    },
+    "additionalProperties": false
+  }
+}
