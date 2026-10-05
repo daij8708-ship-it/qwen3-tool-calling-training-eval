@@ -1,0 +1,222 @@
+[
+  {
+    "id": "H061",
+    "query": "电脑总蓝屏，先说排查步骤，再帮我找南京鼓楼区的维修店。",
+    "expected_routes": [
+      "technical",
+      "service"
+    ],
+    "answer_keywords": [],
+    "writes_data": false,
+    "category": "multi_intent"
+  },
+  {
+    "id": "H062",
+    "query": "解释 U 盘读不出来怎么排查，同时导航到上海虹桥站。",
+    "expected_routes": [
+      "technical",
+      "service"
+    ],
+    "answer_keywords": [],
+    "writes_data": false,
+    "category": "multi_intent"
+  },
+  {
+    "id": "H063",
+    "query": "笔记本充不上电该怎么查？另外找杭州东站附近的维修点。",
+    "expected_routes": [
+      "technical",
+      "service"
+    ],
+    "answer_keywords": [],
+    "writes_data": false,
+    "category": "multi_intent"
+  },
+  {
+    "id": "H064",
+    "query": "先分析 Wi-Fi 连上却不能上网的原因，再查今天南京的天气。",
+    "expected_routes": [
+      "technical",
+      "realtime"
+    ],
+    "answer_keywords": [],
+    "writes_data": false,
+    "category": "multi_intent"
+  },
+  {
+    "id": "H065",
+    "query": "告诉我 Windows 更新失败如何处理，并查本周最新的系统安全公告。",
+    "expected_routes": [
+      "technical",
+      "realtime"
+    ],
+    "answer_keywords": [],
+    "writes_data": false,
+    "category": "multi_intent"
+  },
+  {
+    "id": "H066",
+    "query": "外接显示器没声音怎么办？顺便查询今天上海是否下雨。",
+    "expected_routes": [
+      "technical",
+      "realtime"
+    ],
+    "answer_keywords": [],
+    "writes_data": false,
+    "category": "multi_intent"
+  },
+  {
+    "id": "H067",
+    "query": "查一下今天北京的天气，再帮我导航到北京西站。",
+    "expected_routes": [
+      "realtime",
+      "service"
+    ],
+    "answer_keywords": [],
+    "writes_data": false,
+    "category": "multi_intent"
+  },
+  {
+    "id": "H068",
+    "query": "看看苏州当前气温，再找苏州工业园区附近的汽车修理店。",
+    "expected_routes": [
+      "realtime",
+      "service"
+    ],
+    "answer_keywords": [],
+    "writes_data": false,
+    "category": "multi_intent"
+  },
+  {
+    "id": "H069",
+    "query": "查今天杭州的降雨预报，随后给我去杭州东站的路线。",
+    "expected_routes": [
+      "realtime",
+      "service"
+    ],
+    "answer_keywords": [],
+    "writes_data": false,
+    "category": "multi_intent"
+  },
+  {
+    "id": "H070",
+    "query": "说明电脑反复重启怎么排查，再查询我的售后工单进度。",
+    "expected_routes": [
+      "technical",
+      "ticket"
+    ],
+    "answer_keywords": [],
+    "writes_data": false,
+    "category": "multi_intent"
+  },
+  {
+    "id": "H071",
+    "query": "帮我判断打印队列卡住的原因，再查一下已有工单的进度。",
+    "expected_routes": [
+      "technical",
+      "ticket"
+    ],
+    "answer_keywords": [],
+    "writes_data": false,
+    "category": "multi_intent"
+  },
+  {
+    "id": "H072",
+    "query": "分析一下手机连不上 Wi-Fi 的原因，同时查询人工客服是否接手了我的工单。",
+    "expected_routes": [
+      "technical",
+      "ticket"
+    ],
+    "answer_keywords": [],
+    "writes_data": false,
+    "category": "multi_intent"
+  },
+  {
+    "id": "H073",
+    "query": "查本周人工智能行业新闻，再看看我的报修单有没有更新。",
+    "expected_routes": [
+      "realtime",
+      "ticket"
+    ],
+    "answer_keywords": [],
+    "writes_data": false,
+    "category": "multi_intent"
+  },
+  {
+    "id": "H074",
+    "query": "请告诉我南京今天的天气，并帮我查看售后工单状态。",
+    "expected_routes": [
+      "realtime",
+      "ticket"
+    ],
+    "answer_keywords": [],
+    "writes_data": false,
+    "category": "multi_intent"
+  },
+  {
+    "id": "H075",
+    "query": "查询最近的安卓安全公告，另外查一下我原来工单的处理状态。",
+    "expected_routes": [
+      "realtime",
+      "ticket"
+    ],
+    "answer_keywords": [],
+    "writes_data": false,
+    "category": "multi_intent"
+  },
+  {
+    "id": "H076",
+    "query": "找南京新街口附近的维修店，再帮我查询已有工单进度。",
+    "expected_routes": [
+      "service",
+      "ticket"
+    ],
+    "answer_keywords": [],
+    "writes_data": false,
+    "category": "multi_intent"
+  },
+  {
+    "id": "H077",
+    "query": "给我去上海博物馆东馆的导航，同时查询现有工单是否已转人工。",
+    "expected_routes": [
+      "service",
+      "ticket"
+    ],
+    "answer_keywords": [],
+    "writes_data": false,
+    "category": "multi_intent"
+  },
+  {
+    "id": "H078",
+    "query": "查一下合肥政务区的服务中心位置，再核对我的维修申请进度。",
+    "expected_routes": [
+      "service",
+      "ticket"
+    ],
+    "answer_keywords": [],
+    "writes_data": false,
+    "category": "multi_intent"
+  },
+  {
+    "id": "H079",
+    "query": "把“请尽快确认”改得礼貌一些，再查今天苏州的天气。",
+    "expected_routes": [
+      "general",
+      "realtime"
+    ],
+    "answer_keywords": [],
+    "writes_data": false,
+    "category": "multi_intent"
+  },
+  {
+    "id": "H080",
+    "query": "解释一下机会成本，再给我去南京南站的导航。",
+    "expected_routes": [
+      "general",
+      "service"
+    ],
+    "answer_keywords": [],
+    "writes_data": false,
+    "category": "multi_intent"
+  }
+]

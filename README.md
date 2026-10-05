@@ -78,17 +78,19 @@ python -m uvicorn api.app:app --host 127.0.0.1 --port 8011 --workers 1
 
 在原六工具实验之外，本项目增加了面向 [ITS-Multi-Agent-System](https://github.com/daij8708-ship-it/ITS-Multi-Agent-System) 的五路分诊：技术咨询、实时信息、服务站、工单、普通对话。它只选择接手请求的 Agent；知识库、搜索、地图、工单及回答仍由多智能体项目中的云端模型处理。多任务请求或本地服务不可用时，多智能体项目使用原有云端主调度。
 
-路由适配器从现有 `lora_1p7b_v0/best` 继续训练，单独保存在 `train/outputs/agent_router_v0/best`，不会覆盖六工具适配器。先完成上面的基座与原 LoRA 训练，再运行：
+路由适配器从现有 `lora_1p7b_v0/best` 继续训练，单独保存在 `train/outputs/agent_router_v0/best`，不会覆盖六工具适配器。v0 只训练单任务五选一；v1、v2 增加跨 Agent 多任务交还云端与同领域多步骤反例。先完成上面的基座与原 LoRA 训练，再运行：
 
 ```powershell
 & '.\.venv-train\Scripts\python.exe' '.\train\train_agent_router.py'
+& '.\.venv-train\Scripts\python.exe' '.\train\train_agent_router_v1.py'
+& '.\.venv-train\Scripts\python.exe' '.\train\train_agent_router_v1.py' --source-adapter '.\train\outputs\agent_router_v1\best' --extra-data '.\data\agent_route_boundaries_v2.json' --output '.\train\outputs\agent_router_v2' --learning-rate 0.00001 --epochs 2 --seed 20261006
 & '.\.venv-train\Scripts\python.exe' -m uvicorn api.app:app --host 127.0.0.1 --port 8011 --workers 1
-& '.\.venv-train\Scripts\python.exe' '.\eval\agent_route_eval.py' --cases '.\data\agent_route_final_v2.json' --out '.\reports\agent_route_recheck'
+& '.\.venv-train\Scripts\python.exe' '.\eval\agent_route_eval.py' --cases '.\data\agent_route_frozen_v2.json' --out '.\reports\agent_route_frozen_v2_recheck'
 ```
 
 `POST http://127.0.0.1:8011/route` 接收 `{ "user_request": "电脑黑屏怎么排查" }`，返回 `route`（`technical` / `realtime` / `service` / `ticket` / `general`）或 `null`。`/decide` 继续使用原六工具适配器。8011 专门给模型服务，多智能体知识库继续使用 8001。
 
-训练设置与逐项结果见 [`reports/agent_route_result.md`](reports/agent_route_result.md)。路由 LoRA 权重也被 Git 忽略，克隆公开仓库后需本地训练；只下载源码并启动 `/route` 会返回 `adapter_unavailable`。多智能体项目的本地开发配置已接入 8011；Docker 默认关闭该路由，需要从容器可达的地址启动模型服务后再启用。
+v2 服务会优先加载 `agent_router_v2/best`；没有时依次回落到 v1、v0。旧版训练与逐项结果见 [`reports/agent_route_result.md`](reports/agent_route_result.md)，多意图修正及新旧题验收见 [`reports/agent_route_v2_result.md`](reports/agent_route_v2_result.md)。v2 在训练前冻结的 50 条新题上首次取得 48/50；旧 80 条题的 80/80 是调试后的回归，不是独立测试。路由 LoRA 权重被 Git 忽略，克隆公开仓库后需本地训练；只下载源码并启动 `/route` 会返回 `adapter_unavailable`。多智能体项目的本地开发配置已接入 8011；Docker 默认关闭该路由，需要从容器可达的地址启动模型服务后再启用。
 
 ## 复核与测试
 

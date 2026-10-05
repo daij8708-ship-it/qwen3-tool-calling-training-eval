@@ -21,6 +21,10 @@ docs/
 小模型工具调用优化项目规划书.md
 reports/baselines/smoke_*/
 reports/**/*predictions*.jsonl
+!reports/agent_route_frozen_v1_first/predictions.jsonl
+!reports/agent_route_frozen_v1_v2_regression/predictions.jsonl
+!reports/agent_route_frozen_v2_first/predictions.jsonl
+!reports/agent_route_old80_v2_regression/predictions.jsonl
 reports/**/run_config.json
 *.log
 .pytest_cache/

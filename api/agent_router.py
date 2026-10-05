@@ -42,11 +42,49 @@ def build_route_prompt(user_request: str, now: str, prefix: str = "") -> str:
     return "\n".join(lines)
 
 
+def build_route_prompt_v1(user_request: str, now: str) -> str:
+    """第二代分诊：单任务选五路，跨 Agent 多任务交由云端编排。"""
+    lines = [
+        "你是多智能体系统的第一层分诊器。你不回答问题，只输出一个 JSON 对象。",
+        "先判断用户是否明确提出需要不同智能体处理的两个或更多任务。",
+        "若是跨智能体多任务，输出 {\"action\":\"delegate\",\"reason\":\"multi_task\"}，交给云端编排全部任务。",
+        "同一智能体领域内的多个步骤仍属于单路由，例如排查故障再给排查步骤、查两地天气、查维修店再导航过去。",
+        "单路由时输出 {\"action\":\"call\",\"tool\":\"工具名\",\"arguments\":{\"query\":\"原始请求\"}}。",
+        "缺少工单号、地点或原文也要选对应智能体；信息追问由下游负责。",
+        "只能使用以下五个工具名，query 必须逐字保留用户请求；不得生成答案或其他文字。",
+        "本次可用工具:",
+    ]
+    lines.extend(f"{name}(query:str):{description}" for name, description in ROUTES.items())
+    lines.extend((f"服务端当前时间: {now}", f"用户请求: {user_request}"))
+    return "\n".join(lines)
+
+
 def validate_route_decision(user_request: str, decision: object) -> tuple[str | None, str]:
     """只采纳白名单中的单一路由，失败时交还原有云端调度。"""
     if MULTI_TASK.search(user_request):
         return None, "multi_task"
     if not isinstance(decision, dict) or decision.get("action") != "call":
+        return None, "non_call"
+    tool = decision.get("tool")
+    if tool not in TOOL_TO_ROUTE:
+        return None, "unknown_tool"
+    arguments = decision.get("arguments")
+    if not isinstance(arguments, dict) or set(arguments) != {"query"}:
+        return None, "invalid_arguments"
+    if not isinstance(arguments["query"], str) or not arguments["query"].strip():
+        return None, "empty_query"
+    return TOOL_TO_ROUTE[tool], "model"
+
+
+def validate_route_decision_v1(decision: object) -> tuple[str | None, str]:
+    """多任务由模型显式交还云端；单路由仍要通过严格白名单。"""
+    if not isinstance(decision, dict):
+        return None, "invalid_json"
+    if decision.get("action") == "delegate":
+        if decision.get("reason") == "multi_task":
+            return None, "model_multi_task"
+        return None, "invalid_delegate"
+    if decision.get("action") != "call":
         return None, "non_call"
     tool = decision.get("tool")
     if tool not in TOOL_TO_ROUTE:

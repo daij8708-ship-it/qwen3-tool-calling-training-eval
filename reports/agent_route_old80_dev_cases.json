@@ -1,0 +1,405 @@
+{
+  "description": "2026-10-04 80题旧集的v2开发回归，不作为独立测试",
+  "cases": [
+    {
+      "id": "H001",
+      "query": "笔记本插着电却一直显示未充电，先帮我判断可能原因。",
+      "expected": "technical"
+    },
+    {
+      "id": "H002",
+      "query": "电脑开机后反复进入自动修复，应该从哪里排查？",
+      "expected": "technical"
+    },
+    {
+      "id": "H003",
+      "query": "Windows 更新后蓝牙开关消失了，怎么处理？",
+      "expected": "technical"
+    },
+    {
+      "id": "H004",
+      "query": "打印机显示在线，但文档始终卡在打印队列里。",
+      "expected": "technical"
+    },
+    {
+      "id": "H005",
+      "query": "U 盘能被识别，打开时却提示需要格式化，怎么办？",
+      "expected": "technical"
+    },
+    {
+      "id": "H006",
+      "query": "重启后桌面文件都不见了，能先检查哪些位置？",
+      "expected": "technical"
+    },
+    {
+      "id": "H007",
+      "query": "电脑风扇一直高速转，任务管理器里 CPU 占用却不高。",
+      "expected": "technical"
+    },
+    {
+      "id": "H008",
+      "query": "手机连上家里的 Wi-Fi 后其他设备正常，只有它无法上网。",
+      "expected": "technical"
+    },
+    {
+      "id": "H009",
+      "query": "系统提示磁盘空间不足，但我找不到占空间的文件。",
+      "expected": "technical"
+    },
+    {
+      "id": "H010",
+      "query": "外接显示器有画面但没有声音，怎样定位问题？",
+      "expected": "technical"
+    },
+    {
+      "id": "H011",
+      "query": "把系统还原和重装系统的适用场景讲清楚，我现在有蓝屏故障。",
+      "expected": "technical"
+    },
+    {
+      "id": "H012",
+      "query": "装完显卡驱动后游戏启动就闪退，先做什么排查？",
+      "expected": "technical"
+    },
+    {
+      "id": "H013",
+      "query": "请查一下今天杭州会不会下雨。",
+      "expected": "realtime"
+    },
+    {
+      "id": "H014",
+      "query": "现在上海的空气质量指数是多少？",
+      "expected": "realtime"
+    },
+    {
+      "id": "H015",
+      "query": "最近一周有哪些人工智能行业的重要消息？",
+      "expected": "realtime"
+    },
+    {
+      "id": "H016",
+      "query": "查一下今天人民币兑美元的汇率。",
+      "expected": "realtime"
+    },
+    {
+      "id": "H017",
+      "query": "这周末南京的最高气温预计是多少？",
+      "expected": "realtime"
+    },
+    {
+      "id": "H018",
+      "query": "今天沪深 300 指数收盘是多少？",
+      "expected": "realtime"
+    },
+    {
+      "id": "H019",
+      "query": "目前北京到天津的高铁有没有晚点公告？",
+      "expected": "realtime"
+    },
+    {
+      "id": "H020",
+      "query": "刚结束的那场 NBA 总决赛比分是多少？",
+      "expected": "realtime"
+    },
+    {
+      "id": "H021",
+      "query": "查查本月最新发布的安卓安全公告。",
+      "expected": "realtime"
+    },
+    {
+      "id": "H022",
+      "query": "今年国庆假期高速拥堵情况有最新通报吗？",
+      "expected": "realtime"
+    },
+    {
+      "id": "H023",
+      "query": "现在苏州的天气预警是什么级别？",
+      "expected": "realtime"
+    },
+    {
+      "id": "H024",
+      "query": "最近三天半导体行业有什么新动态？",
+      "expected": "realtime"
+    },
+    {
+      "id": "H025",
+      "query": "我在南京鼓楼区，帮我找几家附近的汽车修理店。",
+      "expected": "service"
+    },
+    {
+      "id": "H026",
+      "query": "从新街口去南京南站，给我一个导航入口。",
+      "expected": "service"
+    },
+    {
+      "id": "H027",
+      "query": "查一下上海虹桥站周围的充电站位置。",
+      "expected": "service"
+    },
+    {
+      "id": "H028",
+      "query": "帮我定位到杭州东站，并提供路线。",
+      "expected": "service"
+    },
+    {
+      "id": "H029",
+      "query": "苏州工业园区附近哪里可以维修笔记本？",
+      "expected": "service"
+    },
+    {
+      "id": "H030",
+      "query": "我在合肥政务区，想找最近的汽车服务中心。",
+      "expected": "service"
+    },
+    {
+      "id": "H031",
+      "query": "从鼓楼广场导航去玄武湖公园。",
+      "expected": "service"
+    },
+    {
+      "id": "H032",
+      "query": "南京大学仙林校区具体在哪里？给我导航链接。",
+      "expected": "service"
+    },
+    {
+      "id": "H033",
+      "query": "查找北京西站附近可以修手机的门店。",
+      "expected": "service"
+    },
+    {
+      "id": "H034",
+      "query": "在武汉光谷找一家离地铁站近的电脑维修点。",
+      "expected": "service"
+    },
+    {
+      "id": "H035",
+      "query": "我想去上海博物馆东馆，帮我规划路线。",
+      "expected": "service"
+    },
+    {
+      "id": "H036",
+      "query": "找一下深圳福田口岸附近的汽车维修站。",
+      "expected": "service"
+    },
+    {
+      "id": "H037",
+      "query": "我有一个售后工单，想知道现在处理到哪一步了。",
+      "expected": "ticket"
+    },
+    {
+      "id": "H038",
+      "query": "请查我的报修单状态，需要我提供单号的话告诉我。",
+      "expected": "ticket"
+    },
+    {
+      "id": "H039",
+      "query": "之前报修的电脑还没修好，帮我看看工单是否还在处理中。",
+      "expected": "ticket"
+    },
+    {
+      "id": "H040",
+      "query": "我想确认现有工单有没有转给人工客服。",
+      "expected": "ticket"
+    },
+    {
+      "id": "H041",
+      "query": "能不能帮我看看维修工单目前是谁在处理？",
+      "expected": "ticket"
+    },
+    {
+      "id": "H042",
+      "query": "我的工单联系方式之前填错了，先帮我查查记录里的信息。",
+      "expected": "ticket"
+    },
+    {
+      "id": "H043",
+      "query": "售后单显示已关闭，帮我查一下结案状态。",
+      "expected": "ticket"
+    },
+    {
+      "id": "H044",
+      "query": "麻烦核对一下我名下的维修申请进度。",
+      "expected": "ticket"
+    },
+    {
+      "id": "H045",
+      "query": "刚提交的报修工单现在是什么状态？",
+      "expected": "ticket"
+    },
+    {
+      "id": "H046",
+      "query": "帮我确认工单是不是已经分配给工程师。",
+      "expected": "ticket"
+    },
+    {
+      "id": "H047",
+      "query": "帮我查一下原来的工单有没有记录电脑序列号。",
+      "expected": "ticket"
+    },
+    {
+      "id": "H048",
+      "query": "设备返修记录能从我的工单里查到吗？",
+      "expected": "ticket"
+    },
+    {
+      "id": "H049",
+      "query": "把这句话改得更礼貌：你快点回复我。",
+      "expected": "general"
+    },
+    {
+      "id": "H050",
+      "query": "用一句话解释什么是机会成本。",
+      "expected": "general"
+    },
+    {
+      "id": "H051",
+      "query": "帮我列一个周末整理房间的清单。",
+      "expected": "general"
+    },
+    {
+      "id": "H052",
+      "query": "把“保持耐心，持续练习”翻译成英文。",
+      "expected": "general"
+    },
+    {
+      "id": "H053",
+      "query": "给下面这段话拟个标题：团队每周复盘进度并调整目标。",
+      "expected": "general"
+    },
+    {
+      "id": "H054",
+      "query": "比较一下归纳法和演绎法的区别。",
+      "expected": "general"
+    },
+    {
+      "id": "H055",
+      "query": "我想练习面试自我介绍，帮我列三个重点。",
+      "expected": "general"
+    },
+    {
+      "id": "H056",
+      "query": "将“明天开会，带上材料”改写成正式通知。",
+      "expected": "general"
+    },
+    {
+      "id": "H057",
+      "query": "解释一下为什么读书要做笔记。",
+      "expected": "general"
+    },
+    {
+      "id": "H058",
+      "query": "我刚换了工作，想制定一个月的学习计划。",
+      "expected": "general"
+    },
+    {
+      "id": "H059",
+      "query": "帮我从这段话提取关键词：产品上线后收集反馈并修复问题。",
+      "expected": "general"
+    },
+    {
+      "id": "H060",
+      "query": "给朋友写一句简短的生日祝福。",
+      "expected": "general"
+    },
+    {
+      "id": "H061",
+      "query": "电脑总蓝屏，先说排查步骤，再帮我找南京鼓楼区的维修店。",
+      "expected": "mixed"
+    },
+    {
+      "id": "H062",
+      "query": "解释 U 盘读不出来怎么排查，同时导航到上海虹桥站。",
+      "expected": "mixed"
+    },
+    {
+      "id": "H063",
+      "query": "笔记本充不上电该怎么查？另外找杭州东站附近的维修点。",
+      "expected": "mixed"
+    },
+    {
+      "id": "H064",
+      "query": "先分析 Wi-Fi 连上却不能上网的原因，再查今天南京的天气。",
+      "expected": "mixed"
+    },
+    {
+      "id": "H065",
+      "query": "告诉我 Windows 更新失败如何处理，并查本周最新的系统安全公告。",
+      "expected": "mixed"
+    },
+    {
+      "id": "H066",
+      "query": "外接显示器没声音怎么办？顺便查询今天上海是否下雨。",
+      "expected": "mixed"
+    },
+    {
+      "id": "H067",
+      "query": "查一下今天北京的天气，再帮我导航到北京西站。",
+      "expected": "mixed"
+    },
+    {
+      "id": "H068",
+      "query": "看看苏州当前气温，再找苏州工业园区附近的汽车修理店。",
+      "expected": "mixed"
+    },
+    {
+      "id": "H069",
+      "query": "查今天杭州的降雨预报，随后给我去杭州东站的路线。",
+      "expected": "mixed"
+    },
+    {
+      "id": "H070",
+      "query": "说明电脑反复重启怎么排查，再查询我的售后工单进度。",
+      "expected": "mixed"
+    },
+    {
+      "id": "H071",
+      "query": "帮我判断打印队列卡住的原因，再查一下已有工单的进度。",
+      "expected": "mixed"
+    },
+    {
+      "id": "H072",
+      "query": "分析一下手机连不上 Wi-Fi 的原因，同时查询人工客服是否接手了我的工单。",
+      "expected": "mixed"
+    },
+    {
+      "id": "H073",
+      "query": "查本周人工智能行业新闻，再看看我的报修单有没有更新。",
+      "expected": "mixed"
+    },
+    {
+      "id": "H074",
+      "query": "请告诉我南京今天的天气，并帮我查看售后工单状态。",
+      "expected": "mixed"
+    },
+    {
+      "id": "H075",
+      "query": "查询最近的安卓安全公告，另外查一下我原来工单的处理状态。",
+      "expected": "mixed"
+    },
+    {
+      "id": "H076",
+      "query": "找南京新街口附近的维修店，再帮我查询已有工单进度。",
+      "expected": "mixed"
+    },
+    {
+      "id": "H077",
+      "query": "给我去上海博物馆东馆的导航，同时查询现有工单是否已转人工。",
+      "expected": "mixed"
+    },
+    {
+      "id": "H078",
+      "query": "查一下合肥政务区的服务中心位置，再核对我的维修申请进度。",
+      "expected": "mixed"
+    },
+    {
+      "id": "H079",
+      "query": "把“请尽快确认”改得礼貌一些，再查今天苏州的天气。",
+      "expected": "mixed"
+    },
+    {
+      "id": "H080",
+      "query": "解释一下机会成本，再给我去南京南站的导航。",
+      "expected": "mixed"
+    }
+  ]
+}

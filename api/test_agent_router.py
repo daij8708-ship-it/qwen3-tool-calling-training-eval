@@ -1,6 +1,6 @@
 import unittest
 
-from api.agent_router import TOOL_TO_ROUTE, validate_route_decision
+from api.agent_router import TOOL_TO_ROUTE, validate_route_decision, validate_route_decision_v1
 
 
 class AgentRouteGateTest(unittest.TestCase):
@@ -18,6 +18,20 @@ class AgentRouteGateTest(unittest.TestCase):
         for query in ("电脑黑屏，并帮我找维修点", "查询故障资料，没解决就创建工单",
                       "查新闻并创建工单", "如果修不好就找维修站"):
             self.assertEqual(validate_route_decision(query, decision), (None, "multi_task"))
+
+    def test_v1_model_can_explicitly_defer_cross_agent_tasks(self):
+        self.assertEqual(
+            validate_route_decision_v1({"action": "delegate", "reason": "multi_task"}),
+            (None, "model_multi_task"),
+        )
+
+    def test_v1_single_route_stays_whitelisted(self):
+        decision = {"action": "call", "tool": "query_service_station_and_navigate",
+                    "arguments": {"query": "找维修店并导航过去"}}
+        self.assertEqual(validate_route_decision_v1(decision), ("service", "model"))
+        self.assertEqual(validate_route_decision_v1({"action": "call", "tool": "delete_ticket",
+                                                     "arguments": {"query": "测试"}}),
+                         (None, "unknown_tool"))
 
 
 if __name__ == "__main__":

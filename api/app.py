@@ -52,7 +52,8 @@ def health(request: Request):
     service = request.app.state.service
     return {"status": "ok", "model": service.model_name, "model_revision": service.model_revision,
             "adapter_sha256": service.adapter_hash,
-            "route_adapter_sha256": service.route_adapter_hash, "profiles": PROFILES}
+            "route_adapter_sha256": service.route_adapter_hash,
+            "route_adapter_version": service.route_adapter_version, "profiles": PROFILES}
 
 
 @app.post("/decide")

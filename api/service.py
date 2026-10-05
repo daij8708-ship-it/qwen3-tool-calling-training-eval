@@ -19,7 +19,10 @@ import executor  # noqa: E402
 import generate_dataset as generator  # noqa: E402
 import simulator  # noqa: E402
 from api.decision_policy import apply_policy  # noqa: E402
-from api.agent_router import MULTI_TASK, build_route_prompt, validate_route_decision  # noqa: E402
+from api.agent_router import (  # noqa: E402
+    MULTI_TASK, build_route_prompt, build_route_prompt_v1,
+    validate_route_decision, validate_route_decision_v1,
+)
 
 PROFILES = {
     "all": ["search_documents", "get_record", "calculate", "aggregate_data", "check_availability", "create_event"],
@@ -81,11 +84,23 @@ class ModelService:
             str(model_dir), local_files_only=True, torch_dtype=torch.float16
         ).to("cuda")
         self.model = PeftModel.from_pretrained(base, str(adapter_dir), is_trainable=False)
-        route_adapter_dir = ROOT / "train" / "outputs" / "agent_router_v0" / "best"
+        route_v2_dir = ROOT / "train" / "outputs" / "agent_router_v2" / "best"
+        route_v1_dir = ROOT / "train" / "outputs" / "agent_router_v1" / "best"
+        route_v0_dir = ROOT / "train" / "outputs" / "agent_router_v0" / "best"
+        route_adapter_dir = next(
+            (path for path in (route_v2_dir, route_v1_dir, route_v0_dir)
+             if (path / "adapter_model.safetensors").is_file()),
+            route_v0_dir,
+        )
         self.route_adapter_hash = None
+        self.route_adapter_version = None
         if (route_adapter_dir / "adapter_model.safetensors").is_file():
             self.model.load_adapter(str(route_adapter_dir), adapter_name="agent_router", is_trainable=False)
             self.route_adapter_hash = file_hash(route_adapter_dir / "adapter_model.safetensors")
+            self.route_adapter_version = (
+                "v2" if route_adapter_dir == route_v2_dir else
+                "v1" if route_adapter_dir == route_v1_dir else "v0"
+            )
         self.model.eval()
         self.model.generation_config = GenerationConfig.from_model_config(self.model.config)
 
@@ -148,14 +163,17 @@ class ModelService:
     def route(self, user_request):
         """只判断第一层 Agent；不进入模拟工具执行闸门。"""
         with self.lock:
-            if MULTI_TASK.search(user_request):
+            if self.route_adapter_version == "v0" and MULTI_TASK.search(user_request):
                 return {"route": None, "reason": "multi_task", "decision": None,
-                        "raw_model_output": None, "latency_seconds": 0.0}
+                        "raw_model_output": None, "latency_seconds": 0.0,
+                        "adapter_version": self.route_adapter_version}
             if self.route_adapter_hash is None:
                 return {"route": None, "reason": "adapter_unavailable", "decision": None,
-                        "raw_model_output": None, "latency_seconds": 0.0}
+                        "raw_model_output": None, "latency_seconds": 0.0,
+                        "adapter_version": self.route_adapter_version}
             now = self.now_provider()
-            prompt = build_route_prompt(user_request, now)
+            prompt = (build_route_prompt_v1(user_request, now)
+                      if self.route_adapter_version in ("v1", "v2") else build_route_prompt(user_request, now))
             encoded = self.tokenizer.apply_chat_template(
                 [{"role": "user", "content": prompt}], tokenize=True,
                 add_generation_prompt=True, enable_thinking=False, return_tensors="pt",
@@ -179,13 +197,16 @@ class ModelService:
                 decision = json.loads(raw)
             except json.JSONDecodeError:
                 decision = None
-            route, reason = validate_route_decision(user_request, decision)
+            route, reason = (validate_route_decision_v1(decision)
+                             if self.route_adapter_version in ("v1", "v2")
+                             else validate_route_decision(user_request, decision))
             return {
                 "route": route,
                 "reason": reason,
                 "decision": decision,
                 "raw_model_output": raw,
                 "latency_seconds": round(latency, 3),
+                "adapter_version": self.route_adapter_version,
             }
 
     def confirm(self, token):

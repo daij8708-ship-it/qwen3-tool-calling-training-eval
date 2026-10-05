@@ -1,0 +1,53 @@
+{
+  "dataset": "agent_route_old80_dev_cases.json",
+  "evaluated_at_utc": "2026-10-05T03:40:56.577176+00:00",
+  "count": 80,
+  "correct": 80,
+  "by_route": {
+    "general": {
+      "count": 12,
+      "correct": 12
+    },
+    "mixed": {
+      "count": 20,
+      "correct": 20
+    },
+    "realtime": {
+      "count": 12,
+      "correct": 12
+    },
+    "service": {
+      "count": 12,
+      "correct": 12
+    },
+    "technical": {
+      "count": 12,
+      "correct": 12
+    },
+    "ticket": {
+      "count": 12,
+      "correct": 12
+    }
+  },
+  "confusion": {
+    "general": {
+      "general": 12
+    },
+    "mixed": {
+      "mixed": 20
+    },
+    "realtime": {
+      "realtime": 12
+    },
+    "service": {
+      "service": 12
+    },
+    "technical": {
+      "technical": 12
+    },
+    "ticket": {
+      "ticket": 12
+    }
+  },
+  "mean_latency_seconds": 0.913
+}

@@ -1,0 +1,55 @@
+{
+  "dataset": "agent_route_frozen_v2.json",
+  "evaluated_at_utc": "2026-10-05T03:37:55.985675+00:00",
+  "count": 50,
+  "correct": 48,
+  "by_route": {
+    "general": {
+      "count": 7,
+      "correct": 7
+    },
+    "mixed": {
+      "count": 15,
+      "correct": 14
+    },
+    "realtime": {
+      "count": 7,
+      "correct": 6
+    },
+    "service": {
+      "count": 7,
+      "correct": 7
+    },
+    "technical": {
+      "count": 7,
+      "correct": 7
+    },
+    "ticket": {
+      "count": 7,
+      "correct": 7
+    }
+  },
+  "confusion": {
+    "general": {
+      "general": 7
+    },
+    "mixed": {
+      "mixed": 14,
+      "service": 1
+    },
+    "realtime": {
+      "realtime": 6,
+      "mixed": 1
+    },
+    "service": {
+      "service": 7
+    },
+    "technical": {
+      "technical": 7
+    },
+    "ticket": {
+      "ticket": 7
+    }
+  },
+  "mean_latency_seconds": 0.828
+}
