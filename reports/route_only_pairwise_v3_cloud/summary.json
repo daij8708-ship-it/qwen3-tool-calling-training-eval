@@ -1,0 +1,48 @@
+{
+  "mode": "cloud",
+  "cases_sha256": "661e77eb129efd67b7a58eff64632de5560bb3d8036fe4043d32633936a1b94e",
+  "count": 80,
+  "correct": 80,
+  "by_category": {
+    "general": {
+      "count": 10,
+      "correct": 10
+    },
+    "multi_intent": {
+      "count": 20,
+      "correct": 20
+    },
+    "realtime": {
+      "count": 10,
+      "correct": 10
+    },
+    "same_agent_steps": {
+      "count": 10,
+      "correct": 10
+    },
+    "service": {
+      "count": 10,
+      "correct": 10
+    },
+    "technical": {
+      "count": 10,
+      "correct": 10
+    },
+    "ticket": {
+      "count": 10,
+      "correct": 10
+    }
+  },
+  "latency_ms": {
+    "mean": 1839.562,
+    "p50": 1817.334,
+    "p95": 2841.071
+  },
+  "cloud_usage": {
+    "available_rows": 80,
+    "requests": 160,
+    "input_tokens": 490057,
+    "output_tokens": 15655,
+    "total_tokens": 505712
+  }
+}
