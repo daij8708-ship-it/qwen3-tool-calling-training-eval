@@ -1,6 +1,8 @@
 import unittest
 
-from api.agent_router import TOOL_TO_ROUTE, validate_route_decision, validate_route_decision_v1
+from api.agent_router import (
+    TOOL_TO_ROUTE, split_two_tasks, validate_route_decision, validate_route_decision_v1,
+)
 
 
 class AgentRouteGateTest(unittest.TestCase):
@@ -32,6 +34,14 @@ class AgentRouteGateTest(unittest.TestCase):
         self.assertEqual(validate_route_decision_v1({"action": "call", "tool": "delete_ticket",
                                                      "arguments": {"query": "测试"}}),
                          (None, "unknown_tool"))
+
+    def test_two_clause_boundary_requires_exactly_two_subtasks(self):
+        self.assertEqual(
+            split_two_tasks("先查本周手机新闻，再查本周芯片新闻。"),
+            ("先查本周手机新闻", "查本周芯片新闻"),
+        )
+        self.assertIsNone(split_two_tasks("查手机新闻"))
+        self.assertIsNone(split_two_tasks("先查天气，然后查工单，再写祝福。"))
 
 
 if __name__ == "__main__":

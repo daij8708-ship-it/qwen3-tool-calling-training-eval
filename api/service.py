@@ -20,8 +20,8 @@ import generate_dataset as generator  # noqa: E402
 import simulator  # noqa: E402
 from api.decision_policy import apply_policy  # noqa: E402
 from api.agent_router import (  # noqa: E402
-    MULTI_TASK, build_route_prompt, build_route_prompt_v1,
-    validate_route_decision, validate_route_decision_v1,
+    MULTI_TASK, TOOL_TO_ROUTE, build_route_prompt, build_route_prompt_v1,
+    split_two_tasks, validate_route_decision, validate_route_decision_v1,
 )
 
 PROFILES = {
@@ -160,6 +160,45 @@ class ModelService:
                 "latency_seconds": round(latency, 3),
             }
 
+    def _route_once(self, user_request, now):
+        """Run one local routing inference while the caller holds the service lock."""
+        prompt = (build_route_prompt_v1(user_request, now)
+                  if self.route_adapter_version in ("v1", "v2") else build_route_prompt(user_request, now))
+        encoded = self.tokenizer.apply_chat_template(
+            [{"role": "user", "content": prompt}], tokenize=True,
+            add_generation_prompt=True, enable_thinking=False, return_tensors="pt",
+        ).to("cuda")
+        self.torch.cuda.synchronize()
+        start = time.perf_counter()
+        self.model.set_adapter("agent_router")
+        try:
+            with self.torch.inference_mode():
+                generated = self.model.generate(
+                    encoded, attention_mask=self.torch.ones_like(encoded),
+                    max_new_tokens=self.max_new_tokens, do_sample=False,
+                    pad_token_id=self.tokenizer.eos_token_id,
+                )
+        finally:
+            self.model.set_adapter("default")
+        self.torch.cuda.synchronize()
+        latency = time.perf_counter() - start
+        raw = self.tokenizer.decode(generated[0][encoded.shape[-1]:], skip_special_tokens=True).strip()
+        try:
+            decision = json.loads(raw)
+        except json.JSONDecodeError:
+            decision = None
+        route, reason = (validate_route_decision_v1(decision)
+                         if self.route_adapter_version in ("v1", "v2")
+                         else validate_route_decision(user_request, decision))
+        return {
+            "route": route,
+            "reason": reason,
+            "decision": decision,
+            "raw_model_output": raw,
+            "latency_seconds": round(latency, 3),
+            "adapter_version": self.route_adapter_version,
+        }
+
     def route(self, user_request):
         """只判断第一层 Agent；不进入模拟工具执行闸门。"""
         with self.lock:
@@ -172,42 +211,28 @@ class ModelService:
                         "raw_model_output": None, "latency_seconds": 0.0,
                         "adapter_version": self.route_adapter_version}
             now = self.now_provider()
-            prompt = (build_route_prompt_v1(user_request, now)
-                      if self.route_adapter_version in ("v1", "v2") else build_route_prompt(user_request, now))
-            encoded = self.tokenizer.apply_chat_template(
-                [{"role": "user", "content": prompt}], tokenize=True,
-                add_generation_prompt=True, enable_thinking=False, return_tensors="pt",
-            ).to("cuda")
-            self.torch.cuda.synchronize()
-            start = time.perf_counter()
-            self.model.set_adapter("agent_router")
-            try:
-                with self.torch.inference_mode():
-                    generated = self.model.generate(
-                        encoded, attention_mask=self.torch.ones_like(encoded),
-                        max_new_tokens=self.max_new_tokens, do_sample=False,
-                        pad_token_id=self.tokenizer.eos_token_id,
-                    )
-            finally:
-                self.model.set_adapter("default")
-            self.torch.cuda.synchronize()
-            latency = time.perf_counter() - start
-            raw = self.tokenizer.decode(generated[0][encoded.shape[-1]:], skip_special_tokens=True).strip()
-            try:
-                decision = json.loads(raw)
-            except json.JSONDecodeError:
-                decision = None
-            route, reason = (validate_route_decision_v1(decision)
-                             if self.route_adapter_version in ("v1", "v2")
-                             else validate_route_decision(user_request, decision))
-            return {
-                "route": route,
-                "reason": reason,
-                "decision": decision,
-                "raw_model_output": raw,
-                "latency_seconds": round(latency, 3),
-                "adapter_version": self.route_adapter_version,
-            }
+            if self.route_adapter_version in ("v1", "v2"):
+                clauses = split_two_tasks(user_request)
+                if clauses is not None:
+                    first = self._route_once(clauses[0], now)
+                    second = self._route_once(clauses[1], now)
+                    if first["route"] is not None and second["route"] is not None:
+                        same = first["route"] == second["route"]
+                        tool = next((name for name, route in TOOL_TO_ROUTE.items()
+                                     if route == first["route"]), None)
+                        return {
+                            "route": first["route"] if same else None,
+                            "reason": "same_agent_verified" if same else "model_multi_task",
+                            "decision": ({"action": "call", "tool": tool,
+                                          "arguments": {"query": user_request}} if same else
+                                         {"action": "delegate", "reason": "multi_task"}),
+                            "raw_model_output": None,
+                            "latency_seconds": round(first["latency_seconds"] + second["latency_seconds"], 3),
+                            "adapter_version": self.route_adapter_version,
+                            "clause_routes": [first["route"], second["route"]],
+                        }
+            result = self._route_once(user_request, now)
+            return result
 
     def confirm(self, token):
         with self.lock:

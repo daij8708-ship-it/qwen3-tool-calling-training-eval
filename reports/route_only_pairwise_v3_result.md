@@ -8,7 +8,7 @@
 
 ## 测试口径
 
-- 题库：[router_pairwise_v3.json](../../data/agent_route_pairwise_v3.json)，SHA-256：`661e77eb129efd67b7a58eff64632de5560bb3d8036fe4043d32633936a1b94e`。80 条任务含五类单智能体任务各 10 条、跨智能体任务 20 条、同一智能体的多步骤任务 10 条。与此前的训练种子、冻结集和 80 条 holdout 无完全相同题目。
+- 题库：[router_pairwise_v3.json](../data/agent_route_pairwise_v3.json)，SHA-256：`661e77eb129efd67b7a58eff64632de5560bb3d8036fe4043d32633936a1b94e`。80 条任务含五类单智能体任务各 10 条、跨智能体任务 20 条、同一智能体的多步骤任务 10 条。与此前的训练种子、冻结集和 80 条 holdout 无完全相同题目。
 - 云端侧沿用 ITS 项目现有第一层编排器的提示词、模型、温度和五个专家工具的名称、描述、参数结构。五个工具的执行体换成仅记录调用的空实现，因此不运行专业智能体、MCP 或业务工具。跨智能体任务要求云端选出完整的预期智能体集合。
 - 本地侧直接调用已接入 ITS 的 `/route` 服务。单智能体任务要求精确选中预期智能体；跨智能体任务要求返回 `model_multi_task`，由现有云端编排器继续处理。本地没有在一次请求中列出两个智能体的能力，因此 20/20 表示“正确识别并回退”，不是“双路由全选对”。
 - 两侧按同一题库逐题运行一次；没有根据这批结果改题、调参或重新训练。评分只看第一层路由决策，不包含下游任务执行成功率。
@@ -31,7 +31,7 @@
 
 ## 可复现文件
 
-- [评测脚本](../../eval/compare_agent_routers.py)
+- [评测脚本](../eval/compare_agent_routers.py)
 - [云端逐题结果](./route_only_pairwise_v3_cloud/rows.jsonl)及[汇总](./route_only_pairwise_v3_cloud/summary.json)
 - [本地逐题结果](./route_only_pairwise_v3_local/rows.jsonl)及[汇总](./route_only_pairwise_v3_local/summary.json)
 

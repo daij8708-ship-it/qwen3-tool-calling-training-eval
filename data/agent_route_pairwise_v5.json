@@ -1,0 +1,1157 @@
+[
+  {
+    "id": "S001",
+    "query": "更新驱动后耳机没有声音，应该从哪里查起？",
+    "expected_routes": [
+      "technical"
+    ],
+    "category": "technical",
+    "writes_data": false
+  },
+  {
+    "id": "S002",
+    "query": "电脑连接投影仪后画面一直闪，给我一个排查顺序。",
+    "expected_routes": [
+      "technical"
+    ],
+    "category": "technical",
+    "writes_data": false
+  },
+  {
+    "id": "S003",
+    "query": "重装系统后触控板无法使用，可能是什么原因？",
+    "expected_routes": [
+      "technical"
+    ],
+    "category": "technical",
+    "writes_data": false
+  },
+  {
+    "id": "S004",
+    "query": "浏览器一打开就崩溃，帮我分析排障步骤。",
+    "expected_routes": [
+      "technical"
+    ],
+    "category": "technical",
+    "writes_data": false
+  },
+  {
+    "id": "S005",
+    "query": "路由器能连上但网页打不开，先检查什么？",
+    "expected_routes": [
+      "technical"
+    ],
+    "category": "technical",
+    "writes_data": false
+  },
+  {
+    "id": "S006",
+    "query": "打印任务卡在队列里，请教我清理方法。",
+    "expected_routes": [
+      "technical"
+    ],
+    "category": "technical",
+    "writes_data": false
+  },
+  {
+    "id": "S007",
+    "query": "笔记本休眠后无法唤醒，应该如何处理？",
+    "expected_routes": [
+      "technical"
+    ],
+    "category": "technical",
+    "writes_data": false
+  },
+  {
+    "id": "S008",
+    "query": "显卡驱动安装失败，帮我列出可能的原因。",
+    "expected_routes": [
+      "technical"
+    ],
+    "category": "technical",
+    "writes_data": false
+  },
+  {
+    "id": "S009",
+    "query": "电脑时间总会自己变回去，如何排查？",
+    "expected_routes": [
+      "technical"
+    ],
+    "category": "technical",
+    "writes_data": false
+  },
+  {
+    "id": "S010",
+    "query": "手机连不上蓝牙键盘，先查哪些设置？",
+    "expected_routes": [
+      "technical"
+    ],
+    "category": "technical",
+    "writes_data": false
+  },
+  {
+    "id": "S011",
+    "query": "外接硬盘经常掉线，怎样定位故障？",
+    "expected_routes": [
+      "technical"
+    ],
+    "category": "technical",
+    "writes_data": false
+  },
+  {
+    "id": "S012",
+    "query": "系统提示磁盘空间不足但找不到大文件，怎么检查？",
+    "expected_routes": [
+      "technical"
+    ],
+    "category": "technical",
+    "writes_data": false
+  },
+  {
+    "id": "S013",
+    "query": "屏幕亮度按键失效，给我一个修复建议。",
+    "expected_routes": [
+      "technical"
+    ],
+    "category": "technical",
+    "writes_data": false
+  },
+  {
+    "id": "S014",
+    "query": "摄像头在会议软件里打不开，怎样排查权限？",
+    "expected_routes": [
+      "technical"
+    ],
+    "category": "technical",
+    "writes_data": false
+  },
+  {
+    "id": "S015",
+    "query": "开机时反复进入恢复模式，怎么定位问题？",
+    "expected_routes": [
+      "technical"
+    ],
+    "category": "technical",
+    "writes_data": false
+  },
+  {
+    "id": "S016",
+    "query": "查询今天厦门的紫外线指数。",
+    "expected_routes": [
+      "realtime"
+    ],
+    "category": "realtime",
+    "writes_data": false
+  },
+  {
+    "id": "S017",
+    "query": "现在重庆有没有暴雨预警？",
+    "expected_routes": [
+      "realtime"
+    ],
+    "category": "realtime",
+    "writes_data": false
+  },
+  {
+    "id": "S018",
+    "query": "核实今天欧元兑人民币的汇率。",
+    "expected_routes": [
+      "realtime"
+    ],
+    "category": "realtime",
+    "writes_data": false
+  },
+  {
+    "id": "S019",
+    "query": "看一下昨晚篮球赛的比分。",
+    "expected_routes": [
+      "realtime"
+    ],
+    "category": "realtime",
+    "writes_data": false
+  },
+  {
+    "id": "S020",
+    "query": "最近发布了哪些国产手机新品？",
+    "expected_routes": [
+      "realtime"
+    ],
+    "category": "realtime",
+    "writes_data": false
+  },
+  {
+    "id": "S021",
+    "query": "明天长沙的最高温是多少？",
+    "expected_routes": [
+      "realtime"
+    ],
+    "category": "realtime",
+    "writes_data": false
+  },
+  {
+    "id": "S022",
+    "query": "本周光伏行业有什么最新消息？",
+    "expected_routes": [
+      "realtime"
+    ],
+    "category": "realtime",
+    "writes_data": false
+  },
+  {
+    "id": "S023",
+    "query": "查一下今天原油的收盘价。",
+    "expected_routes": [
+      "realtime"
+    ],
+    "category": "realtime",
+    "writes_data": false
+  },
+  {
+    "id": "S024",
+    "query": "最近铁路运行有没有新的调整通知？",
+    "expected_routes": [
+      "realtime"
+    ],
+    "category": "realtime",
+    "writes_data": false
+  },
+  {
+    "id": "S025",
+    "query": "今天南京的空气质量如何？",
+    "expected_routes": [
+      "realtime"
+    ],
+    "category": "realtime",
+    "writes_data": false
+  },
+  {
+    "id": "S026",
+    "query": "核实刚公布的新能源汽车销量。",
+    "expected_routes": [
+      "realtime"
+    ],
+    "category": "realtime",
+    "writes_data": false
+  },
+  {
+    "id": "S027",
+    "query": "查询今晚的足球比赛赛程。",
+    "expected_routes": [
+      "realtime"
+    ],
+    "category": "realtime",
+    "writes_data": false
+  },
+  {
+    "id": "S028",
+    "query": "最近一周芯片制造行业有什么新闻？",
+    "expected_routes": [
+      "realtime"
+    ],
+    "category": "realtime",
+    "writes_data": false
+  },
+  {
+    "id": "S029",
+    "query": "现在武汉下雨了吗？",
+    "expected_routes": [
+      "realtime"
+    ],
+    "category": "realtime",
+    "writes_data": false
+  },
+  {
+    "id": "S030",
+    "query": "本月黄金市场有什么最新动态？",
+    "expected_routes": [
+      "realtime"
+    ],
+    "category": "realtime",
+    "writes_data": false
+  },
+  {
+    "id": "S031",
+    "query": "找成都东站周围的售后服务点。",
+    "expected_routes": [
+      "service"
+    ],
+    "category": "service",
+    "writes_data": false
+  },
+  {
+    "id": "S032",
+    "query": "从广州南站到珠江新城怎么走？",
+    "expected_routes": [
+      "service"
+    ],
+    "category": "service",
+    "writes_data": false
+  },
+  {
+    "id": "S033",
+    "query": "帮我定位宁波附近的汽车维修店。",
+    "expected_routes": [
+      "service"
+    ],
+    "category": "service",
+    "writes_data": false
+  },
+  {
+    "id": "S034",
+    "query": "到西安钟楼坐地铁怎么走？",
+    "expected_routes": [
+      "service"
+    ],
+    "category": "service",
+    "writes_data": false
+  },
+  {
+    "id": "S035",
+    "query": "查无锡市区的设备维修网点。",
+    "expected_routes": [
+      "service"
+    ],
+    "category": "service",
+    "writes_data": false
+  },
+  {
+    "id": "S036",
+    "query": "从机场到火车站规划一条路线。",
+    "expected_routes": [
+      "service"
+    ],
+    "category": "service",
+    "writes_data": false
+  },
+  {
+    "id": "S037",
+    "query": "苏州北站附近有没有服务中心？",
+    "expected_routes": [
+      "service"
+    ],
+    "category": "service",
+    "writes_data": false
+  },
+  {
+    "id": "S038",
+    "query": "导航到杭州最近的官方维修站。",
+    "expected_routes": [
+      "service"
+    ],
+    "category": "service",
+    "writes_data": false
+  },
+  {
+    "id": "S039",
+    "query": "找青岛市南区的手机售后门店。",
+    "expected_routes": [
+      "service"
+    ],
+    "category": "service",
+    "writes_data": false
+  },
+  {
+    "id": "S040",
+    "query": "规划从南京大学到南京南站的路线。",
+    "expected_routes": [
+      "service"
+    ],
+    "category": "service",
+    "writes_data": false
+  },
+  {
+    "id": "S041",
+    "query": "天津滨海新区的汽车服务站在哪里？",
+    "expected_routes": [
+      "service"
+    ],
+    "category": "service",
+    "writes_data": false
+  },
+  {
+    "id": "S042",
+    "query": "帮我查郑州机场附近的维修点。",
+    "expected_routes": [
+      "service"
+    ],
+    "category": "service",
+    "writes_data": false
+  },
+  {
+    "id": "S043",
+    "query": "从武汉站去东湖怎么坐车？",
+    "expected_routes": [
+      "service"
+    ],
+    "category": "service",
+    "writes_data": false
+  },
+  {
+    "id": "S044",
+    "query": "找福州仓山区的售后网点。",
+    "expected_routes": [
+      "service"
+    ],
+    "category": "service",
+    "writes_data": false
+  },
+  {
+    "id": "S045",
+    "query": "深圳北站到市民中心的步行和地铁路线是什么？",
+    "expected_routes": [
+      "service"
+    ],
+    "category": "service",
+    "writes_data": false
+  },
+  {
+    "id": "S046",
+    "query": "请查询我昨天提交的售后单是否受理。",
+    "expected_routes": [
+      "ticket"
+    ],
+    "category": "ticket",
+    "writes_data": false
+  },
+  {
+    "id": "S047",
+    "query": "我的维修申请能转给人工客服吗？",
+    "expected_routes": [
+      "ticket"
+    ],
+    "category": "ticket",
+    "writes_data": false
+  },
+  {
+    "id": "S048",
+    "query": "帮我看看工单的最新处理备注。",
+    "expected_routes": [
+      "ticket"
+    ],
+    "category": "ticket",
+    "writes_data": false
+  },
+  {
+    "id": "S049",
+    "query": "请在我的报修单补充序列号。",
+    "expected_routes": [
+      "ticket"
+    ],
+    "category": "ticket",
+    "writes_data": false
+  },
+  {
+    "id": "S050",
+    "query": "名下的服务工单目前由谁负责？",
+    "expected_routes": [
+      "ticket"
+    ],
+    "category": "ticket",
+    "writes_data": false
+  },
+  {
+    "id": "S051",
+    "query": "刚创建的投诉单现在是什么状态？",
+    "expected_routes": [
+      "ticket"
+    ],
+    "category": "ticket",
+    "writes_data": false
+  },
+  {
+    "id": "S052",
+    "query": "我想撤回之前提交的维修单。",
+    "expected_routes": [
+      "ticket"
+    ],
+    "category": "ticket",
+    "writes_data": false
+  },
+  {
+    "id": "S053",
+    "query": "查一下我的售后申请是否已派单。",
+    "expected_routes": [
+      "ticket"
+    ],
+    "category": "ticket",
+    "writes_data": false
+  },
+  {
+    "id": "S054",
+    "query": "报修工单里登记的联系电话能改吗？",
+    "expected_routes": [
+      "ticket"
+    ],
+    "category": "ticket",
+    "writes_data": false
+  },
+  {
+    "id": "S055",
+    "query": "确认客服有没有回复我的工单。",
+    "expected_routes": [
+      "ticket"
+    ],
+    "category": "ticket",
+    "writes_data": false
+  },
+  {
+    "id": "S056",
+    "query": "请帮我创建一张设备报修单。",
+    "expected_routes": [
+      "ticket"
+    ],
+    "category": "ticket",
+    "writes_data": false
+  },
+  {
+    "id": "S057",
+    "query": "我上周的投诉工单结案了吗？",
+    "expected_routes": [
+      "ticket"
+    ],
+    "category": "ticket",
+    "writes_data": false
+  },
+  {
+    "id": "S058",
+    "query": "查看工单里最后一次回访记录。",
+    "expected_routes": [
+      "ticket"
+    ],
+    "category": "ticket",
+    "writes_data": false
+  },
+  {
+    "id": "S059",
+    "query": "补充售后申请的故障照片说明。",
+    "expected_routes": [
+      "ticket"
+    ],
+    "category": "ticket",
+    "writes_data": false
+  },
+  {
+    "id": "S060",
+    "query": "把我的报修进度发给人工客服跟进。",
+    "expected_routes": [
+      "ticket"
+    ],
+    "category": "ticket",
+    "writes_data": false
+  },
+  {
+    "id": "S061",
+    "query": "用一句话解释什么是概率分布。",
+    "expected_routes": [
+      "general"
+    ],
+    "category": "general",
+    "writes_data": false
+  },
+  {
+    "id": "S062",
+    "query": "帮我把这句话翻译成日语。",
+    "expected_routes": [
+      "general"
+    ],
+    "category": "general",
+    "writes_data": false
+  },
+  {
+    "id": "S063",
+    "query": "写一段简短的毕业寄语。",
+    "expected_routes": [
+      "general"
+    ],
+    "category": "general",
+    "writes_data": false
+  },
+  {
+    "id": "S064",
+    "query": "解释一下什么是第一性原理。",
+    "expected_routes": [
+      "general"
+    ],
+    "category": "general",
+    "writes_data": false
+  },
+  {
+    "id": "S065",
+    "query": "把以下通知改成更正式的语气。",
+    "expected_routes": [
+      "general"
+    ],
+    "category": "general",
+    "writes_data": false
+  },
+  {
+    "id": "S066",
+    "query": "给小组讨论拟一个简洁标题。",
+    "expected_routes": [
+      "general"
+    ],
+    "category": "general",
+    "writes_data": false
+  },
+  {
+    "id": "S067",
+    "query": "如何建立每天阅读的习惯？",
+    "expected_routes": [
+      "general"
+    ],
+    "category": "general",
+    "writes_data": false
+  },
+  {
+    "id": "S068",
+    "query": "请用例子说明什么是沉没成本。",
+    "expected_routes": [
+      "general"
+    ],
+    "category": "general",
+    "writes_data": false
+  },
+  {
+    "id": "S069",
+    "query": "给我列一个一周学习计划。",
+    "expected_routes": [
+      "general"
+    ],
+    "category": "general",
+    "writes_data": false
+  },
+  {
+    "id": "S070",
+    "query": "把这段话整理成三条要点。",
+    "expected_routes": [
+      "general"
+    ],
+    "category": "general",
+    "writes_data": false
+  },
+  {
+    "id": "S071",
+    "query": "帮我写一封感谢导师的短信。",
+    "expected_routes": [
+      "general"
+    ],
+    "category": "general",
+    "writes_data": false
+  },
+  {
+    "id": "S072",
+    "query": "解释机器学习里的训练集概念。",
+    "expected_routes": [
+      "general"
+    ],
+    "category": "general",
+    "writes_data": false
+  },
+  {
+    "id": "S073",
+    "query": "给团队写一句周一问候语。",
+    "expected_routes": [
+      "general"
+    ],
+    "category": "general",
+    "writes_data": false
+  },
+  {
+    "id": "S074",
+    "query": "请概括这段文章的中心意思。",
+    "expected_routes": [
+      "general"
+    ],
+    "category": "general",
+    "writes_data": false
+  },
+  {
+    "id": "S075",
+    "query": "把这句英文润色得更自然。",
+    "expected_routes": [
+      "general"
+    ],
+    "category": "general",
+    "writes_data": false
+  },
+  {
+    "id": "S076",
+    "query": "分析平板无法开机的原因，然后查今天福州的气温。",
+    "expected_routes": [
+      "realtime",
+      "technical"
+    ],
+    "category": "multi_intent",
+    "writes_data": false
+  },
+  {
+    "id": "S077",
+    "query": "分析平板无法开机的原因，同时查今天福州的气温。",
+    "expected_routes": [
+      "realtime",
+      "technical"
+    ],
+    "category": "multi_intent",
+    "writes_data": false
+  },
+  {
+    "id": "S078",
+    "query": "分析平板无法开机的原因，另外查今天福州的气温。",
+    "expected_routes": [
+      "realtime",
+      "technical"
+    ],
+    "category": "multi_intent",
+    "writes_data": false
+  },
+  {
+    "id": "S079",
+    "query": "解释电脑总是死机怎么排查，然后找附近的维修中心。",
+    "expected_routes": [
+      "service",
+      "technical"
+    ],
+    "category": "multi_intent",
+    "writes_data": false
+  },
+  {
+    "id": "S080",
+    "query": "解释电脑总是死机怎么排查，同时找附近的维修中心。",
+    "expected_routes": [
+      "service",
+      "technical"
+    ],
+    "category": "multi_intent",
+    "writes_data": false
+  },
+  {
+    "id": "S081",
+    "query": "解释电脑总是死机怎么排查，另外找附近的维修中心。",
+    "expected_routes": [
+      "service",
+      "technical"
+    ],
+    "category": "multi_intent",
+    "writes_data": false
+  },
+  {
+    "id": "S082",
+    "query": "告诉我怎样排查屏幕黑屏，然后查看我的售后单处理进度。",
+    "expected_routes": [
+      "technical",
+      "ticket"
+    ],
+    "category": "multi_intent",
+    "writes_data": false
+  },
+  {
+    "id": "S083",
+    "query": "告诉我怎样排查屏幕黑屏，同时查看我的售后单处理进度。",
+    "expected_routes": [
+      "technical",
+      "ticket"
+    ],
+    "category": "multi_intent",
+    "writes_data": false
+  },
+  {
+    "id": "S084",
+    "query": "告诉我怎样排查屏幕黑屏，另外查看我的售后单处理进度。",
+    "expected_routes": [
+      "technical",
+      "ticket"
+    ],
+    "category": "multi_intent",
+    "writes_data": false
+  },
+  {
+    "id": "S085",
+    "query": "排查电脑麦克风没有声音，然后把这句话翻译成英语。",
+    "expected_routes": [
+      "general",
+      "technical"
+    ],
+    "category": "multi_intent",
+    "writes_data": false
+  },
+  {
+    "id": "S086",
+    "query": "排查电脑麦克风没有声音，同时把这句话翻译成英语。",
+    "expected_routes": [
+      "general",
+      "technical"
+    ],
+    "category": "multi_intent",
+    "writes_data": false
+  },
+  {
+    "id": "S087",
+    "query": "排查电脑麦克风没有声音，另外把这句话翻译成英语。",
+    "expected_routes": [
+      "general",
+      "technical"
+    ],
+    "category": "multi_intent",
+    "writes_data": false
+  },
+  {
+    "id": "S088",
+    "query": "查询本周天气预报，然后导航到南京站。",
+    "expected_routes": [
+      "realtime",
+      "service"
+    ],
+    "category": "multi_intent",
+    "writes_data": false
+  },
+  {
+    "id": "S089",
+    "query": "查询本周天气预报，同时导航到南京站。",
+    "expected_routes": [
+      "realtime",
+      "service"
+    ],
+    "category": "multi_intent",
+    "writes_data": false
+  },
+  {
+    "id": "S090",
+    "query": "查询本周天气预报，另外导航到南京站。",
+    "expected_routes": [
+      "realtime",
+      "service"
+    ],
+    "category": "multi_intent",
+    "writes_data": false
+  },
+  {
+    "id": "S091",
+    "query": "核实昨天的比赛结果，然后查我的维修工单。",
+    "expected_routes": [
+      "realtime",
+      "ticket"
+    ],
+    "category": "multi_intent",
+    "writes_data": false
+  },
+  {
+    "id": "S092",
+    "query": "核实昨天的比赛结果，同时查我的维修工单。",
+    "expected_routes": [
+      "realtime",
+      "ticket"
+    ],
+    "category": "multi_intent",
+    "writes_data": false
+  },
+  {
+    "id": "S093",
+    "query": "核实昨天的比赛结果，另外查我的维修工单。",
+    "expected_routes": [
+      "realtime",
+      "ticket"
+    ],
+    "category": "multi_intent",
+    "writes_data": false
+  },
+  {
+    "id": "S094",
+    "query": "查今日美元汇率，然后给我写一句生日祝福。",
+    "expected_routes": [
+      "general",
+      "realtime"
+    ],
+    "category": "multi_intent",
+    "writes_data": false
+  },
+  {
+    "id": "S095",
+    "query": "查今日美元汇率，同时给我写一句生日祝福。",
+    "expected_routes": [
+      "general",
+      "realtime"
+    ],
+    "category": "multi_intent",
+    "writes_data": false
+  },
+  {
+    "id": "S096",
+    "query": "查今日美元汇率，另外给我写一句生日祝福。",
+    "expected_routes": [
+      "general",
+      "realtime"
+    ],
+    "category": "multi_intent",
+    "writes_data": false
+  },
+  {
+    "id": "S097",
+    "query": "寻找苏州的售后网点，然后确认我的报修单有没有结案。",
+    "expected_routes": [
+      "service",
+      "ticket"
+    ],
+    "category": "multi_intent",
+    "writes_data": false
+  },
+  {
+    "id": "S098",
+    "query": "寻找苏州的售后网点，同时确认我的报修单有没有结案。",
+    "expected_routes": [
+      "service",
+      "ticket"
+    ],
+    "category": "multi_intent",
+    "writes_data": false
+  },
+  {
+    "id": "S099",
+    "query": "寻找苏州的售后网点，另外确认我的报修单有没有结案。",
+    "expected_routes": [
+      "service",
+      "ticket"
+    ],
+    "category": "multi_intent",
+    "writes_data": false
+  },
+  {
+    "id": "S100",
+    "query": "规划到武汉站的路线，然后解释什么是归纳法。",
+    "expected_routes": [
+      "general",
+      "service"
+    ],
+    "category": "multi_intent",
+    "writes_data": false
+  },
+  {
+    "id": "S101",
+    "query": "规划到武汉站的路线，同时解释什么是归纳法。",
+    "expected_routes": [
+      "general",
+      "service"
+    ],
+    "category": "multi_intent",
+    "writes_data": false
+  },
+  {
+    "id": "S102",
+    "query": "规划到武汉站的路线，另外解释什么是归纳法。",
+    "expected_routes": [
+      "general",
+      "service"
+    ],
+    "category": "multi_intent",
+    "writes_data": false
+  },
+  {
+    "id": "S103",
+    "query": "查询我的投诉工单，然后把下面的自述缩成一句话。",
+    "expected_routes": [
+      "general",
+      "ticket"
+    ],
+    "category": "multi_intent",
+    "writes_data": false
+  },
+  {
+    "id": "S104",
+    "query": "查询我的投诉工单，同时把下面的自述缩成一句话。",
+    "expected_routes": [
+      "general",
+      "ticket"
+    ],
+    "category": "multi_intent",
+    "writes_data": false
+  },
+  {
+    "id": "S105",
+    "query": "查询我的投诉工单，另外把下面的自述缩成一句话。",
+    "expected_routes": [
+      "general",
+      "ticket"
+    ],
+    "category": "multi_intent",
+    "writes_data": false
+  },
+  {
+    "id": "S106",
+    "query": "先排查电脑网卡，再检查同一台电脑的 DNS 设置。",
+    "expected_routes": [
+      "technical"
+    ],
+    "category": "same_agent_steps",
+    "writes_data": false
+  },
+  {
+    "id": "S107",
+    "query": "先分析打印机为什么卡纸，再告诉我清理纸路的方法。",
+    "expected_routes": [
+      "technical"
+    ],
+    "category": "same_agent_steps",
+    "writes_data": false
+  },
+  {
+    "id": "S108",
+    "query": "先检查显示器电源，再排查它没有画面的原因。",
+    "expected_routes": [
+      "technical"
+    ],
+    "category": "same_agent_steps",
+    "writes_data": false
+  },
+  {
+    "id": "S109",
+    "query": "先确认蓝牙开关状态，再解释耳机连接失败怎么处理。",
+    "expected_routes": [
+      "technical"
+    ],
+    "category": "same_agent_steps",
+    "writes_data": false
+  },
+  {
+    "id": "S110",
+    "query": "先查今天铜价，再查今天铝价。",
+    "expected_routes": [
+      "realtime"
+    ],
+    "category": "same_agent_steps",
+    "writes_data": false
+  },
+  {
+    "id": "S111",
+    "query": "先核实上海的降雨，再核实杭州的降雨。",
+    "expected_routes": [
+      "realtime"
+    ],
+    "category": "same_agent_steps",
+    "writes_data": false
+  },
+  {
+    "id": "S112",
+    "query": "先看本周手机发布消息，再看本周平板发布消息。",
+    "expected_routes": [
+      "realtime"
+    ],
+    "category": "same_agent_steps",
+    "writes_data": false
+  },
+  {
+    "id": "S113",
+    "query": "先查询昨晚甲队的比分，再查询乙队的比分。",
+    "expected_routes": [
+      "realtime"
+    ],
+    "category": "same_agent_steps",
+    "writes_data": false
+  },
+  {
+    "id": "S114",
+    "query": "先找西安的维修站，再规划去那家店的地铁路线。",
+    "expected_routes": [
+      "service"
+    ],
+    "category": "same_agent_steps",
+    "writes_data": false
+  },
+  {
+    "id": "S115",
+    "query": "先查广州东站的位置，再规划到广州塔的路线。",
+    "expected_routes": [
+      "service"
+    ],
+    "category": "same_agent_steps",
+    "writes_data": false
+  },
+  {
+    "id": "S116",
+    "query": "先找机场周边的服务中心，再选最近的一家导航。",
+    "expected_routes": [
+      "service"
+    ],
+    "category": "same_agent_steps",
+    "writes_data": false
+  },
+  {
+    "id": "S117",
+    "query": "先查苏州的两家维修店，再比较到店路线。",
+    "expected_routes": [
+      "service"
+    ],
+    "category": "same_agent_steps",
+    "writes_data": false
+  },
+  {
+    "id": "S118",
+    "query": "先查工单是否派出，再看负责客服的姓名。",
+    "expected_routes": [
+      "ticket"
+    ],
+    "category": "same_agent_steps",
+    "writes_data": false
+  },
+  {
+    "id": "S119",
+    "query": "先核对报修单编号，再补上新的故障描述。",
+    "expected_routes": [
+      "ticket"
+    ],
+    "category": "same_agent_steps",
+    "writes_data": false
+  },
+  {
+    "id": "S120",
+    "query": "先看售后申请的状态，再看最近一次处理时间。",
+    "expected_routes": [
+      "ticket"
+    ],
+    "category": "same_agent_steps",
+    "writes_data": false
+  },
+  {
+    "id": "S121",
+    "query": "先查一张维修单，再查另一张维修单的状态。",
+    "expected_routes": [
+      "ticket"
+    ],
+    "category": "same_agent_steps",
+    "writes_data": false
+  },
+  {
+    "id": "S122",
+    "query": "先解释机会成本，再给我一个生活例子。",
+    "expected_routes": [
+      "general"
+    ],
+    "category": "same_agent_steps",
+    "writes_data": false
+  },
+  {
+    "id": "S123",
+    "query": "先写一段祝福，再把它改得更简短。",
+    "expected_routes": [
+      "general"
+    ],
+    "category": "same_agent_steps",
+    "writes_data": false
+  },
+  {
+    "id": "S124",
+    "query": "先概括下面这段文字，再拟一个标题。",
+    "expected_routes": [
+      "general"
+    ],
+    "category": "same_agent_steps",
+    "writes_data": false
+  },
+  {
+    "id": "S125",
+    "query": "先把这句话译成英文，再检查译文是否通顺。",
+    "expected_routes": [
+      "general"
+    ],
+    "category": "same_agent_steps",
+    "writes_data": false
+  }
+]

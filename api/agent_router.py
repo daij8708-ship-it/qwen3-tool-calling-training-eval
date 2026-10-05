@@ -26,6 +26,17 @@ MULTI_TASK = re.compile(
     r"如果.{1,20}(解决不了|修不好|不行|没有用).{0,10}(找|联系|转|建)"
 )
 
+# A delegated two-step request can still belong to one specialist. Split only
+# explicit task boundaries; the model independently classifies each clause.
+TASK_BOUNDARY = re.compile(r"\s*[，,；;]\s*(?:再|然后|接着|同时|并且|还要|另外)\s*")
+
+
+def split_two_tasks(user_request: str) -> tuple[str, str] | None:
+    parts = TASK_BOUNDARY.split(user_request.strip().rstrip("。！？!?"))
+    if len(parts) != 2 or min(map(len, parts)) < 5:
+        return None
+    return parts[0], parts[1]
+
 
 def build_route_prompt(user_request: str, now: str, prefix: str = "") -> str:
     lines = [

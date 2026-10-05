@@ -1,0 +1,42 @@
+{
+  "mode": "local",
+  "cases_sha256": "fcc2afc2be29e18d23df91602fa4ff594c50139dfa2f9c7e33159612f91741c2",
+  "count": 125,
+  "correct": 123,
+  "by_category": {
+    "general": {
+      "count": 15,
+      "correct": 15
+    },
+    "multi_intent": {
+      "count": 30,
+      "correct": 30
+    },
+    "realtime": {
+      "count": 15,
+      "correct": 15
+    },
+    "same_agent_steps": {
+      "count": 20,
+      "correct": 18
+    },
+    "service": {
+      "count": 15,
+      "correct": 15
+    },
+    "technical": {
+      "count": 15,
+      "correct": 15
+    },
+    "ticket": {
+      "count": 15,
+      "correct": 15
+    }
+  },
+  "latency_ms": {
+    "mean": 1209.095,
+    "p50": 1044.523,
+    "p95": 1737.708
+  },
+  "cloud_usage": null
+}
